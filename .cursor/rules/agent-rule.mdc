@@ -1,0 +1,121 @@
+---
+description: Universal Agent Rules - Core behavior for all projects
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Universal Agent Rules
+
+## 🚨 CRITICAL: READ THIS FIRST
+**ทุก Agent ที่ทำงานในโปรเจคนี้ ต้องอ่านไฟล์นี้ก่อนเสมอ!**
+
+## 📋 MANDATORY CHECKLIST
+ก่อนเริ่มทำงาน ให้ทำตามลำดับนี้:
+
+### 1. อ่านไฟล์ Context (บังคับ)
+```
+1. อ่าน agent-conversation-context.md
+2. อ่าน project-requirements.md
+3. อ่าน agent-rule.mdc (ไฟล์นี้)
+```
+
+### 2. ตรวจสอบสถานะปัจจุบัน
+- ดู `git status` เพื่อดูสถานะ git
+- ดู `ls -la *.md` เพื่อดูไฟล์เอกสาร
+- ตรวจสอบว่ามีไฟล์ context ครบหรือไม่
+
+### 3. สร้างไฟล์ Context (ถ้าไม่มี)
+- สร้าง `agent-conversation-context.md` ถ้าไม่มี
+- สร้าง `project-requirements.md` ถ้าไม่มี
+- อัพเดทไฟล์ที่มีอยู่แล้ว
+
+## 🔄 UNIVERSAL WORKFLOW RULES
+
+### Before Starting Work:
+1. **Read Context Files** (บังคับ)
+2. **Check Git Status** - `git status`
+3. **Sync with Remote** - `git pull origin main`
+4. **Create Missing Context** - ถ้าไฟล์ context ไม่มี
+
+### During Work:
+1. **Update Context** - อัพเดทไฟล์ context ตามการเปลี่ยนแปลง
+2. **Follow Project Focus** - ตาม project-requirements.md
+3. **Document Changes** - บันทึกการเปลี่ยนแปลง
+4. **Sync Regularly** - commit และ push บ่อยๆ
+
+### After Work:
+1. **Update Context Files** - อัพเดทสถานะ
+2. **Commit Changes** - พร้อมข้อความชัดเจน
+3. **Push to GitHub** - เพื่อ sync กับเครื่องอื่น
+4. **Update Status** - ใน agent-conversation-context.md
+
+## 📝 CONTEXT MANAGEMENT RULES
+
+### Always Update These Files:
+1. **agent-conversation-context.md** - เมื่อมีการคุยใหม่
+2. **project-requirements.md** - เมื่อมี requirements ใหม่
+3. **agent-rule.mdc** - เมื่อมี rule ใหม่
+
+### Update Format:
+```markdown
+## Last Update: [DATE]
+## Status: [CURRENT_STATUS]
+## Next Steps: [NEXT_ACTIONS]
+```
+
+## 🔄 GIT SYNC RULES
+
+### Daily Sync:
+1. **Pull Changes** - `git pull origin main`
+2. **Check Status** - `git status`
+3. **Resolve Conflicts** - ถ้ามี
+4. **Push Changes** - `git push origin main`
+
+### Before Major Work:
+1. **Sync with Remote** - `git pull origin main`
+2. **Check for Updates** - ดูการเปลี่ยนแปลงล่าสุด
+3. **Update Context** - อัพเดทไฟล์ context
+
+## 🚨 EMERGENCY RULES
+
+### If Context is Lost:
+1. **Read All .md Files** - เริ่มจาก agent-rule.mdc
+2. **Check Git History** - `git log --oneline -10`
+3. **Ask User** - "อ่าน context files แล้ว ต้องการทำอะไรต่อ?"
+4. **Rebuild Context** - ถ้าจำเป็น
+
+### If User is Confused:
+1. **Show Current Status** - จาก context files
+2. **Explain Project** - จาก project-requirements.md
+3. **Show Progress** - จาก git history
+4. **Ask for Direction** - ต้องการทำอะไรต่อ
+
+## 📋 DAILY CHECKLIST
+
+### Morning (First Work):
+- [ ] Pull latest changes
+- [ ] Read context files
+- [ ] Check project status
+- [ ] Plan day's work
+
+### During Work:
+- [ ] Update context files
+- [ ] Document changes
+- [ ] Sync with git
+- [ ] Follow project focus
+
+### End of Day:
+- [ ] Update all context files
+- [ ] Commit and push changes
+- [ ] Update status
+- [ ] Plan next steps
+
+## 🎯 SUCCESS METRICS
+- ✅ Context maintained across machines
+- ✅ User can continue work seamlessly
+- ✅ Project requirements clear
+- ✅ Conversation history preserved
+
+---
+
+**Remember: Always read context files first and sync with git regularly!**
