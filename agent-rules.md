@@ -11,7 +11,7 @@
 1. อ่าน QUICK_START.md
 2. อ่าน CONVERSATION_CONTEXT.md  
 3. อ่าน PATTERN_ANALYSIS_REQUIREMENTS.md
-4. อ่าน agent_rules.md (ไฟล์นี้)
+4. อ่าน agent-rules.md (ไฟล์นี้)
 ```
 
 ### 2. ตรวจสอบสถานะปัจจุบัน
@@ -123,7 +123,7 @@
 ### Always Update These Files:
 1. **conversation_context.md** - เมื่อมีการคุยใหม่
 2. **quick_start.md** - เมื่อมีข้อมูลใหม่
-3. **agent_rules.md** - เมื่อมี rule ใหม่
+3. **agent-rules.md** - เมื่อมี rule ใหม่
 
 ### Update Format:
 ```markdown

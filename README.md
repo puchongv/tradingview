@@ -1,51 +1,88 @@
-# TradingView Project
+# Trading Signal Pattern Analysis
 
-A comprehensive TradingView-related project for financial data analysis and visualization.
+## 🚨 FOR AGENTS: READ THIS FIRST!
+**ทุก Agent ที่ทำงานในโปรเจคนี้ ต้องอ่านไฟล์นี้ก่อนเสมอ!**
 
-## Features
+### 📋 MANDATORY CHECKLIST
+1. อ่าน `agent-rules.md` - กฎสำหรับ Agent
+2. อ่าน `QUICK_START.md` - คู่มือเริ่มต้น
+3. อ่าน `CONVERSATION_CONTEXT.md` - ประวัติการคุย
+4. อ่าน `PATTERN_ANALYSIS_REQUIREMENTS.md` - ความต้องการ
 
-- Real-time market data integration
-- Technical analysis tools
-- Chart visualization
-- Trading signals and alerts
+## 🎯 PROJECT MISSION
+**สร้าง Pattern Analysis Charts สำหรับ Trading Signals**
+- เน้นการแสดง **รูปแบบ (Pattern)** ของข้อมูล
+- มองเห็น pattern ที่ส่งผลต่อ win rate
+- **ไม่ใช่ Performance Metrics** - เน้นการวิเคราะห์รูปแบบ
 
-## Getting Started
+## 📊 CURRENT STATUS
+- **Phase**: Pattern Analysis Development
+- **Priority**: Pattern Detection over Performance
+- **Data**: `Result Last 120HR.csv` (1,747 rows)
+- **Target**: Metabase Dashboard with Pattern Charts
 
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
+## 🚀 QUICK START
 ```bash
-npm install
+# Clone repository
+git clone https://github.com/puchongv/tradingview.git
+cd tradingview
+
+# Read context files
+cat agent-rules.md
+cat QUICK_START.md
+cat CONVERSATION_CONTEXT.md
+cat PATTERN_ANALYSIS_REQUIREMENTS.md
+
+# Start working
 ```
 
-### Usage
+## 📁 KEY FILES
+- `Result Last 120HR.csv` - Trading data
+- `metabase_chart_details.json` - Chart configuration
+- `metabase_queries.sql` - SQL queries
+- `agent-rules.md` - Rules for agents
+- `CONVERSATION_CONTEXT.md` - Full context
+- `PATTERN_ANALYSIS_REQUIREMENTS.md` - Requirements
 
-```bash
-npm start
-```
+## ✅ COMPLETED
+1. ✅ Metabase configuration files
+2. ✅ Sample charts and visualizations
+3. ✅ Dashboard layout examples
+4. ✅ SQL queries for charts
+5. ✅ Context documentation system
 
-## Project Structure
+## 🔄 IN PROGRESS
+- Pattern Analysis Charts development
+- Visual Pattern Recognition
+- Pattern Detection Visualization
 
-```
-tradingview/
-├── src/           # Source code
-├── public/        # Static files
-├── docs/          # Documentation
-└── tests/         # Test files
-```
+## 🎨 CHART TYPES NEEDED
+- **Heatmaps** - สำหรับ time-based patterns
+- **Scatter Plots** - สำหรับ correlation patterns
+- **Box Plots** - สำหรับ distribution patterns
+- **Violin Plots** - สำหรับ density patterns
+- **Network Graphs** - สำหรับ relationship patterns
 
-## Contributing
+## 🚫 AVOID
+- ❌ Performance metrics focus
+- ❌ Basic win rate charts
+- ❌ Simple bar/line charts
+- ❌ Generic dashboard layouts
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## ✅ FOCUS ON
+- ✅ Pattern recognition
+- ✅ Visual pattern analysis
+- ✅ Time-based patterns
+- ✅ Price movement patterns
+- ✅ Strategy behavior patterns
+- ✅ Win/loss streak patterns
 
-## License
+## 📞 CONTACT
+- **Repository**: https://github.com/puchongv/tradingview
+- **Main Context**: CONVERSATION_CONTEXT.md
+- **Quick Start**: QUICK_START.md
+- **Requirements**: PATTERN_ANALYSIS_REQUIREMENTS.md
 
-This project is licensed under the MIT License.
+---
+
+**Remember: Always read context files first!**
