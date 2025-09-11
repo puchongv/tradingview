@@ -1,0 +1,390 @@
+{
+  "dashboard_config": {
+    "name": "Trading Signal Analysis Dashboard",
+    "description": "Dashboard สำหรับวิเคราะห์ performance ของ trading signals",
+    "layout": "3x4_grid",
+    "filters": [
+      {
+        "name": "strategy_filter",
+        "type": "dropdown",
+        "label": "Strategy",
+        "source_query": "strategy_performance_query",
+        "column": "strategy"
+      },
+      {
+        "name": "action_filter", 
+        "type": "dropdown",
+        "label": "Action",
+        "source_query": "strategy_performance_query",
+        "column": "action"
+      },
+      {
+        "name": "time_range_filter",
+        "type": "date_range",
+        "label": "Time Range",
+        "source_table": "tradingviewdata",
+        "column": "entry_time"
+      },
+      {
+        "name": "timeframe_filter",
+        "type": "dropdown", 
+        "label": "Timeframe",
+        "source_query": "strategy_performance_query",
+        "column": "tf"
+      }
+    ]
+  },
+  "charts": [
+    {
+      "id": "strategy_performance_table",
+      "name": "Strategy Performance Overview",
+      "type": "table",
+      "position": {"row": 1, "col": 1, "width": 2, "height": 1},
+      "query_id": "strategy_performance_query",
+      "settings": {
+        "columns": [
+          {"name": "strategy", "label": "Strategy", "type": "text", "width": 120},
+          {"name": "action", "label": "Action", "type": "text", "width": 100},
+          {"name": "tf", "label": "Timeframe", "type": "text", "width": 80},
+          {"name": "total_trades", "label": "Total Trades", "type": "number", "width": 100},
+          {"name": "win_rate_10min", "label": "Win Rate 10min (%)", "type": "number", "width": 120, "format": "0.0%"},
+          {"name": "win_rate_30min", "label": "Win Rate 30min (%)", "type": "number", "width": 120, "format": "0.0%"},
+          {"name": "win_rate_60min", "label": "Win Rate 60min (%)", "type": "number", "width": 120, "format": "0.0%"},
+          {"name": "avg_pnl", "label": "Avg PnL", "type": "number", "width": 100, "format": "0.00"},
+          {"name": "total_pnl", "label": "Total PnL", "type": "number", "width": 100, "format": "0.00"}
+        ],
+        "sorting": [{"column": "win_rate_10min", "direction": "desc"}],
+        "pagination": {"page_size": 20},
+        "conditional_formatting": [
+          {
+            "column": "win_rate_10min",
+            "condition": "> 60",
+            "color": "green",
+            "background": "lightgreen"
+          },
+          {
+            "column": "win_rate_10min", 
+            "condition": "< 50",
+            "color": "red",
+            "background": "lightcoral"
+          }
+        ]
+      }
+    },
+    {
+      "id": "win_rate_bar_chart",
+      "name": "Win Rate by Strategy",
+      "type": "bar",
+      "position": {"row": 1, "col": 3, "width": 2, "height": 1},
+      "query_id": "strategy_performance_query",
+      "settings": {
+        "x_axis": "strategy",
+        "y_axis": "win_rate_10min",
+        "group_by": "action",
+        "orientation": "vertical",
+        "colors": ["#3498DB", "#E74C3C", "#2ECC71", "#F39C12"],
+        "show_values": true,
+        "show_legend": true,
+        "y_axis_title": "Win Rate (%)",
+        "x_axis_title": "Strategy",
+        "chart_title": "Win Rate by Strategy (10min)"
+      }
+    },
+    {
+      "id": "total_trades_number",
+      "name": "Total Trades Today",
+      "type": "number",
+      "position": {"row": 1, "col": 5, "width": 1, "height": 1},
+      "query_id": "total_trades_today_query",
+      "settings": {
+        "value_column": "total_trades",
+        "format": "0,0",
+        "prefix": "",
+        "suffix": " trades",
+        "color": "#2ECC71",
+        "size": "large",
+        "show_trend": true,
+        "trend_period": "24h"
+      }
+    },
+    {
+      "id": "time_pattern_line_chart",
+      "name": "Trading Performance by Hour",
+      "type": "line",
+      "position": {"row": 2, "col": 1, "width": 2, "height": 1},
+      "query_id": "time_pattern_query",
+      "settings": {
+        "x_axis": "hour",
+        "y_axis": "win_rate_10min",
+        "series": ["win_rate_10min", "win_rate_30min", "win_rate_60min"],
+        "colors": ["#E74C3C", "#3498DB", "#2ECC71"],
+        "line_width": 3,
+        "markers": true,
+        "marker_size": 6,
+        "show_values": false,
+        "show_legend": true,
+        "y_axis_title": "Win Rate (%)",
+        "x_axis_title": "Hour of Day",
+        "chart_title": "Performance by Hour",
+        "grid_lines": true,
+        "reference_line": {"value": 50, "color": "red", "style": "dashed"}
+      }
+    },
+    {
+      "id": "risk_assessment_table",
+      "name": "Risk Assessment",
+      "type": "table",
+      "position": {"row": 2, "col": 3, "width": 2, "height": 1},
+      "query_id": "risk_assessment_query",
+      "settings": {
+        "columns": [
+          {"name": "strategy", "label": "Strategy", "type": "text", "width": 120},
+          {"name": "action", "label": "Action", "type": "text", "width": 100},
+          {"name": "total_trades", "label": "Total Trades", "type": "number", "width": 100},
+          {"name": "win_rate", "label": "Win Rate (%)", "type": "number", "width": 100, "format": "0.0%"},
+          {"name": "max_consecutive_losses", "label": "Max Losses", "type": "number", "width": 100},
+          {"name": "risk_level", "label": "Risk Level", "type": "text", "width": 100}
+        ],
+        "sorting": [{"column": "win_rate", "direction": "desc"}],
+        "conditional_formatting": [
+          {
+            "column": "risk_level",
+            "condition": "= 'High Risk'",
+            "color": "red",
+            "background": "lightcoral"
+          },
+          {
+            "column": "risk_level",
+            "condition": "= 'Low Risk'", 
+            "color": "green",
+            "background": "lightgreen"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recent_performance_line_chart",
+      "name": "Recent Performance (24h)",
+      "type": "line",
+      "position": {"row": 2, "col": 5, "width": 1, "height": 1},
+      "query_id": "recent_performance_query",
+      "settings": {
+        "x_axis": "strategy",
+        "y_axis": "win_rate_10min",
+        "series": ["win_rate_10min"],
+        "colors": ["#9B59B6"],
+        "line_width": 2,
+        "markers": true,
+        "marker_size": 4,
+        "show_values": true,
+        "y_axis_title": "Win Rate (%)",
+        "x_axis_title": "Strategy",
+        "chart_title": "Recent Performance"
+      }
+    },
+    {
+      "id": "strategy_time_heatmap",
+      "name": "Strategy Performance by Hour",
+      "type": "heatmap",
+      "position": {"row": 3, "col": 1, "width": 2, "height": 1},
+      "query_id": "strategy_time_heatmap_query",
+      "settings": {
+        "x_axis": "hour",
+        "y_axis": "strategy",
+        "color_axis": "win_rate_10min",
+        "color_scheme": "RdYlGn",
+        "color_range": {"min": 30, "max": 80},
+        "show_values": true,
+        "value_format": "0.0%",
+        "x_axis_title": "Hour of Day",
+        "y_axis_title": "Strategy",
+        "chart_title": "Strategy + Time Heatmap"
+      }
+    },
+    {
+      "id": "action_time_heatmap",
+      "name": "Action Performance by Hour", 
+      "type": "heatmap",
+      "position": {"row": 3, "col": 3, "width": 2, "height": 1},
+      "query_id": "action_time_heatmap_query",
+      "settings": {
+        "x_axis": "hour",
+        "y_axis": "action",
+        "color_axis": "win_rate_10min",
+        "color_scheme": "RdYlGn",
+        "color_range": {"min": 30, "max": 80},
+        "show_values": true,
+        "value_format": "0.0%",
+        "x_axis_title": "Hour of Day",
+        "y_axis_title": "Action",
+        "chart_title": "Action + Time Heatmap"
+      }
+    },
+    {
+      "id": "best_combinations_table",
+      "name": "Best Combinations",
+      "type": "table",
+      "position": {"row": 3, "col": 5, "width": 1, "height": 1},
+      "query_id": "best_combinations_query",
+      "settings": {
+        "columns": [
+          {"name": "strategy", "label": "Strategy", "type": "text", "width": 100},
+          {"name": "action", "label": "Action", "type": "text", "width": 80},
+          {"name": "hour", "label": "Hour", "type": "number", "width": 60},
+          {"name": "win_rate_10min", "label": "Win Rate (%)", "type": "number", "width": 80, "format": "0.0%"},
+          {"name": "total_trades", "label": "Trades", "type": "number", "width": 60}
+        ],
+        "sorting": [{"column": "win_rate_10min", "direction": "desc"}],
+        "pagination": {"page_size": 10},
+        "conditional_formatting": [
+          {
+            "column": "win_rate_10min",
+            "condition": "> 70",
+            "color": "green",
+            "background": "lightgreen"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pre_loss_streak_bar_chart",
+      "name": "Pre-Loss Streak Analysis",
+      "type": "bar",
+      "position": {"row": 4, "col": 1, "width": 2, "height": 1},
+      "query_id": "pre_loss_streak_query",
+      "settings": {
+        "x_axis": "strategy",
+        "y_axis": "win_rate",
+        "group_by": "is_after_loss",
+        "orientation": "vertical",
+        "colors": ["#E74C3C", "#2ECC71"],
+        "show_values": true,
+        "show_legend": true,
+        "y_axis_title": "Win Rate (%)",
+        "x_axis_title": "Strategy",
+        "chart_title": "Pre-Loss Streak Impact",
+        "legend_labels": ["After Win", "After Loss"]
+      }
+    },
+    {
+      "id": "price_movement_bar_chart",
+      "name": "Price Movement Analysis",
+      "type": "bar",
+      "position": {"row": 4, "col": 3, "width": 2, "height": 1},
+      "query_id": "price_movement_query",
+      "settings": {
+        "x_axis": "price_movement",
+        "y_axis": "win_rate",
+        "orientation": "vertical",
+        "colors": ["#F39C12", "#E74C3C", "#95A5A6", "#2ECC71", "#3498DB"],
+        "show_values": true,
+        "y_axis_title": "Win Rate (%)",
+        "x_axis_title": "Price Movement",
+        "chart_title": "Performance by Price Movement"
+      }
+    },
+    {
+      "id": "daily_performance_line_chart",
+      "name": "Daily Performance Trend",
+      "type": "line",
+      "position": {"row": 4, "col": 5, "width": 1, "height": 1},
+      "query_id": "daily_performance_query",
+      "settings": {
+        "x_axis": "trade_date",
+        "y_axis": "win_rate_10min",
+        "series": ["win_rate_10min"],
+        "colors": ["#1ABC9C"],
+        "line_width": 2,
+        "markers": true,
+        "marker_size": 4,
+        "show_values": false,
+        "y_axis_title": "Win Rate (%)",
+        "x_axis_title": "Date",
+        "chart_title": "Daily Trend"
+      }
+    }
+  ],
+  "queries": {
+    "strategy_performance_query": {
+      "sql": "SELECT strategy, action, tf, COUNT(*) as total_trades, ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min, ROUND(SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_30min, ROUND(SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_60min, ROUND(AVG(pnl), 2) as avg_pnl, SUM(pnl) as total_pnl FROM tradingviewdata WHERE result_10min IS NOT NULL GROUP BY strategy, action, tf ORDER BY win_rate_10min DESC",
+      "description": "Strategy performance overview with win rates and PnL"
+    },
+    "time_pattern_query": {
+      "sql": "SELECT EXTRACT(HOUR FROM entry_time) as hour, COUNT(*) as total_trades, ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min, ROUND(SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_30min, ROUND(SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_60min FROM tradingviewdata WHERE result_10min IS NOT NULL GROUP BY EXTRACT(HOUR FROM entry_time) ORDER BY hour",
+      "description": "Performance analysis by hour of day"
+    },
+    "strategy_time_heatmap_query": {
+      "sql": "SELECT strategy, EXTRACT(HOUR FROM entry_time) as hour, COUNT(*) as total_trades, ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min FROM tradingviewdata WHERE result_10min IS NOT NULL GROUP BY strategy, EXTRACT(HOUR FROM entry_time) HAVING COUNT(*) >= 5 ORDER BY strategy, hour",
+      "description": "Strategy performance heatmap by hour"
+    },
+    "action_time_heatmap_query": {
+      "sql": "SELECT action, EXTRACT(HOUR FROM entry_time) as hour, COUNT(*) as total_trades, ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min FROM tradingviewdata WHERE result_10min IS NOT NULL GROUP BY action, EXTRACT(HOUR FROM entry_time) HAVING COUNT(*) >= 5 ORDER BY action, hour",
+      "description": "Action performance heatmap by hour"
+    },
+    "risk_assessment_query": {
+      "sql": "WITH risk_data AS (SELECT strategy, action, COUNT(*) as total_trades, ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate, MAX(CASE WHEN result_10min = 'LOSE' THEN ROW_NUMBER() OVER (PARTITION BY strategy, action, ROW_NUMBER() OVER (PARTITION BY strategy, action ORDER BY entry_time) - ROW_NUMBER() OVER (PARTITION BY strategy, action, result_10min ORDER BY entry_time) ORDER BY entry_time) ELSE 0 END) as max_consecutive_losses FROM tradingviewdata WHERE result_10min IS NOT NULL GROUP BY strategy, action) SELECT strategy, action, total_trades, win_rate, max_consecutive_losses, CASE WHEN max_consecutive_losses <= 3 THEN 'Low Risk' WHEN max_consecutive_losses <= 5 THEN 'Medium Risk' ELSE 'High Risk' END as risk_level FROM risk_data WHERE total_trades >= 10 ORDER BY win_rate DESC, max_consecutive_losses ASC",
+      "description": "Risk assessment with consecutive losses analysis"
+    },
+    "best_combinations_query": {
+      "sql": "SELECT strategy, action, EXTRACT(HOUR FROM entry_time) as hour, COUNT(*) as total_trades, ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min FROM tradingviewdata WHERE result_10min IS NOT NULL GROUP BY strategy, action, EXTRACT(HOUR FROM entry_time) HAVING COUNT(*) >= 5 ORDER BY win_rate_10min DESC LIMIT 20",
+      "description": "Best strategy-action-hour combinations"
+    },
+    "pre_loss_streak_query": {
+      "sql": "WITH streak_data AS (SELECT *, LAG(result_10min) OVER (PARTITION BY strategy ORDER BY entry_time) as prev_result, CASE WHEN LAG(result_10min) OVER (PARTITION BY strategy ORDER BY entry_time) = 'LOSE' THEN 1 ELSE 0 END as is_after_loss FROM tradingviewdata WHERE result_10min IS NOT NULL) SELECT strategy, action, is_after_loss, COUNT(*) as total_trades, SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) as wins, ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate FROM streak_data GROUP BY strategy, action, is_after_loss HAVING COUNT(*) >= 5 ORDER BY strategy, action, is_after_loss",
+      "description": "Pre-loss streak impact analysis"
+    },
+    "price_movement_query": {
+      "sql": "SELECT CASE WHEN (price_10min - entry_price) / entry_price * 100 < -0.1 THEN 'Strong Down' WHEN (price_10min - entry_price) / entry_price * 100 < -0.05 THEN 'Down' WHEN (price_10min - entry_price) / entry_price * 100 < 0.05 THEN 'Sideways' WHEN (price_10min - entry_price) / entry_price * 100 < 0.1 THEN 'Up' ELSE 'Strong Up' END as price_movement, COUNT(*) as total_trades, SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) as wins, ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate FROM tradingviewdata WHERE result_10min IS NOT NULL AND price_10min IS NOT NULL GROUP BY CASE WHEN (price_10min - entry_price) / entry_price * 100 < -0.1 THEN 'Strong Down' WHEN (price_10min - entry_price) / entry_price * 100 < -0.05 THEN 'Down' WHEN (price_10min - entry_price) / entry_price * 100 < 0.05 THEN 'Sideways' WHEN (price_10min - entry_price) / entry_price * 100 < 0.1 THEN 'Up' ELSE 'Strong Up' END ORDER BY win_rate DESC",
+      "description": "Performance analysis by price movement"
+    },
+    "recent_performance_query": {
+      "sql": "SELECT strategy, action, tf, COUNT(*) as total_trades, ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min, ROUND(SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_30min, ROUND(SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_60min, SUM(pnl) as total_pnl FROM tradingviewdata WHERE result_10min IS NOT NULL AND entry_time >= NOW() - INTERVAL '24 hours' GROUP BY strategy, action, tf ORDER BY win_rate_10min DESC",
+      "description": "Recent performance in last 24 hours"
+    },
+    "daily_performance_query": {
+      "sql": "SELECT DATE(entry_time) as trade_date, COUNT(*) as total_trades, SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) as wins_10min, SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) as wins_30min, SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as wins_60min, ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min, ROUND(SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_30min, ROUND(SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_60min, SUM(pnl) as total_pnl FROM tradingviewdata WHERE result_10min IS NOT NULL GROUP BY DATE(entry_time) ORDER BY trade_date",
+      "description": "Daily performance trend"
+    },
+    "total_trades_today_query": {
+      "sql": "SELECT COUNT(*) as total_trades FROM tradingviewdata WHERE DATE(entry_time) = CURRENT_DATE",
+      "description": "Total trades today"
+    }
+  },
+  "styling": {
+    "theme": "light",
+    "colors": {
+      "primary": "#3498DB",
+      "secondary": "#2ECC71", 
+      "accent": "#E74C3C",
+      "warning": "#F39C12",
+      "info": "#9B59B6",
+      "success": "#27AE60",
+      "danger": "#E74C3C",
+      "light": "#ECF0F1",
+      "dark": "#2C3E50"
+    },
+    "fonts": {
+      "title": {"family": "Arial", "size": 16, "weight": "bold"},
+      "subtitle": {"family": "Arial", "size": 14, "weight": "normal"},
+      "body": {"family": "Arial", "size": 12, "weight": "normal"},
+      "caption": {"family": "Arial", "size": 10, "weight": "normal"}
+    },
+    "spacing": {
+      "chart_padding": 10,
+      "chart_margin": 5,
+      "grid_gap": 10
+    }
+  },
+  "interactions": {
+    "drill_down": true,
+    "cross_filtering": true,
+    "tooltips": true,
+    "zoom": true,
+    "export": true
+  },
+  "refresh_settings": {
+    "auto_refresh": true,
+    "refresh_interval": 300,
+    "refresh_on_load": true
+  }
+}
