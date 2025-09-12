@@ -16,7 +16,7 @@ alwaysApply: true
 ```
 1. อ่าน agent-conversation-context.md (เก็บการสนทนาและ action)
 2. อ่าน project-requirements.md (เก็บรายละเอียดโปรเจคและ technical details)
-3. อ่าน agent-rule.mdc (ไฟล์นี้)
+3. อ่าน agent-rule.mdc เก็บ core workflow และ rules ในการทำงานต่างๆ (แก้ไขได้เฉพาะเมื่อได้รับอนุญาต)
 ```
 
 ### 2. ตรวจสอบสถานะปัจจุบัน
