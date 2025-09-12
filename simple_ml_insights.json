@@ -1,0 +1,191 @@
+{
+  "correlation_features": {
+    "win_10min": [
+      [
+        "win_streak",
+        0.19499834911687672
+      ],
+      [
+        "loss_streak",
+        -0.1815107394903259
+      ],
+      [
+        "rolling_win_rate_10",
+        0.1076129658521402
+      ],
+      [
+        "volatility_10min",
+        -0.09192568032919493
+      ],
+      [
+        "price_change_10min",
+        0.09190568495687704
+      ],
+      [
+        "prev_win_60min",
+        -0.0841833194873829
+      ],
+      [
+        "is_evening",
+        -0.0830292656386822
+      ],
+      [
+        "rolling_win_rate_20",
+        0.08298230670472784
+      ],
+      [
+        "price_change_30min",
+        0.07530518696343919
+      ],
+      [
+        "volatility_30min",
+        -0.07515361870685142
+      ]
+    ],
+    "win_30min": [
+      [
+        "win_streak",
+        0.29922877603206693
+      ],
+      [
+        "loss_streak",
+        -0.26433294391482837
+      ],
+      [
+        "prev_win_60min",
+        -0.14474407837450495
+      ],
+      [
+        "rolling_win_rate_10",
+        0.13824412984752715
+      ],
+      [
+        "price_change_30min",
+        0.12592728253466937
+      ],
+      [
+        "volatility_30min",
+        -0.1255548539410146
+      ],
+      [
+        "day_of_month",
+        -0.10145049898821992
+      ],
+      [
+        "market_trend",
+        0.08635200559249866
+      ],
+      [
+        "volatility_level",
+        -0.08635200559249866
+      ],
+      [
+        "price_change_60min",
+        0.08573864065556332
+      ]
+    ],
+    "win_60min": [
+      [
+        "win_streak",
+        0.7246147997479553
+      ],
+      [
+        "loss_streak",
+        -0.6510970698620057
+      ],
+      [
+        "rolling_win_rate_10",
+        0.3194152912151662
+      ],
+      [
+        "rolling_win_rate_20",
+        0.24598205726331004
+      ],
+      [
+        "market_trend",
+        0.1519490719446962
+      ],
+      [
+        "volatility_level",
+        -0.15194907194469603
+      ],
+      [
+        "price_change_60min",
+        0.15136625229793851
+      ],
+      [
+        "volatility_60min",
+        -0.15115304745185348
+      ],
+      [
+        "volatility_30min",
+        -0.12736929147067594
+      ],
+      [
+        "price_change_30min",
+        0.1271313401785906
+      ]
+    ]
+  },
+  "significant_patterns": {
+    "time": {
+      "2": {
+        "win_rate": 0.691358024691358,
+        "count": 81,
+        "difference": 0.20465375394196234,
+        "abs_difference": 0.20465375394196234,
+        "significance": "Medium"
+      },
+      "17": {
+        "win_rate": 0.23853211009174313,
+        "count": 109,
+        "difference": -0.24817216065765252,
+        "abs_difference": 0.24817216065765252,
+        "significance": "Medium"
+      }
+    },
+    "strategy": {},
+    "action": {},
+    "combination": {
+      "MWP-27_FlowTrend Bearish + Sell": {
+        "win_rate": 0.2727272727272727,
+        "count": 22,
+        "difference": -0.21397699802212294,
+        "abs_difference": 0.21397699802212294,
+        "significance": "Medium"
+      }
+    },
+    "volatility": {
+      "2": {
+        "win_rate": 0.0,
+        "count": 59,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565,
+        "significance": "High"
+      }
+    }
+  },
+  "prediction_rules": [
+    {
+      "rule": "IF volatility = 2 THEN PREDICT LOSE (Confidence: 100.0%)",
+      "pattern_type": "volatility",
+      "pattern_name": 2,
+      "confidence": 1.0,
+      "support": 59
+    }
+  ],
+  "key_findings": [
+    "Total significant patterns found: 4",
+    "High significance patterns: 1",
+    "Prediction rules created: 1",
+    "Overall win rate: 48.7%",
+    "Total records analyzed: 2482"
+  ],
+  "recommendations": [
+    "Use prediction rules for decision making",
+    "Monitor high significance patterns regularly",
+    "Focus on patterns with high confidence and support",
+    "Update patterns with new data",
+    "Combine multiple patterns for better accuracy"
+  ]
+}

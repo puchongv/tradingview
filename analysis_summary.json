@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "created_at": "2025-09-11T23:38:00.977836",
+    "total_records": 2482,
+    "date_range": {
+      "start": "2025-09-03T15:26:04",
+      "end": "2025-09-11T22:47:03"
+    },
+    "strategies": 8,
+    "actions": 6
+  },
+  "significant_patterns_count": 0,
+  "factors_analyzed": [
+    "time",
+    "strategy",
+    "action",
+    "price",
+    "combination",
+    "trend_changes"
+  ],
+  "dashboard_charts": 7
+}

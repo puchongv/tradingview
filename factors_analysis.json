@@ -1,0 +1,1228 @@
+{
+  "time": {
+    "overall_winrate": 0.48670427074939565,
+    "significant_hours": {
+      "2": {
+        "win_rate": 0.691,
+        "count": 81,
+        "std": 0.465,
+        "difference": 0.2042957292506043,
+        "abs_difference": 0.2042957292506043
+      },
+      "17": {
+        "win_rate": 0.239,
+        "count": 109,
+        "std": 0.428,
+        "difference": -0.24770427074939566,
+        "abs_difference": 0.24770427074939566
+      }
+    },
+    "very_significant_hours": {},
+    "significant_days": {},
+    "significant_time_ranges": {
+      "00:30:00": {
+        "win_rate": 0.158,
+        "count": 19,
+        "difference": -0.3287042707493957,
+        "abs_difference": 0.3287042707493957
+      },
+      "02:45:00": {
+        "win_rate": 1.0,
+        "count": 20,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      "03:15:00": {
+        "win_rate": 0.0,
+        "count": 9,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      "05:30:00": {
+        "win_rate": 0.121,
+        "count": 33,
+        "difference": -0.36570427074939565,
+        "abs_difference": 0.36570427074939565
+      },
+      "06:15:00": {
+        "win_rate": 0.867,
+        "count": 15,
+        "difference": 0.38029572925060434,
+        "abs_difference": 0.38029572925060434
+      },
+      "07:00:00": {
+        "win_rate": 0.95,
+        "count": 20,
+        "difference": 0.4632957292506043,
+        "abs_difference": 0.4632957292506043
+      },
+      "08:15:00": {
+        "win_rate": 0.793,
+        "count": 29,
+        "difference": 0.3062957292506044,
+        "abs_difference": 0.3062957292506044
+      },
+      "10:45:00": {
+        "win_rate": 0.867,
+        "count": 15,
+        "difference": 0.38029572925060434,
+        "abs_difference": 0.38029572925060434
+      },
+      "12:15:00": {
+        "win_rate": 0.077,
+        "count": 26,
+        "difference": -0.40970427074939564,
+        "abs_difference": 0.40970427074939564
+      },
+      "13:45:00": {
+        "win_rate": 0.167,
+        "count": 6,
+        "difference": -0.31970427074939567,
+        "abs_difference": 0.31970427074939567
+      },
+      "14:00:00": {
+        "win_rate": 0.905,
+        "count": 21,
+        "difference": 0.4182957292506044,
+        "abs_difference": 0.4182957292506044
+      },
+      "15:15:00": {
+        "win_rate": 0.818,
+        "count": 11,
+        "difference": 0.3312957292506043,
+        "abs_difference": 0.3312957292506043
+      },
+      "15:45:00": {
+        "win_rate": 0.833,
+        "count": 24,
+        "difference": 0.3462957292506043,
+        "abs_difference": 0.3462957292506043
+      },
+      "16:30:00": {
+        "win_rate": 0.174,
+        "count": 23,
+        "difference": -0.31270427074939566,
+        "abs_difference": 0.31270427074939566
+      },
+      "17:45:00": {
+        "win_rate": 0.077,
+        "count": 26,
+        "difference": -0.40970427074939564,
+        "abs_difference": 0.40970427074939564
+      },
+      "20:00:00": {
+        "win_rate": 0.895,
+        "count": 19,
+        "difference": 0.40829572925060437,
+        "abs_difference": 0.40829572925060437
+      },
+      "21:15:00": {
+        "win_rate": 0.154,
+        "count": 13,
+        "difference": -0.3327042707493957,
+        "abs_difference": 0.3327042707493957
+      },
+      "23:15:00": {
+        "win_rate": 0.077,
+        "count": 13,
+        "difference": -0.40970427074939564,
+        "abs_difference": 0.40970427074939564
+      },
+      "23:30:00": {
+        "win_rate": 0.143,
+        "count": 14,
+        "difference": -0.3437042707493957,
+        "abs_difference": 0.3437042707493957
+      }
+    },
+    "significant_weeks": {}
+  },
+  "strategy": {
+    "overall_winrate": 0.48670427074939565,
+    "significant_strategies": {},
+    "very_significant_strategies": {},
+    "consistent_strategies": {},
+    "significant_strategy_time": [
+      {
+        "strategy": "MWP-30",
+        "hour": 2,
+        "mean": 1.0,
+        "count": 6,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range Filter5",
+        "hour": 15,
+        "mean": 1.0,
+        "count": 5,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      }
+    ]
+  },
+  "action": {
+    "overall_winrate": 0.48670427074939565,
+    "significant_actions": {},
+    "very_significant_actions": {},
+    "significant_action_time": [
+      {
+        "action": "Buy",
+        "hour": 2,
+        "mean": 0.8888888888888888,
+        "count": 36,
+        "difference": 0.4021846181394932,
+        "abs_difference": 0.4021846181394932
+      },
+      {
+        "action": "FlowTrend Bearish + Sell",
+        "hour": 18,
+        "mean": 0.0,
+        "count": 8,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 10,
+        "mean": 0.9,
+        "count": 10,
+        "difference": 0.41329572925060437,
+        "abs_difference": 0.41329572925060437
+      },
+      {
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 12,
+        "mean": 0.0,
+        "count": 6,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 17,
+        "mean": 0.0,
+        "count": 5,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 20,
+        "mean": 0.0,
+        "count": 7,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "action": "FlowTrend Bullish + Buy",
+        "hour": 3,
+        "mean": 0.0,
+        "count": 5,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "action": "FlowTrend Bullish + Buy",
+        "hour": 14,
+        "mean": 0.8888888888888888,
+        "count": 9,
+        "difference": 0.4021846181394932,
+        "abs_difference": 0.4021846181394932
+      },
+      {
+        "action": "FlowTrend Bullish + Buy",
+        "hour": 15,
+        "mean": 1.0,
+        "count": 7,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "action": "FlowTrend Bullish + Buy+",
+        "hour": 2,
+        "mean": 1.0,
+        "count": 5,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "action": "FlowTrend Bullish + Buy+",
+        "hour": 7,
+        "mean": 0.07692307692307693,
+        "count": 13,
+        "difference": -0.4097811938263187,
+        "abs_difference": 0.4097811938263187
+      },
+      {
+        "action": "FlowTrend Bullish + Buy+",
+        "hour": 12,
+        "mean": 1.0,
+        "count": 7,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "action": "Sell",
+        "hour": 3,
+        "mean": 0.07692307692307693,
+        "count": 26,
+        "difference": -0.4097811938263187,
+        "abs_difference": 0.4097811938263187
+      }
+    ],
+    "significant_sequences": [
+      {
+        "prev_action": "FlowTrend Bearish + Sell",
+        "action": "FlowTrend Bullish + Buy+",
+        "win_60min_mean": 0.8333333333333334,
+        "win_60min_count": 12,
+        "difference": 0.3466290625839377,
+        "abs_difference": 0.3466290625839377
+      }
+    ]
+  },
+  "price": {
+    "overall_winrate": 0.48670427074939565,
+    "significant_price_ranges": {},
+    "significant_vol_ranges": {
+      "High": {
+        "win_rate": 0.0,
+        "count": 59,
+        "std": 0.0,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      }
+    },
+    "significant_directions": {},
+    "significant_trends": {
+      "Strong Down": {
+        "win_rate": 0.0,
+        "count": 59,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      }
+    }
+  },
+  "combination": {
+    "overall_winrate": 0.48670427074939565,
+    "significant_combos": [
+      {
+        "strategy": "MWP-20",
+        "action": "Buy",
+        "hour": 14,
+        "mean": 1.0,
+        "count": 7,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-20",
+        "action": "Buy",
+        "hour": 23,
+        "mean": 0.0,
+        "count": 4,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-20",
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 6,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-20",
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 15,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-20",
+        "action": "FlowTrend Bullish + Buy",
+        "hour": 3,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-20",
+        "action": "FlowTrend Bullish + Buy",
+        "hour": 4,
+        "mean": 1.0,
+        "count": 4,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-20",
+        "action": "FlowTrend Bullish + Buy",
+        "hour": 14,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-20",
+        "action": "FlowTrend Bullish + Buy+",
+        "hour": 3,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-20",
+        "action": "FlowTrend Bullish + Buy+",
+        "hour": 17,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-20",
+        "action": "FlowTrend Bullish + Buy+",
+        "hour": 18,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-20",
+        "action": "Sell",
+        "hour": 3,
+        "mean": 0.0,
+        "count": 7,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-25",
+        "action": "FlowTrend Bearish + Sell",
+        "hour": 18,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-25",
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 6,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-25",
+        "action": "FlowTrend Bullish + Buy+",
+        "hour": 7,
+        "mean": 0.0,
+        "count": 4,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-25",
+        "action": "Sell",
+        "hour": 10,
+        "mean": 1.0,
+        "count": 5,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-25",
+        "action": "Sell",
+        "hour": 17,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "Buy",
+        "hour": 9,
+        "mean": 1.0,
+        "count": 5,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "FlowTrend Bearish + Sell",
+        "hour": 7,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "FlowTrend Bearish + Sell",
+        "hour": 18,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 10,
+        "mean": 1.0,
+        "count": 4,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "FlowTrend Bullish + Buy+",
+        "hour": 7,
+        "mean": 0.0,
+        "count": 4,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "Sell",
+        "hour": 7,
+        "mean": 0.0,
+        "count": 4,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "Sell",
+        "hour": 9,
+        "mean": 0.0,
+        "count": 4,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "Sell",
+        "hour": 10,
+        "mean": 1.0,
+        "count": 5,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "Sell",
+        "hour": 17,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "Buy",
+        "hour": 9,
+        "mean": 1.0,
+        "count": 4,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "Buy",
+        "hour": 12,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 10,
+        "mean": 1.0,
+        "count": 4,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 12,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "FlowTrend Bearish + Sell+",
+        "hour": 19,
+        "mean": 0.0,
+        "count": 4,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "FlowTrend Bullish + Buy+",
+        "hour": 20,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "Sell",
+        "hour": 9,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "Sell",
+        "hour": 10,
+        "mean": 1.0,
+        "count": 5,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "Sell",
+        "hour": 15,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "Sell",
+        "hour": 17,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "action": "Buy",
+        "hour": 2,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "action": "Buy",
+        "hour": 6,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "action": "Buy",
+        "hour": 18,
+        "mean": 1.0,
+        "count": 4,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "action": "Buy",
+        "hour": 20,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "action": "Buy",
+        "hour": 22,
+        "mean": 0.0,
+        "count": 4,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "action": "Sell",
+        "hour": 15,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "action": "Sell",
+        "hour": 18,
+        "mean": 0.0,
+        "count": 4,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "action": "Sell",
+        "hour": 19,
+        "mean": 0.0,
+        "count": 8,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Buy",
+        "hour": 2,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Buy",
+        "hour": 10,
+        "mean": 0.0,
+        "count": 5,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Buy",
+        "hour": 18,
+        "mean": 1.0,
+        "count": 5,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Buy",
+        "hour": 23,
+        "mean": 0.0,
+        "count": 4,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Sell",
+        "hour": 1,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Sell",
+        "hour": 2,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Sell",
+        "hour": 3,
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Sell",
+        "hour": 13,
+        "mean": 0.0,
+        "count": 4,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Sell",
+        "hour": 22,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range Filter5",
+        "action": "Sell",
+        "hour": 6,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range Filter5",
+        "action": "Sell",
+        "hour": 15,
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "UT-BOT2-10",
+        "action": "Buy",
+        "hour": 2,
+        "mean": 0.9166666666666666,
+        "count": 12,
+        "difference": 0.429962395917271,
+        "abs_difference": 0.429962395917271
+      },
+      {
+        "strategy": "UT-BOT2-10",
+        "action": "Buy",
+        "hour": 14,
+        "mean": 1.0,
+        "count": 8,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      }
+    ],
+    "very_significant_combos": [],
+    "significant_price_strategy": [
+      {
+        "strategy": "MWP-30",
+        "price_range": 5,
+        "mean": 0.8076923076923077,
+        "count": 26,
+        "difference": 0.32098803694291206,
+        "abs_difference": 0.32098803694291206
+      },
+      {
+        "strategy": "MWP-30",
+        "price_range": 6,
+        "mean": 0.0,
+        "count": 6,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "price_range": 9,
+        "mean": 0.8,
+        "count": 5,
+        "difference": 0.3132957292506044,
+        "abs_difference": 0.3132957292506044
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "price_range": 7,
+        "mean": 0.16666666666666666,
+        "count": 6,
+        "difference": -0.32003760408272897,
+        "abs_difference": 0.32003760408272897
+      }
+    ],
+    "significant_vol_action": [
+      {
+        "action": "Buy",
+        "volatility_level": "High",
+        "mean": 0.0,
+        "count": 28,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "action": "Sell",
+        "volatility_level": "High",
+        "mean": 0.0,
+        "count": 20,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      }
+    ],
+    "significant_day_combo": [
+      {
+        "strategy": "MWP-20",
+        "action": "FlowTrend Bearish + Sell+",
+        "day_of_week": "Friday",
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-25",
+        "action": "FlowTrend Bearish + Sell",
+        "day_of_week": "Sunday",
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-25",
+        "action": "FlowTrend Bullish + Buy+",
+        "day_of_week": "Saturday",
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "FlowTrend Bearish + Sell",
+        "day_of_week": "Saturday",
+        "mean": 0.0,
+        "count": 3,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "FlowTrend Bullish + Buy",
+        "day_of_week": "Friday",
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "FlowTrend Bullish + Buy+",
+        "day_of_week": "Saturday",
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-27",
+        "action": "Sell",
+        "day_of_week": "Tuesday",
+        "mean": 1.0,
+        "count": 3,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "Buy",
+        "day_of_week": "Friday",
+        "mean": 1.0,
+        "count": 6,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "MWP-30",
+        "action": "FlowTrend Bullish + Buy",
+        "day_of_week": "Friday",
+        "mean": 1.0,
+        "count": 4,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "action": "Buy",
+        "day_of_week": "Tuesday",
+        "mean": 0.0,
+        "count": 7,
+        "difference": -0.48670427074939565,
+        "abs_difference": 0.48670427074939565
+      },
+      {
+        "strategy": "Range FRAMA3",
+        "action": "Sell",
+        "day_of_week": "Wednesday",
+        "mean": 0.06666666666666667,
+        "count": 15,
+        "difference": -0.420037604082729,
+        "abs_difference": 0.420037604082729
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Buy",
+        "day_of_week": "Tuesday",
+        "mean": 0.08333333333333333,
+        "count": 12,
+        "difference": -0.40337093741606234,
+        "abs_difference": 0.40337093741606234
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "action": "Sell",
+        "day_of_week": "Wednesday",
+        "mean": 0.05263157894736842,
+        "count": 19,
+        "difference": -0.43407269180202723,
+        "abs_difference": 0.43407269180202723
+      },
+      {
+        "strategy": "Range Filter5",
+        "action": "Buy",
+        "day_of_week": "Wednesday",
+        "mean": 1.0,
+        "count": 5,
+        "difference": 0.5132957292506044,
+        "abs_difference": 0.5132957292506044
+      }
+    ]
+  },
+  "trend_changes": {
+    "trend_changes": [
+      {
+        "strategy": "MWP-20",
+        "time_window": "2025-09-04 00:00:00",
+        "prev_winrate": 0.23809523809523808,
+        "curr_winrate": 0.5625,
+        "change": 0.3244047619047619,
+        "count": 16
+      },
+      {
+        "strategy": "MWP-20",
+        "time_window": "2025-09-10 00:00:00",
+        "prev_winrate": 0.3333333333333333,
+        "curr_winrate": 0.6666666666666666,
+        "change": 0.3333333333333333,
+        "count": 15
+      },
+      {
+        "strategy": "MWP-25",
+        "time_window": "2025-09-04 00:00:00",
+        "prev_winrate": 0.2,
+        "curr_winrate": 0.7,
+        "change": 0.49999999999999994,
+        "count": 10
+      },
+      {
+        "strategy": "MWP-25",
+        "time_window": "2025-09-08 18:00:00",
+        "prev_winrate": 0.4444444444444444,
+        "curr_winrate": 0.0,
+        "change": -0.4444444444444444,
+        "count": 8
+      },
+      {
+        "strategy": "MWP-25",
+        "time_window": "2025-09-09 00:00:00",
+        "prev_winrate": 0.0,
+        "curr_winrate": 0.6,
+        "change": 0.6,
+        "count": 5
+      },
+      {
+        "strategy": "MWP-27",
+        "time_window": "2025-09-04 00:00:00",
+        "prev_winrate": 0.2,
+        "curr_winrate": 0.875,
+        "change": 0.675,
+        "count": 8
+      },
+      {
+        "strategy": "MWP-27",
+        "time_window": "2025-09-04 06:00:00",
+        "prev_winrate": 0.875,
+        "curr_winrate": 0.2727272727272727,
+        "change": -0.6022727272727273,
+        "count": 11
+      },
+      {
+        "strategy": "MWP-27",
+        "time_window": "2025-09-08 18:00:00",
+        "prev_winrate": 0.4444444444444444,
+        "curr_winrate": 0.0,
+        "change": -0.4444444444444444,
+        "count": 8
+      },
+      {
+        "strategy": "MWP-27",
+        "time_window": "2025-09-10 00:00:00",
+        "prev_winrate": 0.0,
+        "curr_winrate": 0.4,
+        "change": 0.4,
+        "count": 10
+      },
+      {
+        "strategy": "MWP-27",
+        "time_window": "2025-09-10 06:00:00",
+        "prev_winrate": 0.4,
+        "curr_winrate": 0.7142857142857143,
+        "change": 0.3142857142857143,
+        "count": 7
+      },
+      {
+        "strategy": "MWP-27",
+        "time_window": "2025-09-11 06:00:00",
+        "prev_winrate": 0.7142857142857143,
+        "curr_winrate": 0.2857142857142857,
+        "change": -0.4285714285714286,
+        "count": 14
+      },
+      {
+        "strategy": "MWP-27",
+        "time_window": "2025-09-11 18:00:00",
+        "prev_winrate": 0.5714285714285714,
+        "curr_winrate": 0.2222222222222222,
+        "change": -0.3492063492063492,
+        "count": 9
+      },
+      {
+        "strategy": "MWP-30",
+        "time_window": "2025-09-04 00:00:00",
+        "prev_winrate": 0.3333333333333333,
+        "curr_winrate": 0.9,
+        "change": 0.5666666666666667,
+        "count": 10
+      },
+      {
+        "strategy": "MWP-30",
+        "time_window": "2025-09-04 06:00:00",
+        "prev_winrate": 0.9,
+        "curr_winrate": 0.3333333333333333,
+        "change": -0.5666666666666667,
+        "count": 12
+      },
+      {
+        "strategy": "MWP-30",
+        "time_window": "2025-09-05 00:00:00",
+        "prev_winrate": 0.25,
+        "curr_winrate": 0.8,
+        "change": 0.55,
+        "count": 5
+      },
+      {
+        "strategy": "MWP-30",
+        "time_window": "2025-09-06 12:00:00",
+        "prev_winrate": 0.7142857142857143,
+        "curr_winrate": 0.38095238095238093,
+        "change": -0.33333333333333337,
+        "count": 21
+      },
+      {
+        "strategy": "MWP-30",
+        "time_window": "2025-09-08 18:00:00",
+        "prev_winrate": 0.5,
+        "curr_winrate": 0.0,
+        "change": -0.5,
+        "count": 8
+      },
+      {
+        "strategy": "MWP-30",
+        "time_window": "2025-09-10 06:00:00",
+        "prev_winrate": 0.125,
+        "curr_winrate": 0.7142857142857143,
+        "change": 0.5892857142857143,
+        "count": 7
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "time_window": "2025-09-04 00:00:00",
+        "prev_winrate": 0.3333333333333333,
+        "curr_winrate": 0.8,
+        "change": 0.46666666666666673,
+        "count": 5
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "time_window": "2025-09-04 06:00:00",
+        "prev_winrate": 0.8,
+        "curr_winrate": 0.375,
+        "change": -0.42500000000000004,
+        "count": 8
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "time_window": "2025-09-05 00:00:00",
+        "prev_winrate": 0.7142857142857143,
+        "curr_winrate": 0.4,
+        "change": -0.3142857142857143,
+        "count": 5
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "time_window": "2025-09-06 00:00:00",
+        "prev_winrate": 0.7777777777777778,
+        "curr_winrate": 0.3333333333333333,
+        "change": -0.4444444444444445,
+        "count": 9
+      },
+      {
+        "strategy": "Range FRAMA3-99",
+        "time_window": "2025-09-09 18:00:00",
+        "prev_winrate": 0.14285714285714285,
+        "curr_winrate": 0.5,
+        "change": 0.35714285714285715,
+        "count": 6
+      },
+      {
+        "strategy": "UT-BOT2-10",
+        "time_window": "2025-09-09 12:00:00",
+        "prev_winrate": 0.375,
+        "curr_winrate": 0.0,
+        "change": -0.375,
+        "count": 10
+      },
+      {
+        "strategy": "UT-BOT2-10",
+        "time_window": "2025-09-09 18:00:00",
+        "prev_winrate": 0.0,
+        "curr_winrate": 0.3333333333333333,
+        "change": 0.3333333333333333,
+        "count": 6
+      }
+    ],
+    "volatile_strategies": {
+      "MWP-25": {
+        "avg_change": 0.219,
+        "change_std": 0.576,
+        "change_count": 3
+      },
+      "MWP-27": {
+        "avg_change": -0.062,
+        "change_std": 0.509,
+        "change_count": 7
+      },
+      "MWP-30": {
+        "avg_change": 0.051,
+        "change_std": 0.572,
+        "change_count": 6
+      },
+      "Range FRAMA3-99": {
+        "avg_change": -0.072,
+        "change_std": 0.446,
+        "change_count": 5
+      },
+      "UT-BOT2-10": {
+        "avg_change": -0.021,
+        "change_std": 0.501,
+        "change_count": 2
+      }
+    }
+  }
+}

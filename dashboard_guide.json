@@ -1,0 +1,72 @@
+{
+  "dashboard_setup": {
+    "title": "Binary Options Trading Pattern Dashboard",
+    "description": "Dashboard สำหรับวิเคราะห์ patterns ของ trading signals",
+    "data_source": "PostgreSQL database with trading_data table"
+  },
+  "charts": [
+    {
+      "name": "Win Rate by Hour",
+      "type": "Heatmap",
+      "description": "แสดง win rate ตามชั่วโมง",
+      "sql_query": "time_patterns",
+      "x_axis": "hour",
+      "y_axis": "win_rate",
+      "color_scale": "RdYlGn"
+    },
+    {
+      "name": "Strategy Performance",
+      "type": "Bar Chart",
+      "description": "แสดง win rate ตาม strategy",
+      "sql_query": "strategy_performance",
+      "x_axis": "strategy",
+      "y_axis": "win_rate"
+    },
+    {
+      "name": "Action Performance",
+      "type": "Bar Chart",
+      "description": "แสดง win rate ตาม action",
+      "sql_query": "action_performance",
+      "x_axis": "action",
+      "y_axis": "win_rate"
+    },
+    {
+      "name": "Combination Patterns",
+      "type": "Heatmap",
+      "description": "แสดง win rate ตามการรวมกันของ strategy, action และเวลา",
+      "sql_query": "combination_patterns",
+      "x_axis": "strategy",
+      "y_axis": "action",
+      "color_scale": "RdYlGn"
+    },
+    {
+      "name": "Trend Changes",
+      "type": "Line Chart",
+      "description": "แสดงการเปลี่ยนแปลงของ win rate ตามเวลา",
+      "sql_query": "trend_changes",
+      "x_axis": "time_window",
+      "y_axis": "win_rate"
+    },
+    {
+      "name": "Volatility Analysis",
+      "type": "Bar Chart",
+      "description": "แสดง win rate ตาม volatility level",
+      "sql_query": "volatility_analysis",
+      "x_axis": "volatility_level",
+      "y_axis": "win_rate"
+    }
+  ],
+  "setup_instructions": [
+    "1. สร้าง PostgreSQL database และ import ข้อมูลจาก CSV files",
+    "2. สร้าง table trading_data ด้วย schema ที่เหมาะสม",
+    "3. สร้าง Metabase dashboard ใหม่",
+    "4. เพิ่ม charts ตาม configuration ที่ให้มา",
+    "5. ตั้งค่า filters และ parameters ตามต้องการ"
+  ],
+  "important_notes": [
+    "Focus อยู่ที่ Combination Patterns (56 combinations)",
+    "Trend Changes มี 25 changes ที่น่าสนใจ",
+    "ไม่พบ Significant Patterns ที่มีความแตกต่าง ≥70%",
+    "ต้องวิเคราะห์เพิ่มเติมหรือลดเกณฑ์การตัดสิน"
+  ]
+}

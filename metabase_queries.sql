@@ -1,204 +1,260 @@
--- Metabase Queries for Trading Signal Analysis
--- สำหรับสร้าง Dashboard แสดง Performance ของทุกสัญญาณ
+-- Metabase SQL Queries for Binary Options Trading Pattern Analysis
+-- Generated from ML Analysis Results
 
--- 1. Strategy Performance Overview
--- แสดง performance ของทุก strategy
-SELECT 
-    strategy,
-    action,
-    tf as timeframe,
-    COUNT(*) as total_trades,
-    SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) as wins_10min,
-    SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) as wins_30min,
-    SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as wins_60min,
-    ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min,
-    ROUND(SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_30min,
-    ROUND(SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_60min,
-    ROUND(AVG(pnl), 2) as avg_pnl,
-    SUM(pnl) as total_pnl
-FROM tradingviewdata 
-WHERE result_10min IS NOT NULL
-GROUP BY strategy, action, tf
-ORDER BY win_rate_10min DESC;
-
--- 2. Time Pattern Analysis
--- แสดง performance ตามชั่วโมง
+-- 1. Win Rate by Hour (Time Pattern Analysis)
 SELECT 
     EXTRACT(HOUR FROM entry_time) as hour,
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as win_rate,
     COUNT(*) as total_trades,
-    SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) as wins_10min,
-    SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) as wins_30min,
-    SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as wins_60min,
-    ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min,
-    ROUND(SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_30min,
-    ROUND(SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_60min
-FROM tradingviewdata 
-WHERE result_10min IS NOT NULL
+    SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as wins,
+    SUM(CASE WHEN result_60min = 'LOST' THEN 1 ELSE 0 END) as losses
+FROM trading_signals
 GROUP BY EXTRACT(HOUR FROM entry_time)
 ORDER BY hour;
 
--- 3. Strategy + Time Heatmap
--- แสดง performance ตาม strategy และเวลา
+-- 2. Volatility Level Analysis
 SELECT 
-    strategy,
-    EXTRACT(HOUR FROM entry_time) as hour,
+    CASE 
+        WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.1 THEN 0
+        WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.2 THEN 1
+        ELSE 2
+    END as volatility_level,
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as win_rate,
     COUNT(*) as total_trades,
-    ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min
-FROM tradingviewdata 
-WHERE result_10min IS NOT NULL
-GROUP BY strategy, EXTRACT(HOUR FROM entry_time)
-HAVING COUNT(*) >= 5  -- เฉพาะที่มีข้อมูลอย่างน้อย 5 ครั้ง
-ORDER BY strategy, hour;
+    AVG(ABS((price_60min - entry_price) / entry_price * 100)) as avg_volatility
+FROM trading_signals
+GROUP BY 
+    CASE 
+        WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.1 THEN 0
+        WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.2 THEN 1
+        ELSE 2
+    END
+ORDER BY volatility_level;
 
--- 4. Action + Time Heatmap
--- แสดง performance ตาม action และเวลา
+-- 3. Strategy + Action Combination Performance
 SELECT 
-    action,
-    EXTRACT(HOUR FROM entry_time) as hour,
+    CONCAT(strategy, ' + ', action) as combination,
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as win_rate,
     COUNT(*) as total_trades,
-    ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min
-FROM tradingviewdata 
-WHERE result_10min IS NOT NULL
-GROUP BY action, EXTRACT(HOUR FROM entry_time)
+    SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as wins,
+    SUM(CASE WHEN result_60min = 'LOST' THEN 1 ELSE 0 END) as losses
+FROM trading_signals
+GROUP BY strategy, action
 HAVING COUNT(*) >= 5
-ORDER BY action, hour;
+ORDER BY win_rate ASC;
 
--- 5. Pre-Loss Streak Analysis
--- แสดงผลกระทบของ pre-loss streak
+-- 4. Win/Loss Streak Analysis
 WITH streak_data AS (
     SELECT 
         *,
-        LAG(result_10min) OVER (PARTITION BY strategy ORDER BY entry_time) as prev_result,
+        ROW_NUMBER() OVER (PARTITION BY strategy ORDER BY entry_time) as row_num,
+        LAG(result_60min) OVER (PARTITION BY strategy ORDER BY entry_time) as prev_result
+    FROM trading_signals
+),
+streak_calculated AS (
+    SELECT 
+        *,
         CASE 
-            WHEN LAG(result_10min) OVER (PARTITION BY strategy ORDER BY entry_time) = 'LOSE' 
-            THEN 1 
-            ELSE 0 
-        END as is_after_loss
-    FROM tradingviewdata 
-    WHERE result_10min IS NOT NULL
+            WHEN result_60min = 'WIN' AND prev_result = 'WIN' THEN 1
+            WHEN result_60min = 'WIN' AND prev_result != 'WIN' THEN 1
+            ELSE 0
+        END as win_streak,
+        CASE 
+            WHEN result_60min = 'LOST' AND prev_result = 'LOST' THEN 1
+            WHEN result_60min = 'LOST' AND prev_result != 'LOST' THEN 1
+            ELSE 0
+        END as loss_streak
+    FROM streak_data
 )
 SELECT 
-    strategy,
-    action,
-    is_after_loss,
-    COUNT(*) as total_trades,
-    SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) as wins,
-    ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate
-FROM streak_data
-GROUP BY strategy, action, is_after_loss
-HAVING COUNT(*) >= 5
-ORDER BY strategy, action, is_after_loss;
+    win_streak,
+    loss_streak,
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as win_rate,
+    COUNT(*) as total_trades
+FROM streak_calculated
+GROUP BY win_streak, loss_streak
+HAVING COUNT(*) >= 3
+ORDER BY win_streak, loss_streak;
 
--- 6. Daily Performance Trend
--- แสดง performance ตามวัน
+-- 5. Rolling Win Rate Trend
 SELECT 
-    DATE(entry_time) as trade_date,
-    COUNT(*) as total_trades,
-    SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) as wins_10min,
-    SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) as wins_30min,
-    SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as wins_60min,
-    ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min,
-    ROUND(SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_30min,
-    ROUND(SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_60min,
-    SUM(pnl) as total_pnl
-FROM tradingviewdata 
-WHERE result_10min IS NOT NULL
-GROUP BY DATE(entry_time)
-ORDER BY trade_date;
+    entry_time,
+    strategy,
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) OVER (
+        PARTITION BY strategy 
+        ORDER BY entry_time 
+        ROWS BETWEEN 9 PRECEDING AND CURRENT ROW
+    ) as rolling_win_rate_10,
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) OVER (
+        PARTITION BY strategy 
+        ORDER BY entry_time 
+        ROWS BETWEEN 19 PRECEDING AND CURRENT ROW
+    ) as rolling_win_rate_20
+FROM trading_signals
+ORDER BY strategy, entry_time;
 
--- 7. Price Movement Analysis
--- แสดง performance ตาม price movement
+-- 6. Price Change vs Win Rate Analysis
 SELECT 
     CASE 
-        WHEN (price_10min - entry_price) / entry_price * 100 < -0.1 THEN 'Strong Down'
-        WHEN (price_10min - entry_price) / entry_price * 100 < -0.05 THEN 'Down'
-        WHEN (price_10min - entry_price) / entry_price * 100 < 0.05 THEN 'Sideways'
-        WHEN (price_10min - entry_price) / entry_price * 100 < 0.1 THEN 'Up'
-        ELSE 'Strong Up'
-    END as price_movement,
-    COUNT(*) as total_trades,
-    SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) as wins,
-    ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate
-FROM tradingviewdata 
-WHERE result_10min IS NOT NULL AND price_10min IS NOT NULL
+        WHEN (price_10min - entry_price) / entry_price * 100 > 0.1 THEN 'High Positive'
+        WHEN (price_10min - entry_price) / entry_price * 100 > 0 THEN 'Positive'
+        WHEN (price_10min - entry_price) / entry_price * 100 > -0.1 THEN 'Neutral'
+        ELSE 'Negative'
+    END as price_change_10min_category,
+    CASE 
+        WHEN (price_30min - entry_price) / entry_price * 100 > 0.1 THEN 'High Positive'
+        WHEN (price_30min - entry_price) / entry_price * 100 > 0 THEN 'Positive'
+        WHEN (price_30min - entry_price) / entry_price * 100 > -0.1 THEN 'Neutral'
+        ELSE 'Negative'
+    END as price_change_30min_category,
+    CASE 
+        WHEN (price_60min - entry_price) / entry_price * 100 > 0.1 THEN 'High Positive'
+        WHEN (price_60min - entry_price) / entry_price * 100 > 0 THEN 'Positive'
+        WHEN (price_60min - entry_price) / entry_price * 100 > -0.1 THEN 'Neutral'
+        ELSE 'Negative'
+    END as price_change_60min_category,
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as win_rate,
+    COUNT(*) as total_trades
+FROM trading_signals
 GROUP BY 
     CASE 
-        WHEN (price_10min - entry_price) / entry_price * 100 < -0.1 THEN 'Strong Down'
-        WHEN (price_10min - entry_price) / entry_price * 100 < -0.05 THEN 'Down'
-        WHEN (price_10min - entry_price) / entry_price * 100 < 0.05 THEN 'Sideways'
-        WHEN (price_10min - entry_price) / entry_price * 100 < 0.1 THEN 'Up'
-        ELSE 'Strong Up'
+        WHEN (price_10min - entry_price) / entry_price * 100 > 0.1 THEN 'High Positive'
+        WHEN (price_10min - entry_price) / entry_price * 100 > 0 THEN 'Positive'
+        WHEN (price_10min - entry_price) / entry_price * 100 > -0.1 THEN 'Neutral'
+        ELSE 'Negative'
+    END,
+    CASE 
+        WHEN (price_30min - entry_price) / entry_price * 100 > 0.1 THEN 'High Positive'
+        WHEN (price_30min - entry_price) / entry_price * 100 > 0 THEN 'Positive'
+        WHEN (price_30min - entry_price) / entry_price * 100 > -0.1 THEN 'Neutral'
+        ELSE 'Negative'
+    END,
+    CASE 
+        WHEN (price_60min - entry_price) / entry_price * 100 > 0.1 THEN 'High Positive'
+        WHEN (price_60min - entry_price) / entry_price * 100 > 0 THEN 'Positive'
+        WHEN (price_60min - entry_price) / entry_price * 100 > -0.1 THEN 'Neutral'
+        ELSE 'Negative'
     END
+HAVING COUNT(*) >= 3
 ORDER BY win_rate DESC;
 
--- 8. Risk Assessment
--- แสดง risk score ของแต่ละ strategy
-WITH risk_data AS (
-    SELECT 
-        strategy,
-        action,
-        COUNT(*) as total_trades,
-        ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate,
-        -- คำนวณ max consecutive losses
-        MAX(
-            CASE 
-                WHEN result_10min = 'LOSE' THEN 
-                    ROW_NUMBER() OVER (PARTITION BY strategy, action, 
-                        ROW_NUMBER() OVER (PARTITION BY strategy, action ORDER BY entry_time) - 
-                        ROW_NUMBER() OVER (PARTITION BY strategy, action, result_10min ORDER BY entry_time)
-                    ORDER BY entry_time)
-                ELSE 0
-            END
-        ) as max_consecutive_losses
-    FROM tradingviewdata 
-    WHERE result_10min IS NOT NULL
-    GROUP BY strategy, action
-)
+-- 7. Market Trend Analysis
+SELECT 
+    CASE 
+        WHEN (price_60min - entry_price) / entry_price * 100 > 0.2 THEN 'Strong Bullish'
+        WHEN (price_60min - entry_price) / entry_price * 100 > 0.1 THEN 'Bullish'
+        WHEN (price_60min - entry_price) / entry_price * 100 > -0.1 THEN 'Neutral'
+        WHEN (price_60min - entry_price) / entry_price * 100 > -0.2 THEN 'Bearish'
+        ELSE 'Strong Bearish'
+    END as market_trend,
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as win_rate,
+    COUNT(*) as total_trades,
+    AVG((price_60min - entry_price) / entry_price * 100) as avg_price_change
+FROM trading_signals
+GROUP BY 
+    CASE 
+        WHEN (price_60min - entry_price) / entry_price * 100 > 0.2 THEN 'Strong Bullish'
+        WHEN (price_60min - entry_price) / entry_price * 100 > 0.1 THEN 'Bullish'
+        WHEN (price_60min - entry_price) / entry_price * 100 > -0.1 THEN 'Neutral'
+        WHEN (price_60min - entry_price) / entry_price * 100 > -0.2 THEN 'Bearish'
+        ELSE 'Strong Bearish'
+    END
+ORDER BY 
+    CASE 
+        WHEN (price_60min - entry_price) / entry_price * 100 > 0.2 THEN 1
+        WHEN (price_60min - entry_price) / entry_price * 100 > 0.1 THEN 2
+        WHEN (price_60min - entry_price) / entry_price * 100 > -0.1 THEN 3
+        WHEN (price_60min - entry_price) / entry_price * 100 > -0.2 THEN 4
+        ELSE 5
+    END;
+
+-- 8. Day of Week Analysis
+SELECT 
+    EXTRACT(DOW FROM entry_time) as day_of_week_num,
+    CASE EXTRACT(DOW FROM entry_time)
+        WHEN 0 THEN 'Sunday'
+        WHEN 1 THEN 'Monday'
+        WHEN 2 THEN 'Tuesday'
+        WHEN 3 THEN 'Wednesday'
+        WHEN 4 THEN 'Thursday'
+        WHEN 5 THEN 'Friday'
+        WHEN 6 THEN 'Saturday'
+    END as day_of_week,
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as win_rate,
+    COUNT(*) as total_trades
+FROM trading_signals
+GROUP BY EXTRACT(DOW FROM entry_time)
+ORDER BY day_of_week_num;
+
+-- 9. Strategy Performance Analysis
 SELECT 
     strategy,
-    action,
-    total_trades,
-    win_rate,
-    max_consecutive_losses,
-    CASE 
-        WHEN max_consecutive_losses <= 3 THEN 'Low Risk'
-        WHEN max_consecutive_losses <= 5 THEN 'Medium Risk'
-        ELSE 'High Risk'
-    END as risk_level
-FROM risk_data
-WHERE total_trades >= 10
-ORDER BY win_rate DESC, max_consecutive_losses ASC;
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as win_rate,
+    COUNT(*) as total_trades,
+    SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as wins,
+    SUM(CASE WHEN result_60min = 'LOST' THEN 1 ELSE 0 END) as losses,
+    AVG(pnl) as avg_pnl
+FROM trading_signals
+GROUP BY strategy
+ORDER BY win_rate DESC;
 
--- 9. Best Combinations
--- แสดง combination ที่ดีที่สุด
+-- 10. Action Performance Analysis
 SELECT 
+    action,
+    AVG(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as win_rate,
+    COUNT(*) as total_trades,
+    SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) as wins,
+    SUM(CASE WHEN result_60min = 'LOST' THEN 1 ELSE 0 END) as losses
+FROM trading_signals
+GROUP BY action
+ORDER BY win_rate DESC;
+
+-- 11. High Risk Conditions Alert Query
+SELECT 
+    entry_time,
     strategy,
     action,
     EXTRACT(HOUR FROM entry_time) as hour,
-    COUNT(*) as total_trades,
-    ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min,
-    ROUND(SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_30min,
-    ROUND(SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_60min
-FROM tradingviewdata 
-WHERE result_10min IS NOT NULL
-GROUP BY strategy, action, EXTRACT(HOUR FROM entry_time)
-HAVING COUNT(*) >= 5
-ORDER BY win_rate_10min DESC
-LIMIT 20;
+    CASE 
+        WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.1 THEN 0
+        WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.2 THEN 1
+        ELSE 2
+    END as volatility_level,
+    result_60min,
+    'HIGH RISK' as risk_level
+FROM trading_signals
+WHERE 
+    EXTRACT(HOUR FROM entry_time) = 17  -- Bad time
+    OR (
+        CASE 
+            WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.1 THEN 0
+            WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.2 THEN 1
+            ELSE 2
+        END = 2  -- High volatility
+    )
+ORDER BY entry_time DESC;
 
--- 10. Recent Performance (Last 24 hours)
--- แสดง performance ล่าสุด
+-- 12. Optimal Trading Conditions Query
 SELECT 
+    entry_time,
     strategy,
     action,
-    tf as timeframe,
-    COUNT(*) as total_trades,
-    ROUND(SUM(CASE WHEN result_10min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_10min,
-    ROUND(SUM(CASE WHEN result_30min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_30min,
-    ROUND(SUM(CASE WHEN result_60min = 'WIN' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as win_rate_60min,
-    SUM(pnl) as total_pnl
-FROM tradingviewdata 
-WHERE result_10min IS NOT NULL 
-    AND entry_time >= NOW() - INTERVAL '24 hours'
-GROUP BY strategy, action, tf
-ORDER BY win_rate_10min DESC;
+    EXTRACT(HOUR FROM entry_time) as hour,
+    CASE 
+        WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.1 THEN 0
+        WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.2 THEN 1
+        ELSE 2
+    END as volatility_level,
+    result_60min,
+    'OPTIMAL' as condition_level
+FROM trading_signals
+WHERE 
+    EXTRACT(HOUR FROM entry_time) = 2  -- Good time
+    AND (
+        CASE 
+            WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.1 THEN 0
+            WHEN ABS((price_60min - entry_price) / entry_price * 100) < 0.2 THEN 1
+            ELSE 2
+        END IN (0, 1)  -- Low to medium volatility
+    )
+ORDER BY entry_time DESC;
