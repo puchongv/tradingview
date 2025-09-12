@@ -1,7 +1,13 @@
 # Project Requirements
+## Binary Options Trading Pattern Analysis Project
+
+### 📅 Last Update: 2025-01-27
+### 🎯 Project Status: Machine Learning Analysis Complete
+
+---
 
 ## 🎯 Project Overview
-**Trading Signal Pattern Analysis Dashboard**
+**Binary Options Trading Pattern Analysis Dashboard**
 
 ### Mission
 สร้าง Metabase Dashboard สำหรับวิเคราะห์ **รูปแบบ (Pattern)** ของ Trading Signals เพื่อให้มองเห็น pattern ที่ส่งผลต่อ win rate
@@ -11,12 +17,15 @@
 - มองเห็น pattern ที่ส่งผลต่อ win rate
 - **ไม่ใช่ Performance Metrics** - เน้นการวิเคราะห์รูปแบบ
 
+---
+
 ## 📊 Project Details
 
-### Data Source
-- **File**: `Result Last 120HR.csv`
-- **Rows**: 1,747 trading signals
-- **Time Range**: Last 120 hours
+### Data Sources
+- **Primary File**: `Result Last 120HR.csv` (1,745 records)
+- **Additional File**: `Result 2568-09-11 22-54-00.csv` (737 records)
+- **Total Records**: 2,482 trading signals
+- **Time Range**: 2025-09-03 to 2025-09-11
 - **Symbol**: BTCUSDT
 
 ### Strategies Available
@@ -150,6 +159,72 @@
 - **Data Volume**: 1,747 rows
 - **Concurrent Users**: 1-5 users
 - **Availability**: 99% uptime
+
+---
+
+## 📁 File Structure
+
+### Core Analysis Files
+- **`simple_ml_analysis.py`** - Main ML analysis script → [Link](./simple_ml_analysis.py)
+- **`comprehensive_factor_analysis.py`** - Comprehensive analysis → [Link](./comprehensive_factor_analysis.py)
+- **`agent_resume_system.py`** - Agent resume system → [Link](./agent_resume_system.py)
+
+### Analysis Results
+- **`simple_ml_insights.json`** - ML analysis results → [Link](./simple_ml_insights.json)
+- **`significant_patterns.json`** - Significant patterns found → [Link](./significant_patterns.json)
+- **`factors_analysis.json`** - Factors analysis results → [Link](./factors_analysis.json)
+
+### Dashboard Files
+- **`metabase_dashboard_config.json`** - Dashboard configuration → [Link](./metabase_dashboard_config.json)
+- **`metabase_queries.sql`** - SQL queries for Metabase → [Link](./metabase_queries.sql)
+
+### Report Files
+- **`ML_ANALYSIS_REPORT.md`** - Main analysis report → [Link](./ML_ANALYSIS_REPORT.md)
+- **`COMPREHENSIVE_ANALYSIS_REPORT.md`** - Comprehensive report → [Link](./COMPREHENSIVE_ANALYSIS_REPORT.md)
+- **`AGENT_RESUME_GUIDE.md`** - Agent resume guide → [Link](./AGENT_RESUME_GUIDE.md)
+
+### Context Files
+- **`agent-conversation-context.md`** - Conversation context → [Link](./agent-conversation-context.md)
+- **`project-requirements.md`** - Project requirements (this file)
+
+---
+
+## 🔗 Cross-References
+
+### Related Reports
+- **ML Analysis Report** → [ML_ANALYSIS_REPORT.md](./ML_ANALYSIS_REPORT.md)
+- **Comprehensive Analysis** → [COMPREHENSIVE_ANALYSIS_REPORT.md](./COMPREHENSIVE_ANALYSIS_REPORT.md)
+- **Agent Resume Guide** → [AGENT_RESUME_GUIDE.md](./AGENT_RESUME_GUIDE.md)
+
+### Related Analysis
+- **ML Insights** → [simple_ml_insights.json](./simple_ml_insights.json)
+- **Significant Patterns** → [significant_patterns.json](./significant_patterns.json)
+- **Factors Analysis** → [factors_analysis.json](./factors_analysis.json)
+
+### Related Documentation
+- **Conversation Context** → [agent-conversation-context.md](./agent-conversation-context.md)
+- **Dashboard Config** → [metabase_dashboard_config.json](./metabase_dashboard_config.json)
+- **SQL Queries** → [metabase_queries.sql](./metabase_queries.sql)
+
+---
+
+## 📊 Key Findings Summary
+
+### Significant Patterns Found
+1. **Time Patterns**: 02:00 (69.1% win rate), 17:00 (23.9% win rate)
+2. **Volatility Patterns**: Level 2 = 0% win rate (100% loss)
+3. **Combination Patterns**: MWP-27_FlowTrend Bearish + Sell = 27.3% win rate
+
+### Top Features (Correlation with win_60min)
+1. **win_streak** (0.72) - Win streak มีความสัมพันธ์สูงมาก
+2. **loss_streak** (-0.65) - Loss streak มีความสัมพันธ์สูงมาก
+3. **rolling_win_rate_10** (0.32) - Win rate 10 ครั้งล่าสุด
+4. **rolling_win_rate_20** (0.25) - Win rate 20 ครั้งล่าสุด
+
+### Prediction Rules
+- **Rule 1**: IF volatility_level = 2 THEN PREDICT LOSE (Confidence: 100.0%)
+
+---
 
 ## 📝 Documentation Requirements
 
