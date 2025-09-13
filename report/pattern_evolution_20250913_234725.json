@@ -1,0 +1,559 @@
+{
+  "pattern_stability": [
+    {
+      "pattern_type": "Hour Patterns",
+      "stability_analysis": [
+        {
+          "period": "Period_1",
+          "date_range": "2025-08-28 00:00:00 to 2025-09-02 00:00:00",
+          "correlation_with_overall": 0.3377008146348818,
+          "sample_size": 878,
+          "best_hour": [
+            21.0,
+            0.6829268292682927
+          ],
+          "worst_hour": [
+            11.0,
+            0.18518518518518517
+          ]
+        },
+        {
+          "period": "Period_2",
+          "date_range": "2025-09-02 00:00:00 to 2025-09-05 00:00:00",
+          "correlation_with_overall": 0.6376589164781855,
+          "sample_size": 878,
+          "best_hour": [
+            16.0,
+            0.8055555555555556
+          ],
+          "worst_hour": [
+            23.0,
+            0.13636363636363635
+          ]
+        },
+        {
+          "period": "Period_3",
+          "date_range": "2025-09-05 00:00:00 to 2025-09-08 00:00:00",
+          "correlation_with_overall": 0.3231714185778222,
+          "sample_size": 877,
+          "best_hour": [
+            2.0,
+            0.725
+          ],
+          "worst_hour": [
+            3.0,
+            0.23255813953488372
+          ]
+        },
+        {
+          "period": "Period_4",
+          "date_range": "2025-09-08 00:00:00 to 2025-09-11 00:00:00",
+          "correlation_with_overall": 0.4664802842294364,
+          "sample_size": 878,
+          "best_hour": [
+            22.0,
+            0.8181818181818182
+          ],
+          "worst_hour": [
+            17.0,
+            0.14814814814814814
+          ]
+        },
+        {
+          "period": "Period_5",
+          "date_range": "2025-09-11 00:00:00 to 2025-09-13 00:00:00",
+          "correlation_with_overall": 0.4794874299806048,
+          "sample_size": 878,
+          "best_hour": [
+            8.0,
+            0.8695652173913043
+          ],
+          "worst_hour": [
+            6.0,
+            0.07142857142857142
+          ]
+        }
+      ],
+      "avg_correlation": 0.44889977278018617,
+      "stability_rating": "Medium"
+    },
+    {
+      "pattern_type": "Day of Week Patterns",
+      "stability_analysis": [
+        {
+          "period": "Period_1",
+          "correlation_with_overall": 0.8896229535179254,
+          "sample_size": 878,
+          "period_patterns": {
+            "0.0": 0.44525547445255476,
+            "1.0": 0.4753521126760563,
+            "2.0": 0.6444444444444445,
+            "4.0": 0.0,
+            "5.0": 0.0,
+            "6.0": 0.4146341463414634
+          }
+        },
+        {
+          "period": "Period_2",
+          "correlation_with_overall": 0.10701680033825564,
+          "sample_size": 878,
+          "period_patterns": {
+            "2.0": 0.6106194690265486,
+            "3.0": 0.4835164835164835,
+            "4.0": 0.5245283018867924,
+            "5.0": 0.6035242290748899
+          }
+        },
+        {
+          "period": "Period_3",
+          "correlation_with_overall": 0.5429329059262487,
+          "sample_size": 877,
+          "period_patterns": {
+            "0.0": 0.5314009661835749,
+            "1.0": 0.45161290322580644,
+            "5.0": 0.18181818181818182,
+            "6.0": 0.4986072423398329
+          }
+        },
+        {
+          "period": "Period_4",
+          "correlation_with_overall": -0.1587227246282455,
+          "sample_size": 878,
+          "period_patterns": {
+            "1.0": 0.47202797202797203,
+            "2.0": 0.44565217391304346,
+            "3.0": 0.4701492537313433,
+            "4.0": 0.45
+          }
+        },
+        {
+          "period": "Period_5",
+          "correlation_with_overall": 0.6908091564123006,
+          "sample_size": 878,
+          "period_patterns": {
+            "4.0": 0.4635416666666667,
+            "5.0": 0.4882943143812709,
+            "6.0": 0.5038759689922481
+          }
+        }
+      ],
+      "avg_correlation": 0.414331818313297,
+      "stability_rating": "Medium"
+    },
+    {
+      "pattern_type": "Strategy Momentum Patterns",
+      "stability_analysis": [
+        {
+          "strategy": "MWP-30",
+          "momentum_periods": [
+            {
+              "period": "Period_1",
+              "win_after_win_rate": 0.7222222222222222,
+              "sample_size": 36
+            },
+            {
+              "period": "Period_2",
+              "win_after_win_rate": 0.7358490566037735,
+              "sample_size": 53
+            },
+            {
+              "period": "Period_3",
+              "win_after_win_rate": 0.5882352941176471,
+              "sample_size": 51
+            },
+            {
+              "period": "Period_4",
+              "win_after_win_rate": 0.7073170731707317,
+              "sample_size": 41
+            },
+            {
+              "period": "Period_5",
+              "win_after_win_rate": 0.6785714285714286,
+              "sample_size": 56
+            }
+          ],
+          "momentum_stability": 0.9473434654487676,
+          "avg_momentum": 0.6864390149371606
+        },
+        {
+          "strategy": "MWP-25",
+          "momentum_periods": [
+            {
+              "period": "Period_1",
+              "win_after_win_rate": 0.631578947368421,
+              "sample_size": 57
+            },
+            {
+              "period": "Period_2",
+              "win_after_win_rate": 0.6896551724137931,
+              "sample_size": 58
+            },
+            {
+              "period": "Period_3",
+              "win_after_win_rate": 0.5223880597014925,
+              "sample_size": 67
+            },
+            {
+              "period": "Period_4",
+              "win_after_win_rate": 0.6333333333333333,
+              "sample_size": 60
+            },
+            {
+              "period": "Period_5",
+              "win_after_win_rate": 0.5901639344262295,
+              "sample_size": 61
+            }
+          ],
+          "momentum_stability": 0.9445640037669065,
+          "avg_momentum": 0.6134238894486538
+        },
+        {
+          "strategy": "Range Filter5",
+          "momentum_periods": [
+            {
+              "period": "Period_1",
+              "win_after_win_rate": 0.6923076923076923,
+              "sample_size": 13
+            },
+            {
+              "period": "Period_2",
+              "win_after_win_rate": 0.625,
+              "sample_size": 16
+            },
+            {
+              "period": "Period_3",
+              "win_after_win_rate": 0.4444444444444444,
+              "sample_size": 9
+            },
+            {
+              "period": "Period_4",
+              "win_after_win_rate": 0.7058823529411765,
+              "sample_size": 17
+            },
+            {
+              "period": "Period_5",
+              "win_after_win_rate": 0.42857142857142855,
+              "sample_size": 7
+            }
+          ],
+          "momentum_stability": 0.8801772756034009,
+          "avg_momentum": 0.5792411836529483
+        },
+        {
+          "strategy": "UT-BOT2-10",
+          "momentum_periods": [
+            {
+              "period": "Period_1",
+              "win_after_win_rate": 0.20689655172413793,
+              "sample_size": 87
+            },
+            {
+              "period": "Period_2",
+              "win_after_win_rate": 0.24074074074074073,
+              "sample_size": 108
+            },
+            {
+              "period": "Period_3",
+              "win_after_win_rate": 0.24390243902439024,
+              "sample_size": 82
+            },
+            {
+              "period": "Period_4",
+              "win_after_win_rate": 0.2289156626506024,
+              "sample_size": 83
+            },
+            {
+              "period": "Period_5",
+              "win_after_win_rate": 0.28888888888888886,
+              "sample_size": 90
+            }
+          ],
+          "momentum_stability": 0.9731405924073601,
+          "avg_momentum": 0.24186885660575203
+        },
+        {
+          "strategy": "MWP-20",
+          "momentum_periods": [
+            {
+              "period": "Period_1",
+              "win_after_win_rate": 0.5357142857142857,
+              "sample_size": 56
+            },
+            {
+              "period": "Period_2",
+              "win_after_win_rate": 0.5578947368421052,
+              "sample_size": 95
+            },
+            {
+              "period": "Period_3",
+              "win_after_win_rate": 0.4639175257731959,
+              "sample_size": 97
+            },
+            {
+              "period": "Period_4",
+              "win_after_win_rate": 0.5238095238095238,
+              "sample_size": 84
+            },
+            {
+              "period": "Period_5",
+              "win_after_win_rate": 0.524390243902439,
+              "sample_size": 82
+            }
+          ],
+          "momentum_stability": 0.968837771757015,
+          "avg_momentum": 0.5211452632083099
+        },
+        {
+          "strategy": "Range FRAMA3",
+          "momentum_periods": [
+            {
+              "period": "Period_1",
+              "win_after_win_rate": 0.45,
+              "sample_size": 20
+            },
+            {
+              "period": "Period_2",
+              "win_after_win_rate": 0.4375,
+              "sample_size": 32
+            },
+            {
+              "period": "Period_3",
+              "win_after_win_rate": 0.391304347826087,
+              "sample_size": 23
+            },
+            {
+              "period": "Period_4",
+              "win_after_win_rate": 0.36,
+              "sample_size": 25
+            },
+            {
+              "period": "Period_5",
+              "win_after_win_rate": 0.4166666666666667,
+              "sample_size": 24
+            }
+          ],
+          "momentum_stability": 0.9676140911668781,
+          "avg_momentum": 0.4110942028985507
+        },
+        {
+          "strategy": "Range FRAMA3-99",
+          "momentum_periods": [
+            {
+              "period": "Period_1",
+              "win_after_win_rate": 0.4444444444444444,
+              "sample_size": 27
+            },
+            {
+              "period": "Period_2",
+              "win_after_win_rate": 0.39215686274509803,
+              "sample_size": 51
+            },
+            {
+              "period": "Period_3",
+              "win_after_win_rate": 0.35714285714285715,
+              "sample_size": 42
+            },
+            {
+              "period": "Period_4",
+              "win_after_win_rate": 0.29545454545454547,
+              "sample_size": 44
+            },
+            {
+              "period": "Period_5",
+              "win_after_win_rate": 0.41304347826086957,
+              "sample_size": 46
+            }
+          ],
+          "momentum_stability": 0.948888113770721,
+          "avg_momentum": 0.38044843760956293
+        },
+        {
+          "strategy": "MWP-27",
+          "momentum_periods": [
+            {
+              "period": "Period_1",
+              "win_after_win_rate": 0.7857142857142857,
+              "sample_size": 28
+            },
+            {
+              "period": "Period_2",
+              "win_after_win_rate": 0.7142857142857143,
+              "sample_size": 56
+            },
+            {
+              "period": "Period_3",
+              "win_after_win_rate": 0.5522388059701493,
+              "sample_size": 67
+            },
+            {
+              "period": "Period_4",
+              "win_after_win_rate": 0.6530612244897959,
+              "sample_size": 49
+            },
+            {
+              "period": "Period_5",
+              "win_after_win_rate": 0.6833333333333333,
+              "sample_size": 60
+            }
+          ],
+          "momentum_stability": 0.9233385210663588,
+          "avg_momentum": 0.6777266727586557
+        }
+      ],
+      "most_stable_strategy": {
+        "strategy": "UT-BOT2-10",
+        "momentum_periods": [
+          {
+            "period": "Period_1",
+            "win_after_win_rate": 0.20689655172413793,
+            "sample_size": 87
+          },
+          {
+            "period": "Period_2",
+            "win_after_win_rate": 0.24074074074074073,
+            "sample_size": 108
+          },
+          {
+            "period": "Period_3",
+            "win_after_win_rate": 0.24390243902439024,
+            "sample_size": 82
+          },
+          {
+            "period": "Period_4",
+            "win_after_win_rate": 0.2289156626506024,
+            "sample_size": 83
+          },
+          {
+            "period": "Period_5",
+            "win_after_win_rate": 0.28888888888888886,
+            "sample_size": 90
+          }
+        ],
+        "momentum_stability": 0.9731405924073601,
+        "avg_momentum": 0.24186885660575203
+      }
+    }
+  ],
+  "time_degradation": [],
+  "automated_trading_rules": [
+    {
+      "rule_id": "GOLDEN_MOMENTUM",
+      "description": "Trade during golden hour with momentum strategy",
+      "conditions": [
+        "hour == 21",
+        "strategy in [\"MWP-30\", \"MWP-27\", \"MWP-25\"]",
+        "previous_result == WIN",
+        "NOT in_death_zone"
+      ],
+      "action": {
+        "bet_size": 200,
+        "interval": "60min",
+        "confidence_level": "Very High",
+        "expected_win_rate": 0.85
+      },
+      "stop_conditions": [
+        "consecutive_losses >= 2",
+        "daily_loss >= 400"
+      ]
+    },
+    {
+      "rule_id": "TUESDAY_ADVANTAGE",
+      "description": "Increase trading activity on Tuesday",
+      "conditions": [
+        "day_of_week == 2",
+        "hour NOT in [19, 22, 23]",
+        "strategy_win_rate >= 0.45"
+      ],
+      "action": {
+        "bet_size": 150,
+        "interval": "30min or 60min",
+        "confidence_level": "High",
+        "expected_win_rate": 0.54
+      }
+    },
+    {
+      "rule_id": "DEATH_ZONE_AVOID",
+      "description": "Completely avoid death zone combinations",
+      "conditions": [
+        "(strategy == \"MWP-30\" AND hour == 22)",
+        "OR (strategy == \"Range FRAMA3\" AND hour == 14 AND volatility == HIGH)",
+        "OR (strategy == \"UT-BOT2-10\" AND hour == 22 AND volatility == HIGH)"
+      ],
+      "action": {
+        "bet_size": 0,
+        "confidence_level": "Certain",
+        "expected_win_rate": 0.0
+      }
+    },
+    {
+      "rule_id": "MOMENTUM_CONTINUATION",
+      "description": "Capitalize on MWP strategy momentum",
+      "conditions": [
+        "strategy.startswith(\"MWP\")",
+        "consecutive_wins >= 2",
+        "hour NOT in [19, 22, 23]"
+      ],
+      "action": {
+        "bet_size": 250,
+        "interval": "60min",
+        "confidence_level": "Very High",
+        "expected_win_rate": 0.9
+      },
+      "stop_conditions": [
+        "first_loss_after_streak"
+      ]
+    },
+    {
+      "rule_id": "CONSERVATIVE_SAFE",
+      "description": "Safe trading when conditions are uncertain",
+      "conditions": [
+        "no_clear_pattern_match",
+        "overall_conditions == NEUTRAL"
+      ],
+      "action": {
+        "bet_size": 50,
+        "interval": "10min",
+        "confidence_level": "Low",
+        "expected_win_rate": 0.47
+      }
+    }
+  ],
+  "profit_potential_analysis": [
+    {
+      "scenario": "Overall Performance",
+      "win_rate": 0.47573479152426523,
+      "expected_return_per_trade": -0.14367737525632257,
+      "required_bet_size_for_target": null,
+      "daily_profit_potential_3_trades": -43.10321257689677,
+      "risk_of_ruin": 1.0
+    },
+    {
+      "scenario": "Golden Hour 21",
+      "win_rate": 0.6284153005464481,
+      "expected_return_per_trade": 0.1311475409836066,
+      "required_bet_size_for_target": 250,
+      "daily_profit_potential_3_trades": 98.36065573770495,
+      "risk_of_ruin": 0.12224871123244979,
+      "achievable": "Yes"
+    },
+    {
+      "scenario": "Tuesday Trading",
+      "win_rate": 0.5400516795865633,
+      "expected_return_per_trade": -0.02790697674418602,
+      "required_bet_size_for_target": null,
+      "daily_profit_potential_3_trades": -8.372093023255806,
+      "risk_of_ruin": 1.0,
+      "achievable": "No"
+    },
+    {
+      "scenario": "MWP-30 After Win",
+      "win_rate": 0.46875,
+      "expected_return_per_trade": -0.15625,
+      "required_bet_size_for_target": null,
+      "daily_profit_potential_3_trades": -46.875,
+      "risk_of_ruin": 1.0,
+      "achievable": "No"
+    }
+  ],
+  "pattern_evolution_summary": []
+}

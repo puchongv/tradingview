@@ -1,0 +1,240 @@
+{
+  "survival_scenarios": [
+    {
+      "scenario": "Golden Hour 21",
+      "win_rate": 0.6353591160220995,
+      "sample_size": 181,
+      "prob_survive_4_trades": 0.982320847473758,
+      "prob_profit_2plus_wins": 0.859102511684799,
+      "prob_game_over": 0.017679152526241946,
+      "expected_profit_per_4trades": 143.6464088397791,
+      "survival_rating": 0.5263157894736843
+    },
+    {
+      "scenario": "Tuesday",
+      "win_rate": 0.5988538681948424,
+      "sample_size": 349,
+      "prob_survive_4_trades": 0.9741053267738367,
+      "prob_profit_2plus_wins": 0.8194771352233184,
+      "prob_game_over": 0.025894673226163335,
+      "expected_profit_per_4trades": 77.93696275071642,
+      "survival_rating": 0.6444444444444444
+    },
+    {
+      "scenario": "MWP-30 Strategy",
+      "win_rate": 0.5217391304347826,
+      "sample_size": 460,
+      "prob_survive_4_trades": 0.9476810045704525,
+      "prob_profit_2plus_wins": 0.7193799336051543,
+      "prob_game_over": 0.0523189954295475,
+      "expected_profit_per_4trades": -60.86956521739131,
+      "survival_rating": 0.6891891891891893
+    },
+    {
+      "scenario": "Overall Trading",
+      "win_rate": 0.503011322572874,
+      "sample_size": 4151,
+      "prob_survive_4_trades": 0.9389921137224798,
+      "prob_profit_2plus_wins": 0.6920033273968138,
+      "prob_game_over": 0.0610078862775202,
+      "expected_profit_per_4trades": -94.57961936882685,
+      "survival_rating": 0.5011286681715575
+    }
+  ],
+  "consecutive_loss_analysis": [
+    {
+      "scenario": "MWP-30 Strategy",
+      "total_trades": 460,
+      "win_rate": 0.5217391304347826,
+      "total_loss_streaks": 74,
+      "deadly_streaks_4plus": 23,
+      "max_consecutive_losses": 14,
+      "survival_rate": 0.6891891891891893,
+      "loss_streak_distribution": {
+        "1_loss": 15,
+        "2_consecutive": 32,
+        "3_consecutive": 4,
+        "4_consecutive": 12,
+        "5plus_consecutive": 11
+      }
+    },
+    {
+      "scenario": "Tuesday",
+      "total_trades": 349,
+      "win_rate": 0.5988538681948424,
+      "total_loss_streaks": 45,
+      "deadly_streaks_4plus": 16,
+      "max_consecutive_losses": 10,
+      "survival_rate": 0.6444444444444444,
+      "loss_streak_distribution": {
+        "1_loss": 14,
+        "2_consecutive": 10,
+        "3_consecutive": 5,
+        "4_consecutive": 3,
+        "5plus_consecutive": 13
+      }
+    },
+    {
+      "scenario": "Golden Hour 21",
+      "total_trades": 181,
+      "win_rate": 0.6353591160220995,
+      "total_loss_streaks": 19,
+      "deadly_streaks_4plus": 9,
+      "max_consecutive_losses": 9,
+      "survival_rate": 0.5263157894736843,
+      "loss_streak_distribution": {
+        "1_loss": 7,
+        "2_consecutive": 1,
+        "3_consecutive": 2,
+        "4_consecutive": 1,
+        "5plus_consecutive": 8
+      }
+    },
+    {
+      "scenario": "Overall Trading",
+      "total_trades": 4151,
+      "win_rate": 0.503011322572874,
+      "total_loss_streaks": 443,
+      "deadly_streaks_4plus": 221,
+      "max_consecutive_losses": 25,
+      "survival_rate": 0.5011286681715575,
+      "loss_streak_distribution": {
+        "1_loss": 107,
+        "2_consecutive": 66,
+        "3_consecutive": 49,
+        "4_consecutive": 38,
+        "5plus_consecutive": 183
+      }
+    }
+  ],
+  "optimal_strategies": [
+    {
+      "strategy_name": "Golden Hour + MWP-30",
+      "description": "\u0e0a\u0e48\u0e27\u0e07\u0e40\u0e27\u0e25\u0e32 21:xx \u0e01\u0e31\u0e1a MWP-30",
+      "win_rate": 0.875,
+      "sample_size": 16,
+      "survival_probability": 0.999755859375,
+      "profit_probability": 0.992919921875,
+      "game_over_probability": 0.000244140625,
+      "recommendation": "Highly Recommended"
+    },
+    {
+      "strategy_name": "Golden Hour + MWP-25",
+      "description": "\u0e0a\u0e48\u0e27\u0e07\u0e40\u0e27\u0e25\u0e32 21:xx \u0e01\u0e31\u0e1a MWP-25",
+      "win_rate": 0.7619047619047619,
+      "sample_size": 21,
+      "survival_probability": 0.9967863184578442,
+      "profit_probability": 0.95565119471825,
+      "game_over_probability": 0.003213681542155791,
+      "recommendation": "Highly Recommended"
+    },
+    {
+      "strategy_name": "Golden Hour + MWP-27",
+      "description": "\u0e0a\u0e48\u0e27\u0e07\u0e40\u0e27\u0e25\u0e32 21:xx \u0e01\u0e31\u0e1a MWP-27",
+      "win_rate": 0.75,
+      "sample_size": 16,
+      "survival_probability": 0.99609375,
+      "profit_probability": 0.94921875,
+      "game_over_probability": 0.00390625,
+      "recommendation": "Highly Recommended"
+    },
+    {
+      "strategy_name": "Tuesday + MWP-30",
+      "description": "\u0e27\u0e31\u0e19\u0e2d\u0e31\u0e07\u0e04\u0e32\u0e23 \u0e01\u0e31\u0e1a MWP-30",
+      "win_rate": 0.6923076923076923,
+      "sample_size": 26,
+      "survival_probability": 0.9910367284058681,
+      "profit_probability": 0.9103672840586813,
+      "game_over_probability": 0.00896327159413186,
+      "recommendation": "Highly Recommended"
+    },
+    {
+      "strategy_name": "Tuesday + MWP-27",
+      "description": "\u0e27\u0e31\u0e19\u0e2d\u0e31\u0e07\u0e04\u0e32\u0e23 \u0e01\u0e31\u0e1a MWP-27",
+      "win_rate": 0.65625,
+      "sample_size": 32,
+      "survival_probability": 0.9860372543334961,
+      "profit_probability": 0.8794126510620117,
+      "game_over_probability": 0.013962745666503906,
+      "recommendation": "Highly Recommended"
+    },
+    {
+      "strategy_name": "Tuesday + MWP-25",
+      "description": "\u0e27\u0e31\u0e19\u0e2d\u0e31\u0e07\u0e04\u0e32\u0e23 \u0e01\u0e31\u0e1a MWP-25",
+      "win_rate": 0.5869565217391305,
+      "sample_size": 46,
+      "survival_probability": 0.9708939630004181,
+      "profit_probability": 0.805449121108058,
+      "game_over_probability": 0.02910603699958189,
+      "recommendation": "Recommended"
+    }
+  ],
+  "profit_calculations": [
+    {
+      "strategy": "Golden Hour + MWP-30",
+      "win_rate": 0.875,
+      "scenarios": {
+        "win_4": 0.586181640625,
+        "win_3": 0.3349609375,
+        "win_2": 0.07177734375,
+        "win_1": 0.0068359375,
+        "win_0": 0.000244140625
+      },
+      "profits": {
+        "win_4": 800.0,
+        "win_3": 350.0,
+        "win_2": -100.0,
+        "win_1": -550.0,
+        "win_0": -1000
+      },
+      "expected_profit": 575.0,
+      "probability_of_profit": 0.992919921875,
+      "probability_of_game_over": 0.000244140625,
+      "breakeven_needed": 2
+    },
+    {
+      "strategy": "Golden Hour + MWP-25",
+      "win_rate": 0.7619047619047619,
+      "scenarios": {
+        "win_4": 0.3369789336747548,
+        "win_3": 0.42122366709344355,
+        "win_2": 0.1974485939500517,
+        "win_1": 0.04113512373959412,
+        "win_0": 0.003213681542155791
+      },
+      "profits": {
+        "win_4": 800.0,
+        "win_3": 350.0,
+        "win_2": -100.0,
+        "win_1": -550.0,
+        "win_0": -1000
+      },
+      "expected_profit": 371.4285714285714,
+      "probability_of_profit": 0.95565119471825,
+      "probability_of_game_over": 0.003213681542155791,
+      "breakeven_needed": 2
+    },
+    {
+      "strategy": "Golden Hour + MWP-27",
+      "win_rate": 0.75,
+      "scenarios": {
+        "win_4": 0.31640625,
+        "win_3": 0.421875,
+        "win_2": 0.2109375,
+        "win_1": 0.046875,
+        "win_0": 0.00390625
+      },
+      "profits": {
+        "win_4": 800.0,
+        "win_3": 350.0,
+        "win_2": -100.0,
+        "win_1": -550.0,
+        "win_0": -1000
+      },
+      "expected_profit": 350.0,
+      "probability_of_profit": 0.94921875,
+      "probability_of_game_over": 0.00390625,
+      "breakeven_needed": 2
+    }
+  ]
+}

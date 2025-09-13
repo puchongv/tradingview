@@ -1,0 +1,724 @@
+{
+  "multi_strategy_combinations": [
+    {
+      "combination": "Hour 21 + MWP-30",
+      "win_rate": 0.875,
+      "sample_size": 16,
+      "profit_per_4_trades": 575.0,
+      "survival_probability": 0.999755859375,
+      "game_over_risk": 0.000244140625,
+      "profitability_score": 574.859619140625,
+      "frequency_estimate": {
+        "signals_per_month": 34.285714285714285,
+        "rounds_per_month": 8.571428571428571,
+        "signals_per_day": 1.1428571428571428
+      }
+    },
+    {
+      "combination": "Hour 21 + MWP-25",
+      "win_rate": 0.7619047619047619,
+      "sample_size": 21,
+      "profit_per_4_trades": 371.4285714285714,
+      "survival_probability": 0.9967863184578442,
+      "game_over_risk": 0.003213681542155791,
+      "profitability_score": 370.2349182843421,
+      "frequency_estimate": {
+        "signals_per_month": 45.0,
+        "rounds_per_month": 11.25,
+        "signals_per_day": 1.5
+      }
+    },
+    {
+      "combination": "Hour 21 + MWP-27",
+      "win_rate": 0.75,
+      "sample_size": 16,
+      "profit_per_4_trades": 350.0,
+      "survival_probability": 0.99609375,
+      "game_over_risk": 0.00390625,
+      "profitability_score": 348.6328125,
+      "frequency_estimate": {
+        "signals_per_month": 36.92307692307693,
+        "rounds_per_month": 9.230769230769232,
+        "signals_per_day": 1.2307692307692308
+      }
+    },
+    {
+      "combination": "Tuesday + MWP-30",
+      "win_rate": 0.6923076923076923,
+      "sample_size": 26,
+      "profit_per_4_trades": 246.15384615384608,
+      "survival_probability": 0.9910367284058681,
+      "game_over_risk": 0.00896327159413186,
+      "profitability_score": 243.947502376829,
+      "frequency_estimate": {
+        "signals_per_month": 111.42857142857143,
+        "rounds_per_month": 27.857142857142858,
+        "signals_per_day": 3.7142857142857144
+      }
+    },
+    {
+      "combination": "Tuesday + MWP-27",
+      "win_rate": 0.65625,
+      "sample_size": 32,
+      "profit_per_4_trades": 181.25,
+      "survival_probability": 0.9860372543334961,
+      "game_over_risk": 0.013962745666503906,
+      "profitability_score": 178.71925234794617,
+      "frequency_estimate": {
+        "signals_per_month": 137.14285714285714,
+        "rounds_per_month": 34.285714285714285,
+        "signals_per_day": 4.571428571428571
+      }
+    },
+    {
+      "combination": "Hour 21 Only",
+      "win_rate": 0.6353591160220995,
+      "sample_size": 181,
+      "profit_per_4_trades": 143.6464088397791,
+      "survival_probability": 0.982320847473758,
+      "game_over_risk": 0.017679152526241946,
+      "profitability_score": 141.10686206805374,
+      "frequency_estimate": {
+        "signals_per_month": 387.8571428571429,
+        "rounds_per_month": 96.96428571428572,
+        "signals_per_day": 12.928571428571429
+      }
+    },
+    {
+      "combination": "Tuesday Only",
+      "win_rate": 0.5988538681948424,
+      "sample_size": 349,
+      "profit_per_4_trades": 77.93696275071642,
+      "survival_probability": 0.9741053267738367,
+      "game_over_risk": 0.025894673226163335,
+      "profitability_score": 75.91881056804695,
+      "frequency_estimate": {
+        "signals_per_month": 1495.7142857142856,
+        "rounds_per_month": 373.9285714285714,
+        "signals_per_day": 49.857142857142854
+      }
+    },
+    {
+      "combination": "Tuesday + MWP-25",
+      "win_rate": 0.5869565217391305,
+      "sample_size": 46,
+      "profit_per_4_trades": 56.52173913043492,
+      "survival_probability": 0.9708939630004181,
+      "game_over_risk": 0.02910603699958189,
+      "profitability_score": 54.876615300023765,
+      "frequency_estimate": {
+        "signals_per_month": 197.14285714285714,
+        "rounds_per_month": 49.285714285714285,
+        "signals_per_day": 6.571428571428571
+      }
+    },
+    {
+      "combination": "Wednesday + MWP-30",
+      "win_rate": 0.58,
+      "sample_size": 50,
+      "profit_per_4_trades": 43.99999999999994,
+      "survival_probability": 0.96888304,
+      "game_over_risk": 0.031116960000000013,
+      "profitability_score": 42.630853759999944,
+      "frequency_estimate": {
+        "signals_per_month": 214.2857142857143,
+        "rounds_per_month": 53.57142857142858,
+        "signals_per_day": 7.142857142857143
+      }
+    }
+  ],
+  "frequency_analysis": [],
+  "scaling_scenarios": [
+    {
+      "combination": "Hour 21 + MWP-30",
+      "base_stats": {
+        "win_rate": 0.875,
+        "sample_size": 16,
+        "survival_probability": 0.999755859375,
+        "profit_per_4_trades": 575.0,
+        "estimated_monthly_rounds": 8.571428571428571,
+        "base_monthly_profit": 4928.571428571428
+      },
+      "scaling_requirements": {
+        "rounds_needed_for_20k": 34.78260869565217,
+        "frequency_multiplier_needed": 4.057971014492754
+      },
+      "capital_scaling_scenarios": [
+        {
+          "capital_multiplier": 2,
+          "required_capital": 2000,
+          "new_bet_size": 500,
+          "profit_per_4_trades": 1150.0,
+          "monthly_profit_potential": 9857.142857142857,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 3,
+          "required_capital": 3000,
+          "new_bet_size": 750,
+          "profit_per_4_trades": 1725.0,
+          "monthly_profit_potential": 14785.714285714284,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 4,
+          "required_capital": 4000,
+          "new_bet_size": 1000,
+          "profit_per_4_trades": 2300.0,
+          "monthly_profit_potential": 19714.285714285714,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 5,
+          "required_capital": 5000,
+          "new_bet_size": 1250,
+          "profit_per_4_trades": 2875.0,
+          "monthly_profit_potential": 24642.85714285714,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 10,
+          "required_capital": 10000,
+          "new_bet_size": 2500,
+          "profit_per_4_trades": 5750.0,
+          "monthly_profit_potential": 49285.71428571428,
+          "achieves_20k": "True"
+        }
+      ]
+    },
+    {
+      "combination": "Hour 21 + MWP-25",
+      "base_stats": {
+        "win_rate": 0.7619047619047619,
+        "sample_size": 21,
+        "survival_probability": 0.9967863184578442,
+        "profit_per_4_trades": 371.4285714285714,
+        "estimated_monthly_rounds": 11.25,
+        "base_monthly_profit": 4178.571428571428
+      },
+      "scaling_requirements": {
+        "rounds_needed_for_20k": 53.846153846153854,
+        "frequency_multiplier_needed": 4.786324786324787
+      },
+      "capital_scaling_scenarios": [
+        {
+          "capital_multiplier": 2,
+          "required_capital": 2000,
+          "new_bet_size": 500,
+          "profit_per_4_trades": 742.8571428571428,
+          "monthly_profit_potential": 8357.142857142857,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 3,
+          "required_capital": 3000,
+          "new_bet_size": 750,
+          "profit_per_4_trades": 1114.2857142857142,
+          "monthly_profit_potential": 12535.714285714284,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 4,
+          "required_capital": 4000,
+          "new_bet_size": 1000,
+          "profit_per_4_trades": 1485.7142857142856,
+          "monthly_profit_potential": 16714.285714285714,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 5,
+          "required_capital": 5000,
+          "new_bet_size": 1250,
+          "profit_per_4_trades": 1857.1428571428569,
+          "monthly_profit_potential": 20892.85714285714,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 10,
+          "required_capital": 10000,
+          "new_bet_size": 2500,
+          "profit_per_4_trades": 3714.2857142857138,
+          "monthly_profit_potential": 41785.71428571428,
+          "achieves_20k": "True"
+        }
+      ]
+    },
+    {
+      "combination": "Hour 21 + MWP-27",
+      "base_stats": {
+        "win_rate": 0.75,
+        "sample_size": 16,
+        "survival_probability": 0.99609375,
+        "profit_per_4_trades": 350.0,
+        "estimated_monthly_rounds": 9.230769230769232,
+        "base_monthly_profit": 3230.769230769231
+      },
+      "scaling_requirements": {
+        "rounds_needed_for_20k": 57.142857142857146,
+        "frequency_multiplier_needed": 6.19047619047619
+      },
+      "capital_scaling_scenarios": [
+        {
+          "capital_multiplier": 2,
+          "required_capital": 2000,
+          "new_bet_size": 500,
+          "profit_per_4_trades": 700.0,
+          "monthly_profit_potential": 6461.538461538462,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 3,
+          "required_capital": 3000,
+          "new_bet_size": 750,
+          "profit_per_4_trades": 1050.0,
+          "monthly_profit_potential": 9692.307692307693,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 4,
+          "required_capital": 4000,
+          "new_bet_size": 1000,
+          "profit_per_4_trades": 1400.0,
+          "monthly_profit_potential": 12923.076923076924,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 5,
+          "required_capital": 5000,
+          "new_bet_size": 1250,
+          "profit_per_4_trades": 1750.0,
+          "monthly_profit_potential": 16153.846153846156,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 10,
+          "required_capital": 10000,
+          "new_bet_size": 2500,
+          "profit_per_4_trades": 3500.0,
+          "monthly_profit_potential": 32307.692307692312,
+          "achieves_20k": "True"
+        }
+      ]
+    },
+    {
+      "combination": "Tuesday + MWP-30",
+      "base_stats": {
+        "win_rate": 0.6923076923076923,
+        "sample_size": 26,
+        "survival_probability": 0.9910367284058681,
+        "profit_per_4_trades": 246.15384615384608,
+        "estimated_monthly_rounds": 27.857142857142858,
+        "base_monthly_profit": 6857.142857142855
+      },
+      "scaling_requirements": {
+        "rounds_needed_for_20k": 81.25000000000003,
+        "frequency_multiplier_needed": 2.916666666666668
+      },
+      "capital_scaling_scenarios": [
+        {
+          "capital_multiplier": 2,
+          "required_capital": 2000,
+          "new_bet_size": 500,
+          "profit_per_4_trades": 492.30769230769215,
+          "monthly_profit_potential": 13714.28571428571,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 3,
+          "required_capital": 3000,
+          "new_bet_size": 750,
+          "profit_per_4_trades": 738.4615384615382,
+          "monthly_profit_potential": 20571.428571428565,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 4,
+          "required_capital": 4000,
+          "new_bet_size": 1000,
+          "profit_per_4_trades": 984.6153846153843,
+          "monthly_profit_potential": 27428.57142857142,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 5,
+          "required_capital": 5000,
+          "new_bet_size": 1250,
+          "profit_per_4_trades": 1230.7692307692305,
+          "monthly_profit_potential": 34285.714285714275,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 10,
+          "required_capital": 10000,
+          "new_bet_size": 2500,
+          "profit_per_4_trades": 2461.538461538461,
+          "monthly_profit_potential": 68571.42857142855,
+          "achieves_20k": "True"
+        }
+      ]
+    },
+    {
+      "combination": "Tuesday + MWP-27",
+      "base_stats": {
+        "win_rate": 0.65625,
+        "sample_size": 32,
+        "survival_probability": 0.9860372543334961,
+        "profit_per_4_trades": 181.25,
+        "estimated_monthly_rounds": 34.285714285714285,
+        "base_monthly_profit": 6214.285714285714
+      },
+      "scaling_requirements": {
+        "rounds_needed_for_20k": 110.34482758620689,
+        "frequency_multiplier_needed": 3.218390804597701
+      },
+      "capital_scaling_scenarios": [
+        {
+          "capital_multiplier": 2,
+          "required_capital": 2000,
+          "new_bet_size": 500,
+          "profit_per_4_trades": 362.5,
+          "monthly_profit_potential": 12428.571428571428,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 3,
+          "required_capital": 3000,
+          "new_bet_size": 750,
+          "profit_per_4_trades": 543.75,
+          "monthly_profit_potential": 18642.85714285714,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 4,
+          "required_capital": 4000,
+          "new_bet_size": 1000,
+          "profit_per_4_trades": 725.0,
+          "monthly_profit_potential": 24857.142857142855,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 5,
+          "required_capital": 5000,
+          "new_bet_size": 1250,
+          "profit_per_4_trades": 906.25,
+          "monthly_profit_potential": 31071.42857142857,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 10,
+          "required_capital": 10000,
+          "new_bet_size": 2500,
+          "profit_per_4_trades": 1812.5,
+          "monthly_profit_potential": 62142.85714285714,
+          "achieves_20k": "True"
+        }
+      ]
+    },
+    {
+      "combination": "Hour 21 Only",
+      "base_stats": {
+        "win_rate": 0.6353591160220995,
+        "sample_size": 181,
+        "survival_probability": 0.982320847473758,
+        "profit_per_4_trades": 143.6464088397791,
+        "estimated_monthly_rounds": 96.96428571428572,
+        "base_monthly_profit": 13928.571428571438
+      },
+      "scaling_requirements": {
+        "rounds_needed_for_20k": 139.23076923076914,
+        "frequency_multiplier_needed": 1.4358974358974348
+      },
+      "capital_scaling_scenarios": [
+        {
+          "capital_multiplier": 2,
+          "required_capital": 2000,
+          "new_bet_size": 500,
+          "profit_per_4_trades": 287.2928176795582,
+          "monthly_profit_potential": 27857.142857142877,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 3,
+          "required_capital": 3000,
+          "new_bet_size": 750,
+          "profit_per_4_trades": 430.9392265193373,
+          "monthly_profit_potential": 41785.71428571432,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 4,
+          "required_capital": 4000,
+          "new_bet_size": 1000,
+          "profit_per_4_trades": 574.5856353591164,
+          "monthly_profit_potential": 55714.285714285754,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 5,
+          "required_capital": 5000,
+          "new_bet_size": 1250,
+          "profit_per_4_trades": 718.2320441988954,
+          "monthly_profit_potential": 69642.85714285719,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 10,
+          "required_capital": 10000,
+          "new_bet_size": 2500,
+          "profit_per_4_trades": 1436.4640883977909,
+          "monthly_profit_potential": 139285.71428571438,
+          "achieves_20k": "True"
+        }
+      ]
+    },
+    {
+      "combination": "Tuesday Only",
+      "base_stats": {
+        "win_rate": 0.5988538681948424,
+        "sample_size": 349,
+        "survival_probability": 0.9741053267738367,
+        "profit_per_4_trades": 77.93696275071642,
+        "estimated_monthly_rounds": 373.9285714285714,
+        "base_monthly_profit": 29142.85714285717
+      },
+      "scaling_requirements": {
+        "rounds_needed_for_20k": 256.61764705882325,
+        "frequency_multiplier_needed": 0.6862745098039209
+      },
+      "capital_scaling_scenarios": [
+        {
+          "capital_multiplier": 2,
+          "required_capital": 2000,
+          "new_bet_size": 500,
+          "profit_per_4_trades": 155.87392550143284,
+          "monthly_profit_potential": 58285.71428571434,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 3,
+          "required_capital": 3000,
+          "new_bet_size": 750,
+          "profit_per_4_trades": 233.81088825214925,
+          "monthly_profit_potential": 87428.57142857152,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 4,
+          "required_capital": 4000,
+          "new_bet_size": 1000,
+          "profit_per_4_trades": 311.7478510028657,
+          "monthly_profit_potential": 116571.42857142868,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 5,
+          "required_capital": 5000,
+          "new_bet_size": 1250,
+          "profit_per_4_trades": 389.6848137535821,
+          "monthly_profit_potential": 145714.28571428586,
+          "achieves_20k": "True"
+        },
+        {
+          "capital_multiplier": 10,
+          "required_capital": 10000,
+          "new_bet_size": 2500,
+          "profit_per_4_trades": 779.3696275071642,
+          "monthly_profit_potential": 291428.5714285717,
+          "achieves_20k": "True"
+        }
+      ]
+    },
+    {
+      "combination": "Tuesday + MWP-25",
+      "base_stats": {
+        "win_rate": 0.5869565217391305,
+        "sample_size": 46,
+        "survival_probability": 0.9708939630004181,
+        "profit_per_4_trades": 56.52173913043492,
+        "estimated_monthly_rounds": 49.285714285714285,
+        "base_monthly_profit": 2785.7142857142926
+      },
+      "scaling_requirements": {
+        "rounds_needed_for_20k": 353.84615384615296,
+        "frequency_multiplier_needed": 7.179487179487162
+      },
+      "capital_scaling_scenarios": [
+        {
+          "capital_multiplier": 2,
+          "required_capital": 2000,
+          "new_bet_size": 500,
+          "profit_per_4_trades": 113.04347826086985,
+          "monthly_profit_potential": 5571.428571428585,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 3,
+          "required_capital": 3000,
+          "new_bet_size": 750,
+          "profit_per_4_trades": 169.56521739130477,
+          "monthly_profit_potential": 8357.142857142877,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 4,
+          "required_capital": 4000,
+          "new_bet_size": 1000,
+          "profit_per_4_trades": 226.0869565217397,
+          "monthly_profit_potential": 11142.85714285717,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 5,
+          "required_capital": 5000,
+          "new_bet_size": 1250,
+          "profit_per_4_trades": 282.6086956521746,
+          "monthly_profit_potential": 13928.571428571462,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 10,
+          "required_capital": 10000,
+          "new_bet_size": 2500,
+          "profit_per_4_trades": 565.2173913043492,
+          "monthly_profit_potential": 27857.142857142924,
+          "achieves_20k": "True"
+        }
+      ]
+    },
+    {
+      "combination": "Wednesday + MWP-30",
+      "base_stats": {
+        "win_rate": 0.58,
+        "sample_size": 50,
+        "survival_probability": 0.96888304,
+        "profit_per_4_trades": 43.99999999999994,
+        "estimated_monthly_rounds": 53.57142857142858,
+        "base_monthly_profit": 2357.142857142854
+      },
+      "scaling_requirements": {
+        "rounds_needed_for_20k": 454.54545454545513,
+        "frequency_multiplier_needed": 8.484848484848495
+      },
+      "capital_scaling_scenarios": [
+        {
+          "capital_multiplier": 2,
+          "required_capital": 2000,
+          "new_bet_size": 500,
+          "profit_per_4_trades": 87.99999999999989,
+          "monthly_profit_potential": 4714.285714285708,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 3,
+          "required_capital": 3000,
+          "new_bet_size": 750,
+          "profit_per_4_trades": 131.99999999999983,
+          "monthly_profit_potential": 7071.428571428563,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 4,
+          "required_capital": 4000,
+          "new_bet_size": 1000,
+          "profit_per_4_trades": 175.99999999999977,
+          "monthly_profit_potential": 9428.571428571417,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 5,
+          "required_capital": 5000,
+          "new_bet_size": 1250,
+          "profit_per_4_trades": 219.99999999999972,
+          "monthly_profit_potential": 11785.714285714272,
+          "achieves_20k": "False"
+        },
+        {
+          "capital_multiplier": 10,
+          "required_capital": 10000,
+          "new_bet_size": 2500,
+          "profit_per_4_trades": 439.99999999999943,
+          "monthly_profit_potential": 23571.428571428543,
+          "achieves_20k": "True"
+        }
+      ]
+    }
+  ],
+  "20k_achievement_plans": [
+    {
+      "plan_name": "Multi-Strategy Combination Plan",
+      "description": "\u0e23\u0e27\u0e21\u0e2b\u0e25\u0e32\u0e22 strategies \u0e17\u0e35\u0e48\u0e14\u0e35\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14",
+      "strategies": [
+        {
+          "combination": "Hour 21 + MWP-30",
+          "monthly_rounds": 8.571428571428571,
+          "profit_per_round": 575.0,
+          "monthly_contribution": 4928.571428571428,
+          "win_rate": 0.875,
+          "survival_rate": 0.999755859375
+        },
+        {
+          "combination": "Hour 21 + MWP-25",
+          "monthly_rounds": 11.25,
+          "profit_per_round": 371.4285714285714,
+          "monthly_contribution": 4178.571428571428,
+          "win_rate": 0.7619047619047619,
+          "survival_rate": 0.9967863184578442
+        },
+        {
+          "combination": "Hour 21 + MWP-27",
+          "monthly_rounds": 9.230769230769232,
+          "profit_per_round": 350.0,
+          "monthly_contribution": 3230.769230769231,
+          "win_rate": 0.75,
+          "survival_rate": 0.99609375
+        },
+        {
+          "combination": "Tuesday + MWP-30",
+          "monthly_rounds": 27.857142857142858,
+          "profit_per_round": 246.15384615384608,
+          "monthly_contribution": 6857.142857142855,
+          "win_rate": 0.6923076923076923,
+          "survival_rate": 0.9910367284058681
+        },
+        {
+          "combination": "Tuesday + MWP-27",
+          "monthly_rounds": 34.285714285714285,
+          "profit_per_round": 181.25,
+          "monthly_contribution": 6214.285714285714,
+          "win_rate": 0.65625,
+          "survival_rate": 0.9860372543334961
+        }
+      ],
+      "total_expected_monthly": 25409.340659340658,
+      "total_rounds_needed": 91.19505494505495,
+      "capital_required": 1000
+    },
+    {
+      "plan_name": "Scale-Up Single Strategy Plan",
+      "description": "Focus \u0e1a\u0e19 Hour 21 + MWP-30 \u0e41\u0e25\u0e30\u0e02\u0e22\u0e32\u0e22 capital",
+      "strategy": "Hour 21 + MWP-30",
+      "base_win_rate": 0.875,
+      "survival_probability": 0.999755859375,
+      "required_capital": 5000,
+      "new_bet_size": 1250,
+      "expected_monthly_profit": 24642.85714285714,
+      "capital_multiplier": 5,
+      "monthly_rounds_needed": 8.571428571428571
+    },
+    {
+      "plan_name": "Aggressive High-Frequency Plan",
+      "description": "\u0e40\u0e1e\u0e34\u0e48\u0e21\u0e04\u0e27\u0e32\u0e21\u0e16\u0e35\u0e48\u0e01\u0e32\u0e23\u0e40\u0e17\u0e23\u0e14\u0e42\u0e14\u0e22\u0e43\u0e0a\u0e49\u0e2b\u0e25\u0e32\u0e22 conditions",
+      "approach": "\u0e02\u0e22\u0e32\u0e22 time windows \u0e41\u0e25\u0e30\u0e40\u0e1e\u0e34\u0e48\u0e21 strategies",
+      "expanded_conditions": [
+        "Hours: 20, 21, 22 (\u0e41\u0e17\u0e19\u0e41\u0e04\u0e48 21)",
+        "Days: Monday, Tuesday, Wednesday (\u0e41\u0e17\u0e19\u0e41\u0e04\u0e48 Tuesday)",
+        "All MWP strategies + Range strategies",
+        "Price level conditions"
+      ],
+      "frequency_multiplier": 3,
+      "estimated_monthly_profit": 76228.02197802198,
+      "additional_risk": "\u0e40\u0e1e\u0e34\u0e48\u0e21\u0e04\u0e27\u0e32\u0e21\u0e16\u0e35\u0e48 = \u0e40\u0e1e\u0e34\u0e48\u0e21\u0e04\u0e27\u0e32\u0e21\u0e40\u0e2a\u0e35\u0e48\u0e22\u0e07",
+      "capital_required": 1000
+    }
+  ]
+}

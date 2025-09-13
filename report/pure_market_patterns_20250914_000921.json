@@ -1,0 +1,624 @@
+{
+  "pure_time_patterns": {
+    "hourly": [
+      {
+        "hour": 0,
+        "win_rate": 0.564625850340136,
+        "sample_size": 147,
+        "deviation_from_50%": 0.06462585034013602,
+        "p_value": 0.13737776624912412,
+        "is_significant": false,
+        "pattern_strength": 9.499999999999995
+      },
+      {
+        "hour": 1,
+        "win_rate": 0.5080213903743316,
+        "sample_size": 187,
+        "deviation_from_50%": 0.008021390374331583,
+        "p_value": 0.8837712369289781,
+        "is_significant": false,
+        "pattern_strength": 1.500000000000006
+      },
+      {
+        "hour": 2,
+        "win_rate": 0.5662650602409639,
+        "sample_size": 166,
+        "deviation_from_50%": 0.0662650602409639,
+        "p_value": 0.10283252418776902,
+        "is_significant": false,
+        "pattern_strength": 11.000000000000007
+      },
+      {
+        "hour": 3,
+        "win_rate": 0.40853658536585363,
+        "sample_size": 164,
+        "deviation_from_50%": 0.09146341463414637,
+        "p_value": 0.023248999651720486,
+        "is_significant": true,
+        "pattern_strength": 15.000000000000004
+      },
+      {
+        "hour": 4,
+        "win_rate": 0.5689655172413793,
+        "sample_size": 174,
+        "deviation_from_50%": 0.06896551724137934,
+        "p_value": 0.08092659296355388,
+        "is_significant": false,
+        "pattern_strength": 12.000000000000005
+      },
+      {
+        "hour": 5,
+        "win_rate": 0.5024390243902439,
+        "sample_size": 205,
+        "deviation_from_50%": 0.0024390243902439046,
+        "p_value": 1.0,
+        "is_significant": false,
+        "pattern_strength": 0.5000000000000004
+      },
+      {
+        "hour": 6,
+        "win_rate": 0.48026315789473684,
+        "sample_size": 152,
+        "deviation_from_50%": 0.019736842105263164,
+        "p_value": 0.6852087510703435,
+        "is_significant": false,
+        "pattern_strength": 3.000000000000001
+      },
+      {
+        "hour": 7,
+        "win_rate": 0.43548387096774194,
+        "sample_size": 186,
+        "deviation_from_50%": 0.06451612903225806,
+        "p_value": 0.09144224552258975,
+        "is_significant": false,
+        "pattern_strength": 12.0
+      },
+      {
+        "hour": 8,
+        "win_rate": 0.625,
+        "sample_size": 136,
+        "deviation_from_50%": 0.125,
+        "p_value": 0.004481251675252484,
+        "is_significant": true,
+        "pattern_strength": 17.0
+      },
+      {
+        "hour": 9,
+        "win_rate": 0.554140127388535,
+        "sample_size": 157,
+        "deviation_from_50%": 0.05414012738853502,
+        "p_value": 0.20147423241002907,
+        "is_significant": false,
+        "pattern_strength": 8.499999999999998
+      },
+      {
+        "hour": 10,
+        "win_rate": 0.5892857142857143,
+        "sample_size": 168,
+        "deviation_from_50%": 0.0892857142857143,
+        "p_value": 0.024968665281135265,
+        "is_significant": true,
+        "pattern_strength": 15.000000000000004
+      },
+      {
+        "hour": 11,
+        "win_rate": 0.5220125786163522,
+        "sample_size": 159,
+        "deviation_from_50%": 0.022012578616352196,
+        "p_value": 0.6343339062839171,
+        "is_significant": false,
+        "pattern_strength": 3.499999999999999
+      },
+      {
+        "hour": 12,
+        "win_rate": 0.41899441340782123,
+        "sample_size": 179,
+        "deviation_from_50%": 0.08100558659217877,
+        "p_value": 0.03607016096096306,
+        "is_significant": true,
+        "pattern_strength": 14.5
+      },
+      {
+        "hour": 13,
+        "win_rate": 0.4797687861271676,
+        "sample_size": 173,
+        "deviation_from_50%": 0.020231213872832388,
+        "p_value": 0.6483930753373646,
+        "is_significant": false,
+        "pattern_strength": 3.500000000000003
+      },
+      {
+        "hour": 14,
+        "win_rate": 0.5604395604395604,
+        "sample_size": 182,
+        "deviation_from_50%": 0.06043956043956045,
+        "p_value": 0.11931902228044204,
+        "is_significant": false,
+        "pattern_strength": 11.000000000000002
+      },
+      {
+        "hour": 15,
+        "win_rate": 0.6158940397350994,
+        "sample_size": 151,
+        "deviation_from_50%": 0.11589403973509937,
+        "p_value": 0.00548246878576062,
+        "is_significant": true,
+        "pattern_strength": 17.500000000000007
+      },
+      {
+        "hour": 16,
+        "win_rate": 0.5375,
+        "sample_size": 160,
+        "deviation_from_50%": 0.03749999999999998,
+        "p_value": 0.3845671514777663,
+        "is_significant": false,
+        "pattern_strength": 5.9999999999999964
+      },
+      {
+        "hour": 17,
+        "win_rate": 0.38285714285714284,
+        "sample_size": 175,
+        "deviation_from_50%": 0.11714285714285716,
+        "p_value": 0.0024000723025270542,
+        "is_significant": true,
+        "pattern_strength": 20.500000000000004
+      },
+      {
+        "hour": 18,
+        "win_rate": 0.46296296296296297,
+        "sample_size": 216,
+        "deviation_from_50%": 0.037037037037037035,
+        "p_value": 0.30742749872794956,
+        "is_significant": false,
+        "pattern_strength": 8.0
+      },
+      {
+        "hour": 19,
+        "win_rate": 0.3670886075949367,
+        "sample_size": 237,
+        "deviation_from_50%": 0.13291139240506328,
+        "p_value": 5.134119970529943e-05,
+        "is_significant": true,
+        "pattern_strength": 31.499999999999996
+      },
+      {
+        "hour": 20,
+        "win_rate": 0.5327102803738317,
+        "sample_size": 214,
+        "deviation_from_50%": 0.032710280373831724,
+        "p_value": 0.3742252457921406,
+        "is_significant": false,
+        "pattern_strength": 6.999999999999989
+      },
+      {
+        "hour": 21,
+        "win_rate": 0.6353591160220995,
+        "sample_size": 181,
+        "deviation_from_50%": 0.1353591160220995,
+        "p_value": 0.0003337563886251467,
+        "is_significant": true,
+        "pattern_strength": 24.500000000000007
+      },
+      {
+        "hour": 22,
+        "win_rate": 0.45925925925925926,
+        "sample_size": 135,
+        "deviation_from_50%": 0.040740740740740744,
+        "p_value": 0.3895026289761408,
+        "is_significant": false,
+        "pattern_strength": 5.5
+      },
+      {
+        "hour": 23,
+        "win_rate": 0.3815789473684211,
+        "sample_size": 152,
+        "deviation_from_50%": 0.11842105263157893,
+        "p_value": 0.004370938072618711,
+        "is_significant": true,
+        "pattern_strength": 17.999999999999996
+      }
+    ],
+    "daily": [
+      {
+        "day_of_week": 0,
+        "day_name": "Sunday",
+        "win_rate": 0.49709302325581395,
+        "sample_size": 688,
+        "deviation_from_50%": 0.0029069767441860517,
+        "p_value": 0.9089522415031921,
+        "is_significant": false,
+        "pattern_strength": 2.0000000000000036
+      },
+      {
+        "day_of_week": 1,
+        "day_name": "Monday",
+        "win_rate": 0.4720121028744327,
+        "sample_size": 661,
+        "deviation_from_50%": 0.027987897125567318,
+        "p_value": 0.16139142537866824,
+        "is_significant": false,
+        "pattern_strength": 18.499999999999996
+      },
+      {
+        "day_of_week": 2,
+        "day_name": "Tuesday",
+        "win_rate": 0.5988538681948424,
+        "sample_size": 349,
+        "deviation_from_50%": 0.09885386819484243,
+        "p_value": 0.0002614745072052278,
+        "is_significant": true,
+        "pattern_strength": 34.50000000000001
+      },
+      {
+        "day_of_week": 3,
+        "day_name": "Wednesday",
+        "win_rate": 0.4795539033457249,
+        "sample_size": 538,
+        "deviation_from_50%": 0.020446096654275103,
+        "p_value": 0.365280713022328,
+        "is_significant": false,
+        "pattern_strength": 11.000000000000005
+      },
+      {
+        "day_of_week": 4,
+        "day_name": "Thursday",
+        "win_rate": 0.48743718592964824,
+        "sample_size": 597,
+        "deviation_from_50%": 0.012562814070351758,
+        "p_value": 0.5666934872145276,
+        "is_significant": false,
+        "pattern_strength": 7.499999999999999
+      },
+      {
+        "day_of_week": 5,
+        "day_name": "Friday",
+        "win_rate": 0.5307262569832403,
+        "sample_size": 537,
+        "deviation_from_50%": 0.030726256983240274,
+        "p_value": 0.1672494333499097,
+        "is_significant": false,
+        "pattern_strength": 16.50000000000003
+      },
+      {
+        "day_of_week": 6,
+        "day_name": "Saturday",
+        "win_rate": 0.5012722646310432,
+        "sample_size": 786,
+        "deviation_from_50%": 0.0012722646310432406,
+        "p_value": 0.971549450810735,
+        "is_significant": false,
+        "pattern_strength": 0.9999999999999871
+      }
+    ],
+    "time_blocks": [
+      {
+        "time_block": 0,
+        "time_range": "00:00-05:59",
+        "win_rate": 0.5105421686746988,
+        "sample_size": 664,
+        "deviation_from_50%": 0.010542168674698815,
+        "p_value": 0.613944837081872,
+        "is_significant": "False",
+        "pattern_strength": 7.000000000000013
+      },
+      {
+        "time_block": 1,
+        "time_range": "06:00-11:59",
+        "win_rate": 0.496513249651325,
+        "sample_size": 717,
+        "deviation_from_50%": 0.003486750348675016,
+        "p_value": 0.8812650532500131,
+        "is_significant": "False",
+        "pattern_strength": 2.4999999999999867
+      },
+      {
+        "time_block": 2,
+        "time_range": "12:00-17:59",
+        "win_rate": 0.5709677419354838,
+        "sample_size": 620,
+        "deviation_from_50%": 0.07096774193548383,
+        "p_value": 0.0004664722341065574,
+        "is_significant": "True",
+        "pattern_strength": 43.99999999999997
+      },
+      {
+        "time_block": 3,
+        "time_range": "18:00-23:59",
+        "win_rate": 0.5153284671532846,
+        "sample_size": 685,
+        "deviation_from_50%": 0.01532846715328462,
+        "p_value": 0.4447946346609025,
+        "is_significant": "False",
+        "pattern_strength": 10.499999999999964
+      }
+    ]
+  },
+  "price_movement_patterns": {
+    "price_levels": [
+      {
+        "price_decile": 0,
+        "price_range": "107297-108909",
+        "win_rate": 0.49759615384615385,
+        "sample_size": 416,
+        "deviation_from_50%": 0.0024038461538461453,
+        "p_value": 0.9609039931472829,
+        "is_significant": "False",
+        "pattern_strength": 0.9999999999999964
+      },
+      {
+        "price_decile": 1,
+        "price_range": "108916-110183",
+        "win_rate": 0.5048076923076923,
+        "sample_size": 416,
+        "deviation_from_50%": 0.004807692307692291,
+        "p_value": 0.8830861039093381,
+        "is_significant": "False",
+        "pattern_strength": 1.999999999999993
+      },
+      {
+        "price_decile": 2,
+        "price_range": "110185-110734",
+        "win_rate": 0.4867469879518072,
+        "sample_size": 415,
+        "deviation_from_50%": 0.013253012048192792,
+        "p_value": 0.6235639995099045,
+        "is_significant": "False",
+        "pattern_strength": 5.500000000000009
+      },
+      {
+        "price_decile": 3,
+        "price_range": "110736-110974",
+        "win_rate": 0.48201438848920863,
+        "sample_size": 417,
+        "deviation_from_50%": 0.017985611510791366,
+        "p_value": 0.4930222402517213,
+        "is_significant": "False",
+        "pattern_strength": 7.5
+      },
+      {
+        "price_decile": 4,
+        "price_range": "110975-111201",
+        "win_rate": 0.5603864734299517,
+        "sample_size": 414,
+        "deviation_from_50%": 0.06038647342995174,
+        "p_value": 0.015928221896408693,
+        "is_significant": "True",
+        "pattern_strength": 25.000000000000018
+      },
+      {
+        "price_decile": 5,
+        "price_range": "111201-111531",
+        "win_rate": 0.5419664268585132,
+        "sample_size": 417,
+        "deviation_from_50%": 0.04196642685851315,
+        "p_value": 0.0957976222614759,
+        "is_significant": "False",
+        "pattern_strength": 17.499999999999982
+      },
+      {
+        "price_decile": 6,
+        "price_range": "111532-112291",
+        "win_rate": 0.42995169082125606,
+        "sample_size": 414,
+        "deviation_from_50%": 0.07004830917874394,
+        "p_value": 0.00502721954499476,
+        "is_significant": "True",
+        "pattern_strength": 28.99999999999999
+      },
+      {
+        "price_decile": 7,
+        "price_range": "112291-113998",
+        "win_rate": 0.5371702637889688,
+        "sample_size": 417,
+        "deviation_from_50%": 0.037170263788968816,
+        "p_value": 0.14171180711801168,
+        "is_significant": "False",
+        "pattern_strength": 15.499999999999996
+      },
+      {
+        "price_decile": 8,
+        "price_range": "114000-115509",
+        "win_rate": 0.47342995169082125,
+        "sample_size": 414,
+        "deviation_from_50%": 0.02657004830917875,
+        "p_value": 0.302022180014178,
+        "is_significant": "False",
+        "pattern_strength": 11.000000000000004
+      },
+      {
+        "price_decile": 9,
+        "price_range": "115510-116632",
+        "win_rate": 0.5168269230769231,
+        "sample_size": 416,
+        "deviation_from_50%": 0.016826923076923128,
+        "p_value": 0.5239286818066761,
+        "is_significant": "False",
+        "pattern_strength": 7.000000000000021
+      }
+    ],
+    "momentum": [
+      {
+        "previous_result": "LOSS",
+        "subsequent_win_rate": 0.21404358353510897,
+        "sample_size": 2065,
+        "deviation_from_50%": 0.285956416464891,
+        "p_value": 6.739247141320232e-158,
+        "is_significant": "True",
+        "pattern_strength": 590.4999999999999
+      },
+      {
+        "previous_result": "WIN",
+        "subsequent_win_rate": 0.7885167464114833,
+        "sample_size": 2090,
+        "deviation_from_50%": 0.2885167464114833,
+        "p_value": 7.88878609269007e-163,
+        "is_significant": "True",
+        "pattern_strength": 603.0000000000001
+      }
+    ]
+  },
+  "market_microstructure": {},
+  "volatility_patterns": {},
+  "sequential_patterns": {
+    "streaks": {
+      "win_streaks": {
+        "average_length": 4.720090293453724,
+        "max_length": 16,
+        "count": 443
+      },
+      "loss_streaks": {
+        "average_length": 4.671945701357466,
+        "max_length": 25,
+        "count": 442
+      }
+    },
+    "common_3_patterns": [
+      {
+        "pattern": [
+          1,
+          1,
+          1
+        ],
+        "count": 1304,
+        "frequency": 0.31391429947039
+      },
+      {
+        "pattern": [
+          0,
+          0,
+          0
+        ],
+        "count": 1286,
+        "frequency": 0.3095811266249398
+      },
+      {
+        "pattern": [
+          1,
+          1,
+          0
+        ],
+        "count": 343,
+        "frequency": 0.08257101588830043
+      },
+      {
+        "pattern": [
+          0,
+          1,
+          1
+        ],
+        "count": 343,
+        "frequency": 0.08257101588830043
+      },
+      {
+        "pattern": [
+          1,
+          0,
+          0
+        ],
+        "count": 337,
+        "frequency": 0.08112662493981704
+      }
+    ]
+  },
+  "randomness_test": {
+    "runs_test": {
+      "runs_observed": 1,
+      "runs_expected": 1.0,
+      "p_value": 1.0,
+      "is_random": true,
+      "interpretation": "Random"
+    },
+    "hour_distribution_test": {
+      "chi2_statistic": 85.64773820981713,
+      "p_value": 3.776920652014925e-09,
+      "is_uniform": "False",
+      "interpretation": "Non-uniform (has pattern)"
+    },
+    "autocorrelation": {
+      "has_significant_autocorr": true,
+      "significant_lags": [
+        1,
+        2,
+        3
+      ],
+      "max_autocorr": 0.5744749063849403,
+      "interpretation": "Has memory/pattern"
+    }
+  },
+  "final_verdict": {
+    "has_significant_patterns": true,
+    "pattern_count": 15,
+    "strongest_patterns": [
+      {
+        "type": "Price (momentum)",
+        "description": {
+          "previous_result": "WIN",
+          "subsequent_win_rate": 0.7885167464114833,
+          "sample_size": 2090,
+          "deviation_from_50%": 0.2885167464114833,
+          "p_value": 7.88878609269007e-163,
+          "is_significant": "True",
+          "pattern_strength": 603.0000000000001
+        },
+        "strength": 603.0000000000001
+      },
+      {
+        "type": "Price (momentum)",
+        "description": {
+          "previous_result": "LOSS",
+          "subsequent_win_rate": 0.21404358353510897,
+          "sample_size": 2065,
+          "deviation_from_50%": 0.285956416464891,
+          "p_value": 6.739247141320232e-158,
+          "is_significant": "True",
+          "pattern_strength": 590.4999999999999
+        },
+        "strength": 590.4999999999999
+      },
+      {
+        "type": "Time (time_blocks)",
+        "description": {
+          "time_block": 2,
+          "time_range": "12:00-17:59",
+          "win_rate": 0.5709677419354838,
+          "sample_size": 620,
+          "deviation_from_50%": 0.07096774193548383,
+          "p_value": 0.0004664722341065574,
+          "is_significant": "True",
+          "pattern_strength": 43.99999999999997
+        },
+        "strength": 43.99999999999997
+      },
+      {
+        "type": "Time (daily)",
+        "description": {
+          "day_of_week": 2,
+          "day_name": "Tuesday",
+          "win_rate": 0.5988538681948424,
+          "sample_size": 349,
+          "deviation_from_50%": 0.09885386819484243,
+          "p_value": 0.0002614745072052278,
+          "is_significant": true,
+          "pattern_strength": 34.50000000000001
+        },
+        "strength": 34.50000000000001
+      },
+      {
+        "type": "Time (hourly)",
+        "description": {
+          "hour": 19,
+          "win_rate": 0.3670886075949367,
+          "sample_size": 237,
+          "deviation_from_50%": 0.13291139240506328,
+          "p_value": 5.134119970529943e-05,
+          "is_significant": true,
+          "pattern_strength": 31.499999999999996
+        },
+        "strength": 31.499999999999996
+      }
+    ],
+    "randomness_verdict": "PARTIALLY RANDOM - \u0e21\u0e35 pattern \u0e1a\u0e49\u0e32\u0e07 \u0e41\u0e15\u0e48\u0e22\u0e31\u0e07\u0e21\u0e35 randomness \u0e40\u0e22\u0e2d\u0e30",
+    "recommendation": "USE PATTERNS - \u0e21\u0e35 patterns \u0e17\u0e35\u0e48\u0e0a\u0e31\u0e14\u0e40\u0e08\u0e19\u0e1e\u0e2d\u0e43\u0e0a\u0e49\u0e44\u0e14\u0e49",
+    "confidence_level": "HIGH"
+  }
+}

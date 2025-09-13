@@ -1,0 +1,1113 @@
+{
+  "overall_patterns": {
+    "momentum": [
+      {
+        "previous_result": "LOSS",
+        "subsequent_win_rate": 0.21404358353510897,
+        "sample_size": 2065,
+        "p_value": 6.739247141320232e-158,
+        "is_significant": "True"
+      },
+      {
+        "previous_result": "WIN",
+        "subsequent_win_rate": 0.7886178861788617,
+        "sample_size": 2091,
+        "p_value": 5.0005466360052514e-163,
+        "is_significant": "True"
+      }
+    ],
+    "significant_hours": [
+      {
+        "hour": 3,
+        "win_rate": 0.40853658536585363,
+        "sample_size": 164,
+        "p_value": 0.023248999651720486,
+        "is_significant": true
+      },
+      {
+        "hour": 8,
+        "win_rate": 0.625,
+        "sample_size": 136,
+        "p_value": 0.004481251675252484,
+        "is_significant": true
+      },
+      {
+        "hour": 10,
+        "win_rate": 0.5892857142857143,
+        "sample_size": 168,
+        "p_value": 0.024968665281135265,
+        "is_significant": true
+      },
+      {
+        "hour": 12,
+        "win_rate": 0.41899441340782123,
+        "sample_size": 179,
+        "p_value": 0.03607016096096306,
+        "is_significant": true
+      },
+      {
+        "hour": 15,
+        "win_rate": 0.6158940397350994,
+        "sample_size": 151,
+        "p_value": 0.00548246878576062,
+        "is_significant": true
+      },
+      {
+        "hour": 17,
+        "win_rate": 0.38285714285714284,
+        "sample_size": 175,
+        "p_value": 0.0024000723025270542,
+        "is_significant": true
+      },
+      {
+        "hour": 19,
+        "win_rate": 0.3670886075949367,
+        "sample_size": 237,
+        "p_value": 5.134119970529943e-05,
+        "is_significant": true
+      },
+      {
+        "hour": 21,
+        "win_rate": 0.6353591160220995,
+        "sample_size": 181,
+        "p_value": 0.0003337563886251467,
+        "is_significant": true
+      },
+      {
+        "hour": 23,
+        "win_rate": 0.38562091503267976,
+        "sample_size": 153,
+        "p_value": 0.00580274034717433,
+        "is_significant": true
+      }
+    ],
+    "significant_days": [
+      {
+        "day_of_week": 2,
+        "day_name": "Tuesday",
+        "win_rate": 0.5988538681948424,
+        "sample_size": 349,
+        "p_value": 0.0002614745072052278,
+        "is_significant": true
+      }
+    ]
+  },
+  "signal_specific_patterns": {
+    "UT-BOT2-10": {
+      "total_trades": 935,
+      "overall_win_rate": 0.4844919786096257,
+      "momentum_patterns": [
+        {
+          "previous_result": "LOSS",
+          "subsequent_win_rate": 0.7095435684647303,
+          "sample_size": 482,
+          "p_value": 1.46636966097577e-20,
+          "is_significant": "True"
+        },
+        {
+          "previous_result": "WIN",
+          "subsequent_win_rate": 0.24336283185840707,
+          "sample_size": 452,
+          "p_value": 9.443620039993078e-29,
+          "is_significant": "True"
+        }
+      ],
+      "time_patterns": [
+        {
+          "hour": 3,
+          "win_rate": 0.34210526315789475,
+          "sample_size": 38,
+          "p_value": 0.07295138851623051,
+          "is_significant": "False"
+        },
+        {
+          "hour": 6,
+          "win_rate": 0.3939393939393939,
+          "sample_size": 33,
+          "p_value": 0.296206368599087,
+          "is_significant": "False"
+        },
+        {
+          "hour": 12,
+          "win_rate": 0.3870967741935484,
+          "sample_size": 31,
+          "p_value": 0.28104151505976915,
+          "is_significant": "False"
+        },
+        {
+          "hour": 17,
+          "win_rate": 0.34782608695652173,
+          "sample_size": 46,
+          "p_value": 0.054076031858869555,
+          "is_significant": "False"
+        },
+        {
+          "hour": 21,
+          "win_rate": 0.6578947368421053,
+          "sample_size": 38,
+          "p_value": 0.07295138851623051,
+          "is_significant": "False"
+        }
+      ],
+      "day_patterns": []
+    },
+    "MWP-20": {
+      "total_trades": 828,
+      "overall_win_rate": 0.5060386473429952,
+      "momentum_patterns": [
+        {
+          "previous_result": "LOSS",
+          "subsequent_win_rate": 0.48655256723716384,
+          "sample_size": 409,
+          "p_value": 0.6210295731451679,
+          "is_significant": "False"
+        },
+        {
+          "previous_result": "WIN",
+          "subsequent_win_rate": 0.5263157894736842,
+          "sample_size": 418,
+          "p_value": 0.3043478519591501,
+          "is_significant": "False"
+        }
+      ],
+      "time_patterns": [
+        {
+          "hour": 1,
+          "win_rate": 0.3888888888888889,
+          "sample_size": 36,
+          "p_value": 0.24298495403490966,
+          "is_significant": "False"
+        },
+        {
+          "hour": 3,
+          "win_rate": 0.35294117647058826,
+          "sample_size": 34,
+          "p_value": 0.12144948495551944,
+          "is_significant": "False"
+        },
+        {
+          "hour": 4,
+          "win_rate": 0.7045454545454546,
+          "sample_size": 44,
+          "p_value": 0.009559878856634896,
+          "is_significant": "True"
+        },
+        {
+          "hour": 8,
+          "win_rate": 0.7307692307692307,
+          "sample_size": 26,
+          "p_value": 0.028959274291992188,
+          "is_significant": "True"
+        },
+        {
+          "hour": 12,
+          "win_rate": 0.39473684210526316,
+          "sample_size": 38,
+          "p_value": 0.2558750795433298,
+          "is_significant": "False"
+        },
+        {
+          "hour": 14,
+          "win_rate": 0.65,
+          "sample_size": 40,
+          "p_value": 0.0806904677519924,
+          "is_significant": "False"
+        },
+        {
+          "hour": 15,
+          "win_rate": 0.7419354838709677,
+          "sample_size": 31,
+          "p_value": 0.010673840530216694,
+          "is_significant": "True"
+        },
+        {
+          "hour": 17,
+          "win_rate": 0.2727272727272727,
+          "sample_size": 33,
+          "p_value": 0.013530986849218607,
+          "is_significant": "True"
+        },
+        {
+          "hour": 19,
+          "win_rate": 0.37777777777777777,
+          "sample_size": 45,
+          "p_value": 0.1351564508456704,
+          "is_significant": "False"
+        },
+        {
+          "hour": 23,
+          "win_rate": 0.2857142857142857,
+          "sample_size": 28,
+          "p_value": 0.03569813817739487,
+          "is_significant": "True"
+        }
+      ],
+      "day_patterns": [
+        {
+          "day_of_week": 2,
+          "day_name": "Tuesday",
+          "win_rate": 0.6268656716417911,
+          "sample_size": 67,
+          "p_value": 0.04980011429472864,
+          "is_significant": "True"
+        }
+      ]
+    },
+    "MWP-25": {
+      "total_trades": 598,
+      "overall_win_rate": 0.5100334448160535,
+      "momentum_patterns": [
+        {
+          "previous_result": "LOSS",
+          "subsequent_win_rate": 0.40273037542662116,
+          "sample_size": 293,
+          "p_value": 0.0010354853667476837,
+          "is_significant": "True"
+        },
+        {
+          "previous_result": "WIN",
+          "subsequent_win_rate": 0.6118421052631579,
+          "sample_size": 304,
+          "p_value": 0.0001145643630113572,
+          "is_significant": "True"
+        }
+      ],
+      "time_patterns": [
+        {
+          "hour": 0,
+          "win_rate": 0.6923076923076923,
+          "sample_size": 13,
+          "p_value": 0.266845703125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 3,
+          "win_rate": 0.38095238095238093,
+          "sample_size": 21,
+          "p_value": 0.38331031799316406,
+          "is_significant": "False"
+        },
+        {
+          "hour": 6,
+          "win_rate": 0.6666666666666666,
+          "sample_size": 18,
+          "p_value": 0.237884521484375,
+          "is_significant": "False"
+        },
+        {
+          "hour": 7,
+          "win_rate": 0.3,
+          "sample_size": 30,
+          "p_value": 0.042773945257067694,
+          "is_significant": "True"
+        },
+        {
+          "hour": 8,
+          "win_rate": 0.75,
+          "sample_size": 16,
+          "p_value": 0.076812744140625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 9,
+          "win_rate": 0.7619047619047619,
+          "sample_size": 21,
+          "p_value": 0.02660369873046875,
+          "is_significant": "True"
+        },
+        {
+          "hour": 10,
+          "win_rate": 0.6818181818181818,
+          "sample_size": 22,
+          "p_value": 0.13380050659179688,
+          "is_significant": "False"
+        },
+        {
+          "hour": 11,
+          "win_rate": 0.6111111111111112,
+          "sample_size": 18,
+          "p_value": 0.480682373046875,
+          "is_significant": "False"
+        },
+        {
+          "hour": 12,
+          "win_rate": 0.3793103448275862,
+          "sample_size": 29,
+          "p_value": 0.26493089646101,
+          "is_significant": "False"
+        },
+        {
+          "hour": 15,
+          "win_rate": 0.625,
+          "sample_size": 16,
+          "p_value": 0.454498291015625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 16,
+          "win_rate": 0.65,
+          "sample_size": 20,
+          "p_value": 0.26317596435546875,
+          "is_significant": "False"
+        },
+        {
+          "hour": 18,
+          "win_rate": 0.3953488372093023,
+          "sample_size": 43,
+          "p_value": 0.2220528201560228,
+          "is_significant": "False"
+        },
+        {
+          "hour": 19,
+          "win_rate": 0.3333333333333333,
+          "sample_size": 33,
+          "p_value": 0.08014331245794892,
+          "is_significant": "False"
+        },
+        {
+          "hour": 20,
+          "win_rate": 0.6206896551724138,
+          "sample_size": 29,
+          "p_value": 0.26493089646101,
+          "is_significant": "False"
+        },
+        {
+          "hour": 21,
+          "win_rate": 0.7619047619047619,
+          "sample_size": 21,
+          "p_value": 0.02660369873046875,
+          "is_significant": "True"
+        },
+        {
+          "hour": 23,
+          "win_rate": 0.32,
+          "sample_size": 25,
+          "p_value": 0.10775214433670044,
+          "is_significant": "False"
+        }
+      ],
+      "day_patterns": []
+    },
+    "MWP-27": {
+      "total_trades": 513,
+      "overall_win_rate": 0.5126705653021443,
+      "momentum_patterns": [
+        {
+          "previous_result": "LOSS",
+          "subsequent_win_rate": 0.352,
+          "sample_size": 250,
+          "p_value": 3.3322767349289325e-06,
+          "is_significant": "True"
+        },
+        {
+          "previous_result": "WIN",
+          "subsequent_win_rate": 0.6641221374045801,
+          "sample_size": 262,
+          "p_value": 1.1740438737945658e-07,
+          "is_significant": "True"
+        }
+      ],
+      "time_patterns": [
+        {
+          "hour": 0,
+          "win_rate": 0.6428571428571429,
+          "sample_size": 14,
+          "p_value": 0.4239501953125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 4,
+          "win_rate": 0.6428571428571429,
+          "sample_size": 14,
+          "p_value": 0.4239501953125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 7,
+          "win_rate": 0.25925925925925924,
+          "sample_size": 27,
+          "p_value": 0.0191572904586792,
+          "is_significant": "True"
+        },
+        {
+          "hour": 8,
+          "win_rate": 0.8461538461538461,
+          "sample_size": 13,
+          "p_value": 0.0224609375,
+          "is_significant": "True"
+        },
+        {
+          "hour": 9,
+          "win_rate": 0.631578947368421,
+          "sample_size": 19,
+          "p_value": 0.359283447265625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 10,
+          "win_rate": 0.8421052631578947,
+          "sample_size": 19,
+          "p_value": 0.004425048828125,
+          "is_significant": "True"
+        },
+        {
+          "hour": 12,
+          "win_rate": 0.38461538461538464,
+          "sample_size": 26,
+          "p_value": 0.32693958282470703,
+          "is_significant": "False"
+        },
+        {
+          "hour": 13,
+          "win_rate": 0.38461538461538464,
+          "sample_size": 26,
+          "p_value": 0.32693958282470703,
+          "is_significant": "False"
+        },
+        {
+          "hour": 14,
+          "win_rate": 0.6521739130434783,
+          "sample_size": 23,
+          "p_value": 0.21003961563110352,
+          "is_significant": "False"
+        },
+        {
+          "hour": 15,
+          "win_rate": 0.625,
+          "sample_size": 16,
+          "p_value": 0.454498291015625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 19,
+          "win_rate": 0.3448275862068966,
+          "sample_size": 29,
+          "p_value": 0.13604594767093658,
+          "is_significant": "False"
+        },
+        {
+          "hour": 20,
+          "win_rate": 0.6428571428571429,
+          "sample_size": 28,
+          "p_value": 0.1849333420395851,
+          "is_significant": "False"
+        },
+        {
+          "hour": 21,
+          "win_rate": 0.75,
+          "sample_size": 16,
+          "p_value": 0.076812744140625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 22,
+          "win_rate": 0.7142857142857143,
+          "sample_size": 7,
+          "p_value": 0.453125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 23,
+          "win_rate": 0.35294117647058826,
+          "sample_size": 17,
+          "p_value": 0.332305908203125,
+          "is_significant": "False"
+        }
+      ],
+      "day_patterns": [
+        {
+          "day_of_week": 2,
+          "day_name": "Tuesday",
+          "win_rate": 0.65625,
+          "sample_size": 32,
+          "p_value": 0.11018416518345475,
+          "is_significant": "False"
+        }
+      ]
+    },
+    "MWP-30": {
+      "total_trades": 460,
+      "overall_win_rate": 0.5217391304347826,
+      "momentum_patterns": [
+        {
+          "previous_result": "LOSS",
+          "subsequent_win_rate": 0.33636363636363636,
+          "sample_size": 220,
+          "p_value": 1.3781946134238733e-06,
+          "is_significant": "True"
+        },
+        {
+          "previous_result": "WIN",
+          "subsequent_win_rate": 0.694560669456067,
+          "sample_size": 239,
+          "p_value": 1.6751647865316016e-09,
+          "is_significant": "True"
+        }
+      ],
+      "time_patterns": [
+        {
+          "hour": 0,
+          "win_rate": 0.6923076923076923,
+          "sample_size": 13,
+          "p_value": 0.266845703125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 1,
+          "win_rate": 0.6086956521739131,
+          "sample_size": 23,
+          "p_value": 0.4048728942871094,
+          "is_significant": "False"
+        },
+        {
+          "hour": 2,
+          "win_rate": 0.6842105263157895,
+          "sample_size": 19,
+          "p_value": 0.1670684814453125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 7,
+          "win_rate": 0.3157894736842105,
+          "sample_size": 19,
+          "p_value": 0.1670684814453125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 8,
+          "win_rate": 0.6666666666666666,
+          "sample_size": 12,
+          "p_value": 0.3876953125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 10,
+          "win_rate": 0.7391304347826086,
+          "sample_size": 23,
+          "p_value": 0.03468966484069824,
+          "is_significant": "True"
+        },
+        {
+          "hour": 11,
+          "win_rate": 0.631578947368421,
+          "sample_size": 19,
+          "p_value": 0.359283447265625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 15,
+          "win_rate": 0.3076923076923077,
+          "sample_size": 13,
+          "p_value": 0.266845703125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 19,
+          "win_rate": 0.20689655172413793,
+          "sample_size": 29,
+          "p_value": 0.002315700054168701,
+          "is_significant": "True"
+        },
+        {
+          "hour": 21,
+          "win_rate": 0.875,
+          "sample_size": 16,
+          "p_value": 0.004180908203125,
+          "is_significant": "True"
+        },
+        {
+          "hour": 22,
+          "win_rate": 0.25,
+          "sample_size": 8,
+          "p_value": 0.2890625,
+          "is_significant": "False"
+        }
+      ],
+      "day_patterns": [
+        {
+          "day_of_week": 2,
+          "day_name": "Tuesday",
+          "win_rate": 0.6923076923076923,
+          "sample_size": 26,
+          "p_value": 0.07551869750022888,
+          "is_significant": "False"
+        },
+        {
+          "day_of_week": 5,
+          "day_name": "Friday",
+          "win_rate": 0.6111111111111112,
+          "sample_size": 54,
+          "p_value": 0.13367423536410522,
+          "is_significant": "False"
+        }
+      ]
+    },
+    "Range FRAMA3-99": {
+      "total_trades": 437,
+      "overall_win_rate": 0.4919908466819222,
+      "momentum_patterns": [
+        {
+          "previous_result": "LOSS",
+          "subsequent_win_rate": 0.5945945945945946,
+          "sample_size": 222,
+          "p_value": 0.005804768929210579,
+          "is_significant": "True"
+        },
+        {
+          "previous_result": "WIN",
+          "subsequent_win_rate": 0.3878504672897196,
+          "sample_size": 214,
+          "p_value": 0.0012609461310091573,
+          "is_significant": "True"
+        }
+      ],
+      "time_patterns": [
+        {
+          "hour": 6,
+          "win_rate": 0.3333333333333333,
+          "sample_size": 12,
+          "p_value": 0.3876953125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 8,
+          "win_rate": 0.631578947368421,
+          "sample_size": 19,
+          "p_value": 0.359283447265625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 12,
+          "win_rate": 0.3888888888888889,
+          "sample_size": 18,
+          "p_value": 0.480682373046875,
+          "is_significant": "False"
+        },
+        {
+          "hour": 15,
+          "win_rate": 0.6086956521739131,
+          "sample_size": 23,
+          "p_value": 0.4048728942871094,
+          "is_significant": "False"
+        },
+        {
+          "hour": 17,
+          "win_rate": 0.375,
+          "sample_size": 16,
+          "p_value": 0.454498291015625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 19,
+          "win_rate": 0.3793103448275862,
+          "sample_size": 29,
+          "p_value": 0.26493089646101,
+          "is_significant": "False"
+        }
+      ],
+      "day_patterns": [
+        {
+          "day_of_week": 2,
+          "day_name": "Tuesday",
+          "win_rate": 0.625,
+          "sample_size": 48,
+          "p_value": 0.11140289106101878,
+          "is_significant": "False"
+        },
+        {
+          "day_of_week": 3,
+          "day_name": "Wednesday",
+          "win_rate": 0.38333333333333336,
+          "sample_size": 60,
+          "p_value": 0.09246098107292373,
+          "is_significant": "False"
+        }
+      ]
+    },
+    "Range FRAMA3": {
+      "total_trades": 246,
+      "overall_win_rate": 0.5203252032520326,
+      "momentum_patterns": [
+        {
+          "previous_result": "LOSS",
+          "subsequent_win_rate": 0.6324786324786325,
+          "sample_size": 117,
+          "p_value": 0.005319279348701683,
+          "is_significant": "True"
+        },
+        {
+          "previous_result": "WIN",
+          "subsequent_win_rate": 0.421875,
+          "sample_size": 128,
+          "p_value": 0.09269003089837792,
+          "is_significant": "False"
+        }
+      ],
+      "time_patterns": [
+        {
+          "hour": 2,
+          "win_rate": 0.6666666666666666,
+          "sample_size": 6,
+          "p_value": 0.6875,
+          "is_significant": "False"
+        },
+        {
+          "hour": 3,
+          "win_rate": 0.2857142857142857,
+          "sample_size": 7,
+          "p_value": 0.453125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 5,
+          "win_rate": 0.7142857142857143,
+          "sample_size": 7,
+          "p_value": 0.453125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 8,
+          "win_rate": 0.625,
+          "sample_size": 8,
+          "p_value": 0.7265625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 10,
+          "win_rate": 0.75,
+          "sample_size": 8,
+          "p_value": 0.2890625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 12,
+          "win_rate": 0.625,
+          "sample_size": 8,
+          "p_value": 0.7265625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 13,
+          "win_rate": 0.625,
+          "sample_size": 8,
+          "p_value": 0.7265625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 14,
+          "win_rate": 0.375,
+          "sample_size": 8,
+          "p_value": 0.7265625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 15,
+          "win_rate": 0.6666666666666666,
+          "sample_size": 12,
+          "p_value": 0.3876953125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 19,
+          "win_rate": 0.3888888888888889,
+          "sample_size": 18,
+          "p_value": 0.480682373046875,
+          "is_significant": "False"
+        }
+      ],
+      "day_patterns": [
+        {
+          "day_of_week": 2,
+          "day_name": "Tuesday",
+          "win_rate": 0.625,
+          "sample_size": 24,
+          "p_value": 0.30745625495910645,
+          "is_significant": "False"
+        },
+        {
+          "day_of_week": 3,
+          "day_name": "Wednesday",
+          "win_rate": 0.358974358974359,
+          "sample_size": 39,
+          "p_value": 0.10812902140605732,
+          "is_significant": "False"
+        }
+      ]
+    },
+    "Range Filter5": {
+      "total_trades": 135,
+      "overall_win_rate": 0.4962962962962963,
+      "momentum_patterns": [
+        {
+          "previous_result": "LOSS",
+          "subsequent_win_rate": 0.4264705882352941,
+          "sample_size": 68,
+          "p_value": 0.2749903961710005,
+          "is_significant": "False"
+        },
+        {
+          "previous_result": "WIN",
+          "subsequent_win_rate": 0.5757575757575758,
+          "sample_size": 66,
+          "p_value": 0.2678116648465871,
+          "is_significant": "False"
+        }
+      ],
+      "time_patterns": [
+        {
+          "hour": 1,
+          "win_rate": 0.8,
+          "sample_size": 5,
+          "p_value": 0.375,
+          "is_significant": "False"
+        },
+        {
+          "hour": 3,
+          "win_rate": 0.8333333333333334,
+          "sample_size": 6,
+          "p_value": 0.21875,
+          "is_significant": "False"
+        },
+        {
+          "hour": 4,
+          "win_rate": 0.375,
+          "sample_size": 8,
+          "p_value": 0.7265625,
+          "is_significant": "False"
+        },
+        {
+          "hour": 6,
+          "win_rate": 0.8,
+          "sample_size": 5,
+          "p_value": 0.375,
+          "is_significant": "False"
+        },
+        {
+          "hour": 8,
+          "win_rate": 0.3333333333333333,
+          "sample_size": 6,
+          "p_value": 0.6875,
+          "is_significant": "False"
+        },
+        {
+          "hour": 14,
+          "win_rate": 0.16666666666666666,
+          "sample_size": 6,
+          "p_value": 0.21875,
+          "is_significant": "False"
+        },
+        {
+          "hour": 15,
+          "win_rate": 0.7142857142857143,
+          "sample_size": 7,
+          "p_value": 0.453125,
+          "is_significant": "False"
+        },
+        {
+          "hour": 22,
+          "win_rate": 0.375,
+          "sample_size": 8,
+          "p_value": 0.7265625,
+          "is_significant": "False"
+        }
+      ],
+      "day_patterns": [
+        {
+          "day_of_week": 2,
+          "day_name": "Tuesday",
+          "win_rate": 0.6923076923076923,
+          "sample_size": 13,
+          "p_value": 0.266845703125,
+          "is_significant": "False"
+        },
+        {
+          "day_of_week": 4,
+          "day_name": "Thursday",
+          "win_rate": 0.34782608695652173,
+          "sample_size": 23,
+          "p_value": 0.21003961563110352,
+          "is_significant": "False"
+        },
+        {
+          "day_of_week": 5,
+          "day_name": "Friday",
+          "win_rate": 0.6470588235294118,
+          "sample_size": 17,
+          "p_value": 0.332305908203125,
+          "is_significant": "False"
+        },
+        {
+          "day_of_week": 6,
+          "day_name": "Saturday",
+          "win_rate": 0.3888888888888889,
+          "sample_size": 18,
+          "p_value": 0.480682373046875,
+          "is_significant": "False"
+        }
+      ]
+    }
+  },
+  "pattern_consistency": {
+    "momentum_consistency": {
+      "total_signals_analyzed": 8,
+      "signals_with_consistent_momentum": 2,
+      "consistency_rate": 0.25,
+      "is_consistent": false
+    },
+    "time_consistency": {
+      "total_signals_analyzed": 8,
+      "signals_with_consistent_time_patterns": 8,
+      "consistency_rate": 1.0,
+      "is_consistent": true,
+      "overall_good_hours": [
+        8,
+        10,
+        21,
+        15
+      ],
+      "overall_bad_hours": [
+        3,
+        12,
+        17,
+        19,
+        23
+      ]
+    },
+    "day_consistency": {},
+    "overall_consistency_score": 0.625
+  },
+  "signal_reliability": {
+    "MWP-25": {
+      "reliability_score": 9,
+      "max_possible_score": 10,
+      "reliability_percentage": 90.0,
+      "reliability_factors": [
+        "Large sample size",
+        "Strong momentum patterns",
+        "Multiple time patterns",
+        "Neutral baseline performance"
+      ],
+      "sample_size": 598,
+      "overall_win_rate": 0.5100334448160535,
+      "significant_momentum_patterns": 2,
+      "significant_time_patterns": 3
+    },
+    "MWP-27": {
+      "reliability_score": 9,
+      "max_possible_score": 10,
+      "reliability_percentage": 90.0,
+      "reliability_factors": [
+        "Large sample size",
+        "Strong momentum patterns",
+        "Multiple time patterns",
+        "Neutral baseline performance"
+      ],
+      "sample_size": 513,
+      "overall_win_rate": 0.5126705653021443,
+      "significant_momentum_patterns": 2,
+      "significant_time_patterns": 3
+    },
+    "MWP-30": {
+      "reliability_score": 9,
+      "max_possible_score": 10,
+      "reliability_percentage": 90.0,
+      "reliability_factors": [
+        "Large sample size",
+        "Strong momentum patterns",
+        "Multiple time patterns",
+        "Neutral baseline performance"
+      ],
+      "sample_size": 460,
+      "overall_win_rate": 0.5217391304347826,
+      "significant_momentum_patterns": 2,
+      "significant_time_patterns": 3
+    },
+    "UT-BOT2-10": {
+      "reliability_score": 7,
+      "max_possible_score": 10,
+      "reliability_percentage": 70.0,
+      "reliability_factors": [
+        "Large sample size",
+        "Strong momentum patterns",
+        "Neutral baseline performance"
+      ],
+      "sample_size": 935,
+      "overall_win_rate": 0.4844919786096257,
+      "significant_momentum_patterns": 2,
+      "significant_time_patterns": 0
+    },
+    "Range FRAMA3-99": {
+      "reliability_score": 7,
+      "max_possible_score": 10,
+      "reliability_percentage": 70.0,
+      "reliability_factors": [
+        "Large sample size",
+        "Strong momentum patterns",
+        "Neutral baseline performance"
+      ],
+      "sample_size": 437,
+      "overall_win_rate": 0.4919908466819222,
+      "significant_momentum_patterns": 2,
+      "significant_time_patterns": 0
+    },
+    "MWP-20": {
+      "reliability_score": 6,
+      "max_possible_score": 10,
+      "reliability_percentage": 60.0,
+      "reliability_factors": [
+        "Large sample size",
+        "Multiple time patterns",
+        "Neutral baseline performance"
+      ],
+      "sample_size": 828,
+      "overall_win_rate": 0.5060386473429952,
+      "significant_momentum_patterns": 0,
+      "significant_time_patterns": 5
+    },
+    "Range FRAMA3": {
+      "reliability_score": 5,
+      "max_possible_score": 10,
+      "reliability_percentage": 50.0,
+      "reliability_factors": [
+        "Large sample size",
+        "Some momentum patterns",
+        "Neutral baseline performance"
+      ],
+      "sample_size": 246,
+      "overall_win_rate": 0.5203252032520326,
+      "significant_momentum_patterns": 1,
+      "significant_time_patterns": 0
+    },
+    "Range Filter5": {
+      "reliability_score": 3,
+      "max_possible_score": 10,
+      "reliability_percentage": 30.0,
+      "reliability_factors": [
+        "Medium sample size",
+        "Neutral baseline performance"
+      ],
+      "sample_size": 135,
+      "overall_win_rate": 0.4962962962962963,
+      "significant_momentum_patterns": 0,
+      "significant_time_patterns": 0
+    }
+  },
+  "final_verdict": {
+    "universality": "MOSTLY_UNIVERSAL",
+    "recommendation": "Patterns \u0e43\u0e0a\u0e49\u0e44\u0e14\u0e49\u0e01\u0e31\u0e1a\u0e2a\u0e31\u0e0d\u0e0d\u0e32\u0e19\u0e2a\u0e48\u0e27\u0e19\u0e43\u0e2b\u0e0d\u0e48",
+    "confidence": "MEDIUM",
+    "momentum_consistency_rate": 0.25,
+    "time_consistency_rate": 1.0,
+    "overall_consistency_score": 0.625,
+    "total_signals_analyzed": 8,
+    "reliable_signals_count": 7,
+    "reliable_signals_percentage": 87.5,
+    "top_reliable_signals": [
+      "MWP-25",
+      "MWP-27",
+      "MWP-30",
+      "UT-BOT2-10",
+      "Range FRAMA3-99"
+    ]
+  }
+}
