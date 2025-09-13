@@ -1,9 +1,0 @@
-Strategy,Action,Hour,Win Rate,Trades
-Range FRAMA3,Buy,16,75.3,15
-MWP-20,Sell,11,73.4,12
-MWP-25,Buy,8,69.2,8
-Range FRAMA3-99,Sell,22,68.5,10
-UT-BOT2-10,Buy,14,66.7,9
-MWP-27,Sell,9,65.2,7
-Range Filter5,Buy,15,63.8,6
-MWP-30,Sell,13,62.1,5

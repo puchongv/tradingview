@@ -1,9 +1,0 @@
-Strategy,Win Rate (%),Max Consecutive Losses,Risk Level,Risk Color
-MWP-20,67.8,6,High Risk,red
-MWP-25,59.1,5,Medium Risk,orange
-MWP-27,54.0,2,Low Risk,green
-MWP-30,68.1,4,Medium Risk,orange
-Range FRAMA3,54.7,3,Low Risk,green
-Range FRAMA3-99,67.1,6,High Risk,red
-Range Filter5,62.5,5,Medium Risk,orange
-UT-BOT2-10,51.9,3,Low Risk,green
