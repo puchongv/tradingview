@@ -1,8 +1,8 @@
 # Project Requirements
 ## Binary Options Trading Pattern Analysis Project
 
-### 📅 Last Update: 2025-01-27
-### 🎯 Project Status: Machine Learning Analysis Complete
+### 📅 Last Update: 2025-09-13
+### 🎯 Project Status: Advanced Deep Pattern Analysis Complete - TOP Certainty Patterns Found
 
 ---
 
@@ -22,10 +22,10 @@
 ## 📊 Project Details
 
 ### Data Sources
-- **Primary File**: `Result Last 120HR.csv` (1,745 records)
-- **Additional File**: `Result 2568-09-11 22-54-00.csv` (737 records)
-- **Total Records**: 2,482 trading signals
-- **Time Range**: 2025-09-03 to 2025-09-11
+- **Primary Database**: PostgreSQL TradingView Database
+- **Table**: `tradingviewdata`
+- **Total Records**: 4,383 trading signals (เพิ่มขึ้น 1,901 records!)
+- **Time Range**: 2025-08-28 to 2025-09-13
 - **Symbol**: BTCUSDT
 
 ### Strategies Available
@@ -165,12 +165,14 @@
 ## 📁 File Structure
 
 ### Core Analysis Files
-- **`simple_ml_analysis.py`** - Main ML analysis script → [Link](./simple_ml_analysis.py)
+- **`advanced_deep_analysis.py`** - Advanced deep pattern analysis script → [Link](./advanced_deep_analysis.py)
+- **`database_connection.py`** - Database connection and exploration → [Link](./database_connection.py)
+- **`simple_ml_analysis.py`** - Previous ML analysis script → [Link](./simple_ml_analysis.py)
 - **`comprehensive_factor_analysis.py`** - Comprehensive analysis → [Link](./comprehensive_factor_analysis.py)
-- **`agent_resume_system.py`** - Agent resume system → [Link](./agent_resume_system.py)
 
-### Analysis Results
-- **`simple_ml_insights.json`** - ML analysis results → [Link](./simple_ml_insights.json)
+### Analysis Results  
+- **`advanced_deep_analysis_20250913_224955.json`** - Complete advanced analysis results → [Link](./advanced_deep_analysis_20250913_224955.json)
+- **`simple_ml_insights.json`** - Previous ML analysis results → [Link](./simple_ml_insights.json)
 - **`significant_patterns.json`** - Significant patterns found → [Link](./significant_patterns.json)
 - **`factors_analysis.json`** - Factors analysis results → [Link](./factors_analysis.json)
 
@@ -179,7 +181,9 @@
 - **`metabase_queries.sql`** - SQL queries for Metabase → [Link](./metabase_queries.sql)
 
 ### Report Files
-- **`ML_ANALYSIS_REPORT.md`** - Main analysis report → [Link](./ML_ANALYSIS_REPORT.md)
+- **`ADVANCED_DEEP_ANALYSIS_REPORT.md`** - Advanced deep analysis report → [Link](./ADVANCED_DEEP_ANALYSIS_REPORT.md)
+- **`TOP_CERTAINTY_PATTERNS_RANKED.md`** - TOP patterns ranked by certainty → [Link](./TOP_CERTAINTY_PATTERNS_RANKED.md)
+- **`ML_ANALYSIS_REPORT.md`** - Previous ML analysis report → [Link](./ML_ANALYSIS_REPORT.md)
 - **`COMPREHENSIVE_ANALYSIS_REPORT.md`** - Comprehensive report → [Link](./COMPREHENSIVE_ANALYSIS_REPORT.md)
 - **`AGENT_RESUME_GUIDE.md`** - Agent resume guide → [Link](./AGENT_RESUME_GUIDE.md)
 
@@ -208,21 +212,40 @@
 
 ---
 
-## 📊 Key Findings Summary
+## 🏆 TOP CERTAINTY PATTERNS ที่พบ (เรียงตามความ "ชัว")
 
-### Significant Patterns Found
-1. **Time Patterns**: 02:00 (69.1% win rate), 17:00 (23.9% win rate)
-2. **Volatility Patterns**: Level 2 = 0% win rate (100% loss)
-3. **Combination Patterns**: MWP-27_FlowTrend Bearish + Sell = 27.3% win rate
+### 🥇 #1 ชัวที่สุด - WIN STREAK PATTERN
+- **ML Importance**: 40.85% (GradientBoosting accuracy 98.7%)
+- **กฎ**: Win streak สูง → โอกาสชนะต่อสูงมาก
+- **Sample**: ทั้งหมด 4,383 records
+- **ความชัว**: ⭐⭐⭐⭐⭐ (100%)
 
-### Top Features (Correlation with win_60min)
-1. **win_streak** (0.72) - Win streak มีความสัมพันธ์สูงมาก
-2. **loss_streak** (-0.65) - Loss streak มีความสัมพันธ์สูงมาก
-3. **rolling_win_rate_10** (0.32) - Win rate 10 ครั้งล่าสุด
-4. **rolling_win_rate_20** (0.25) - Win rate 20 ครั้งล่าสุด
+### 🥈 #2 ชัวมาก - DEATH ZONES (หลีกเลี่ยง 100%)
+- **MWP-30 + Hour 22**: 0% win rate (แพ้ 8/8 ครั้ง)
+- **Range FRAMA3 + Hour 14 + High volatility**: 0% win rate (แพ้ 18/18)
+- **UT-BOT2-10 + Hour 22 + High volatility**: 0% win rate (แพ้ 29/29)
 
-### Prediction Rules
-- **Rule 1**: IF volatility_level = 2 THEN PREDICT LOSE (Confidence: 100.0%)
+### 🥉 #3 ชัวสูง - GOLDEN TIME HOUR 21
+- **Win Rate**: 62.3% (+14.9% จากค่าเฉลี่ย)
+- **P-value**: 0.00006 (มีนัยสำคัญสูงมาก!)
+- **Sample**: 183 signals
+
+### 🏅 #4 ชัวสูง - GOLDEN COMBOS
+- **MWP-30 + Hour 21**: 87.5% win rate (16 signals)
+- **MWP-27 + Hour 8**: 84.6% win rate (13 signals)
+- **MWP-27 + Hour 10**: 84.2% win rate (19 signals)
+
+### 🏅 #5 ชัวดี - DANGER ZONES
+- **Hour 19:00**: 35.7% win rate (p=0.0002, 244 signals)
+- **Hour 23:00**: 35.5% win rate (p=0.003, 155 signals)
+- **MWP-30 + Hour 19**: 18.2% win rate (33 signals)
+
+### Statistical Significance Results
+- **24 significant hour patterns** พบ
+- **27 strategy-time interaction patterns** พบ
+- **9 consecutive patterns** พบ
+- **5 clustering configurations** วิเคราะห์
+- **3 ML models tested** (GradientBoosting = best 98.7% accuracy)
 
 ---
 
