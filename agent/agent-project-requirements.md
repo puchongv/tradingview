@@ -41,6 +41,46 @@
 ### Timeframes
 - 10min, 30min, 60min
 
+---
+
+## 🎮 **Binance Event Contract (Binary Options) - วิธีการเล่นจริง**
+
+### 📱 Platform Limitations
+- **เล่นได้บนมือถือเท่านั้น** - ไม่มี desktop version
+- **ไม่มี API ให้ใช้** - ไม่สามารถทำ automated trading ได้
+- **Manual trading only** - ต้องคลิกเองทุกครั้ง
+
+### 🎯 Position Limits
+- **Active positions สูงสุด**: **5 ไม้** ในเวลาเดียวกัน
+- **ไม่สามารถแทงเกิน 5 positions** พร้อมกัน
+- **ต้องรอให้ position หมดอายุก่อนแทงใหม่**
+
+### 💰 Betting Limits
+- **เดิมพันขั้นต่ำ**: **5 USD**
+- **เดิมพันสูงสุด**: **250 USD** 
+- **ผลตอบแทนเมื่อชนะ**: **+80%** ของยอดลงทุน
+- **ผลเสียเมื่อแพ้**: **-100%** ของยอดลงทุน (เสียหมด)
+
+### ⏰ Contract Duration
+- **10 นาที**: ราคาหลังจาก entry 10 นาที
+- **30 นาที**: ราคาหลังจาก entry 30 นาที  
+- **60 นาที**: ราคาหลังจาก entry 60 นาที
+
+### 🔄 Trading Rules
+#### **BUY Position (Long)**:
+- **ชนะ**: ราคาตอนจบ **> ราคาตอน entry**
+- **แพ้**: ราคาตอนจบ **≤ ราคาตอน entry** (เท่ากับก็แพ้)
+
+#### **SELL Position (Short)**:
+- **ชนะ**: ราคาตอนจบ **< ราคาตอน entry**  
+- **แพ้**: ราคาตอนจบ **≥ ราคาตอน entry** (เท่ากับก็แพ้)
+
+### 🚨 Critical Constraints
+- **ไม่สามารถ close ก่อนหมดอายุ** - ต้องรอให้ครบเวลา
+- **ไม่สามารถ modify position** - หลังแทงแล้วเปลี่ยนไม่ได้
+- **Limited to mobile interface** - UI/UX จำกัด
+- **No stop loss/take profit** - Win or lose 100%
+
 ## 🎨 Chart Requirements
 
 ### Pattern Analysis Charts Only
@@ -211,6 +251,29 @@
 - **SQL Queries** → [metabase_queries.sql](./metabase_queries.sql)
 
 ---
+
+## 📚 Metabase SQL Library (Added 2025-09-14)
+
+### Parameters (conventions)
+- `interval_target` (Text): 10 | 30 | 60 (accepts 10m/30m/60m)
+- `ex_hours` (Text, CSV): hours 0–23 to exclude
+- `ex_days` (Text, CSV): DOW 0=Sun..6=Sat to exclude
+- `target_dow` (Text): ALL | 0..6
+- `target_hour` (Text): ALL | 0..23
+- `payout` (Number): default 0.80
+- `investment` (Number): default 250
+- `min_trades` (Number): default 1–3 depending on chart
+
+### Provided Queries
+- Winrate pivot (rows: hour, cols: Sun–Sat) – no TZ
+- By-hour winrate (direct AVG) – cross-check
+- Bar chart daily PnL per `strategy | action` (series_key) – noise-safe
+- Breakdown per DOW×Hour listing strategies with: `total_trades`, `wins`, `losses`, `win_rate`, `pnl`, `bucket_total_trades`, `bucket_win_rate`, `share_pct`
+
+### Formulas
+- Winrate: `AVG((result='WIN')::int) * 100`
+- PnL: `(wins * payout - losses) * investment`
+- Share%: `100 * strategy_total / bucket_total_trades`
 
 ## 🏆 TOP CERTAINTY PATTERNS ที่พบ (เรียงตามความ "ชัว")
 

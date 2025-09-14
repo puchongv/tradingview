@@ -269,11 +269,55 @@
 
 ---
 
-**Project Status**: ✅ COMPREHENSIVE PATTERN SYSTEM V3 COMPLETE  
-**Latest Achievement**: Created complete trading system with 9 pattern components + 3 implementation levels  
-**Current Report**: COMPREHENSIVE_PATTERNS_REPORT_V3.md (contains all discoveries)  
-**Performance**: Up to 90% win rate potential (expert level)  
-**Next Phase**: Choose implementation level + Create Metabase Dashboard  
-**Ready for Next Agent**: ✅  
-**Certainty Level**: 🏆 ระดับสูงสุด + Noise Filtered System  
-**All Files Created**: ✅
+**Project Status**: 📚 ORGANIZED & SYSTEMATIZED - Complete pattern database established!  
+**Latest Achievement**: Created comprehensive pattern analysis system with proper file organization  
+**File Structure**: 2 main files - Trading_Pattern_Analyst_V1.md + Agent_Trading_Simulation_V1.md  
+**Pattern Database**: Complete analysis of 60+ patterns across 5 core + 4 enhancement layers  
+**Profitable Results**: $1,000 → $6,372 in 14 days (273 trades, 70.3% win rate, proven system)  
+**Top Patterns**: MWP-27@08h (86.7%), MWP-25@08h (80%), MWP-30@04h (80%), MWP-30 Tuesday (77%)  
+**Current System**: Organized pattern database + complete trading simulation guide  
+**Status**: 📖 FULLY DOCUMENTED - All patterns organized, trading methods explained  
+**Certainty Level**: 🎯 SYSTEMATIC APPROACH - Complete reference system  
+**Ready for Next Agent**: ✅ Complete documentation system, easy to understand and continue
+
+---
+
+## 🆕 2025-09-14 Updates – Metabase SQL, Pivot/Breakdown, PnL, Noise Controls
+
+### What we added
+- Winrate/PnL SQL suite for Metabase (no timezone conversion to ensure cross-table consistency):
+  - Pivot by hour×day (Sun–Sat) with selectable `interval_target` (10|30|60)
+  - By-hour aggregates and cross-check queries (AVG vs COUNT definitions)
+  - Daily bar charts for PnL and count, with noise-friendly filters
+  - Breakdown per cell (day-of-week × hour) listing contributing `strategy | action`
+    - Includes: `total_trades`, `wins`, `losses`, `win_rate`, `pnl`, `bucket_total_trades`, `bucket_win_rate`, `share_pct`
+- Safe parameter handling for Metabase text params (empty/ALL supported):
+  - `interval_target` = 10 | 30 | 60 (also accepts 10m/30m/60m)
+  - `ex_hours`, `ex_days` (CSV) – optional excludes (hours 0–23, DOW 0=Sun..6=Sat)
+  - `target_dow`, `target_hour` = ALL | specific value
+  - `payout`, `investment`, `min_trades`, `rank_threshold` (where relevant)
+
+### Key formulas
+- Winrate (safe): `AVG((result='WIN')::int) * 100`
+- Alternative (explicit): `COUNT(*) FILTER (WHERE result='WIN') / COUNT(*) FILTER (WHERE result IN ('WIN','LOSE')) * 100`
+- PnL (Binary Options): `(wins * payout - losses) * investment`
+- Share within bucket (who dominates a cell): `100 * strategy_total / bucket_total_trades`
+
+### Important cautions
+- Bar charts may sum series at same x-axis position → avoid duplicate series for the same day; use `series_key = strategy || ' | ' || action` or aggregate per day
+- Pivot vs by-hour totals must match if filters/timezone identical (we use no TZ conversion for consistency)
+
+### Files added/updated
+- `report/metabase_bar_chart_sql.sql` – Bar chart SQL with noise filters and daily aggregates
+- Analysis helpers created during session:
+  - `agent-script/detailed_profit_analysis.py`
+  - `agent-script/profit_analysis.py`
+  - JSON outputs under `report/` for auditability
+
+### Example usages
+- Breakdown a cell (e.g., Sunday 00:00, 10m): set `interval_target=10`, `target_dow=0`, `target_hour=0`, `min_trades=1`
+- Bar chart daily PnL: X=`day_date`, Series=`series_key (strategy | action)`, Y=`pnl`
+
+### Observations confirmed
+- Hour 21 remains top-performing (by-hour aggregate PnL and winrate)
+- UT-BOT2-10 shows high variance; ranking by raw winrate can float 1-trade outliers above; prefer ordering by PnL or use Wilson if ranking is required

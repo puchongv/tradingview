@@ -1,0 +1,20 @@
+{
+  "10min": {
+    "total_combinations": 2684,
+    "filtered_combinations": 0,
+    "top_10_profitable": {},
+    "bottom_10_profitable": {}
+  },
+  "30min": {
+    "total_combinations": 2684,
+    "filtered_combinations": 0,
+    "top_10_profitable": {},
+    "bottom_10_profitable": {}
+  },
+  "60min": {
+    "total_combinations": 2684,
+    "filtered_combinations": 0,
+    "top_10_profitable": {},
+    "bottom_10_profitable": {}
+  }
+}
