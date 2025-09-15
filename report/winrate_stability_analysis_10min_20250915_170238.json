@@ -1,0 +1,65 @@
+[
+    {
+        "strategy": "UT-BOT",
+        "total_trades": 5,
+        "overall_win_rate": 40.0,
+        "win_rate_stability_score": 2.79,
+        "comment": "Lower score indicates higher stability (less fluctuation in win rate)."
+    },
+    {
+        "strategy": "Range FRAMA3-99",
+        "total_trades": 479,
+        "overall_win_rate": 52.19,
+        "win_rate_stability_score": 8.0,
+        "comment": "Lower score indicates higher stability (less fluctuation in win rate)."
+    },
+    {
+        "strategy": "UT-BOT2-10",
+        "total_trades": 1035,
+        "overall_win_rate": 51.98,
+        "win_rate_stability_score": 8.21,
+        "comment": "Lower score indicates higher stability (less fluctuation in win rate)."
+    },
+    {
+        "strategy": "Range FRAMA3",
+        "total_trades": 248,
+        "overall_win_rate": 53.23,
+        "win_rate_stability_score": 9.22,
+        "comment": "Lower score indicates higher stability (less fluctuation in win rate)."
+    },
+    {
+        "strategy": "MWP-25",
+        "total_trades": 726,
+        "overall_win_rate": 51.24,
+        "win_rate_stability_score": 10.32,
+        "comment": "Lower score indicates higher stability (less fluctuation in win rate)."
+    },
+    {
+        "strategy": "MWP-20",
+        "total_trades": 928,
+        "overall_win_rate": 53.02,
+        "win_rate_stability_score": 10.38,
+        "comment": "Lower score indicates higher stability (less fluctuation in win rate)."
+    },
+    {
+        "strategy": "Range Filter5",
+        "total_trades": 131,
+        "overall_win_rate": 42.75,
+        "win_rate_stability_score": 10.62,
+        "comment": "Lower score indicates higher stability (less fluctuation in win rate)."
+    },
+    {
+        "strategy": "MWP-27",
+        "total_trades": 554,
+        "overall_win_rate": 50.0,
+        "win_rate_stability_score": 11.62,
+        "comment": "Lower score indicates higher stability (less fluctuation in win rate)."
+    },
+    {
+        "strategy": "MWP-30",
+        "total_trades": 547,
+        "overall_win_rate": 55.21,
+        "win_rate_stability_score": 13.68,
+        "comment": "Lower score indicates higher stability (less fluctuation in win rate)."
+    }
+]
