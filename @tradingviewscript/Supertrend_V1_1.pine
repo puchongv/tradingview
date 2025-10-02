@@ -1,0 +1,375 @@
+//@version=5
+indicator("Supertrend V1.1 - Multiple Timeframe Winrate Analysis", shorttitle="ST V1.1", overlay=true, max_labels_count=500)
+
+// ===========================
+// Supertrend Settings  
+// ===========================
+grp_SUPERTREND = "🎯 Supertrend Settings"
+grp_VISUAL = "🎨 Visual Settings"
+Periods = input.int(defval=10, title="ATR Period", minval=1, group=grp_SUPERTREND)
+src = input.source(defval=hl2, title="Source", group=grp_SUPERTREND)
+Multiplier = input.float(defval=3.0, title="ATR Multiplier", step=0.1, minval=0.1, group=grp_SUPERTREND)
+changeATR = input.bool(defval=true, title="Change ATR Calculation Method", group=grp_SUPERTREND)
+
+// Visual Controls
+showsignals = input.bool(defval=true, title="Show Buy/Sell Signals", group=grp_VISUAL)
+highlighting = input.bool(defval=false, title="Background Highlighting", group=grp_VISUAL, tooltip="Enable subtle background colors")
+show_trend_dots = input.bool(defval=false, title="Show Trend Change Dots", group=grp_VISUAL, tooltip="Small dots marking trend changes")
+
+// ===========================
+// Multiple Timeframe Winrate Settings (V1.1)
+// ===========================
+grp_WINRATE = "📊 Multiple Timeframe Win Rate Settings (V1.1)"
+enable_10min = input.bool(defval=false, title="✅ Enable 10min Winrate", group=grp_WINRATE, tooltip="Calculate 10-minute Binary Options winrate")
+enable_30min = input.bool(defval=false, title="✅ Enable 30min Winrate", group=grp_WINRATE, tooltip="Calculate 30-minute Binary Options winrate") 
+enable_60min = input.bool(defval=false, title="✅ Enable 60min Winrate", group=grp_WINRATE, tooltip="Calculate 60-minute Binary Options winrate")
+start_date = input.time(timestamp("2025-01-01"), title="📅 Start Date", group=grp_WINRATE)
+end_date = input.time(timestamp("2025-01-31"), title="📅 End Date", group=grp_WINRATE)
+show_winrate = input.bool(defval=false, title="📈 Show Win Rate Display", group=grp_WINRATE, tooltip="Display detailed winrate statistics (can make chart busy)")
+force_reset = input.bool(defval=false, title="🔄 Force Reset Calculation", group=grp_WINRATE, tooltip="Check this to force recalculation when date range issues occur")
+
+// ===========================
+// Supertrend Calculation
+// ===========================
+atr2 = ta.sma(ta.tr, Periods)
+atr = changeATR ? ta.atr(Periods) : atr2
+
+up = src - (Multiplier * atr)
+up1 = nz(up[1], up)
+up := close[1] > up1 ? math.max(up, up1) : up
+
+dn = src + (Multiplier * atr)
+dn1 = nz(dn[1], dn)
+dn := close[1] < dn1 ? math.min(dn, dn1) : dn
+
+var int trend = 1
+trend := nz(trend[1], trend)
+trend := trend == -1 and close > dn1 ? 1 : trend == 1 and close < up1 ? -1 : trend
+
+// Supertrend Signals
+buySignal = trend == 1 and trend[1] == -1 and barstate.isconfirmed
+sellSignal = trend == -1 and trend[1] == 1 and barstate.isconfirmed
+
+// ============================================================================
+// Multiple Timeframe Win-rate block (V1.1)
+// ============================================================================
+// 10min Winrate Variables
+var int total_buy_signals_10 = 0, var int total_sell_signals_10 = 0
+var int total_wins_10 = 0, var int total_losses_10 = 0
+var array<float> buy_entry_prices_10 = array.new<float>(), var array<int> buy_entry_times_10 = array.new<int>()
+var array<float> sell_entry_prices_10 = array.new<float>(), var array<int> sell_entry_times_10 = array.new<int>()
+
+// 30min Winrate Variables
+var int total_buy_signals_30 = 0, var int total_sell_signals_30 = 0
+var int total_wins_30 = 0, var int total_losses_30 = 0
+var array<float> buy_entry_prices_30 = array.new<float>(), var array<int> buy_entry_times_30 = array.new<int>()
+var array<float> sell_entry_prices_30 = array.new<float>(), var array<int> sell_entry_times_30 = array.new<int>()
+
+// 60min Winrate Variables
+var int total_buy_signals_60 = 0, var int total_sell_signals_60 = 0
+var int total_wins_60 = 0, var int total_losses_60 = 0
+var array<float> buy_entry_prices_60 = array.new<float>(), var array<int> buy_entry_times_60 = array.new<int>()
+var array<float> sell_entry_prices_60 = array.new<float>(), var array<int> sell_entry_times_60 = array.new<int>()
+
+var int last_start_date = 0, var int last_end_date = 0
+var string last_symbol = na, var string last_timeframe = na
+var bool last_force_reset = false
+
+// Enhanced Reset เมื่อเปลี่ยนวันที่, symbol, timeframe หรือ force reset
+reset_condition = start_date != last_start_date or end_date != last_end_date or 
+                 syminfo.ticker != last_symbol or timeframe.period != last_timeframe or 
+                 force_reset != last_force_reset
+
+if reset_condition
+    // Reset 10min variables
+    total_buy_signals_10 := 0, total_sell_signals_10 := 0
+    total_wins_10 := 0, total_losses_10 := 0
+    array.clear(buy_entry_prices_10), array.clear(buy_entry_times_10)
+    array.clear(sell_entry_prices_10), array.clear(sell_entry_times_10)
+    
+    // Reset 30min variables  
+    total_buy_signals_30 := 0, total_sell_signals_30 := 0
+    total_wins_30 := 0, total_losses_30 := 0
+    array.clear(buy_entry_prices_30), array.clear(buy_entry_times_30)
+    array.clear(sell_entry_prices_30), array.clear(sell_entry_times_30)
+    
+    // Reset 60min variables
+    total_buy_signals_60 := 0, total_sell_signals_60 := 0
+    total_wins_60 := 0, total_losses_60 := 0
+    array.clear(buy_entry_prices_60), array.clear(buy_entry_times_60)
+    array.clear(sell_entry_prices_60), array.clear(sell_entry_times_60)
+    
+    // Update last values
+    last_start_date := start_date, last_end_date := end_date
+    last_symbol := syminfo.ticker, last_timeframe := timeframe.period
+    last_force_reset := force_reset
+
+in_date_range = time >= start_date and time <= end_date
+
+// นับสัญญาณ Supertrend เมื่อเกิด (3 timeframes)
+if buySignal and in_date_range
+    if enable_10min
+        total_buy_signals_10 += 1
+        array.push(buy_entry_prices_10, close)
+        array.push(buy_entry_times_10, time)
+    if enable_30min
+        total_buy_signals_30 += 1
+        array.push(buy_entry_prices_30, close)
+        array.push(buy_entry_times_30, time)
+    if enable_60min
+        total_buy_signals_60 += 1
+        array.push(buy_entry_prices_60, close)
+        array.push(buy_entry_times_60, time)
+
+if sellSignal and in_date_range
+    if enable_10min
+        total_sell_signals_10 += 1
+        array.push(sell_entry_prices_10, close)
+        array.push(sell_entry_times_10, time)
+    if enable_30min
+        total_sell_signals_30 += 1
+        array.push(sell_entry_prices_30, close)
+        array.push(sell_entry_times_30, time)
+    if enable_60min
+        total_sell_signals_60 += 1
+        array.push(sell_entry_prices_60, close)
+        array.push(sell_entry_times_60, time)
+
+// 10min Winrate Calculation
+if enable_10min and array.size(buy_entry_prices_10) > 0
+    for i = array.size(buy_entry_prices_10) - 1 to 0
+        entry_time = array.get(buy_entry_times_10, i)
+        entry_price = array.get(buy_entry_prices_10, i)
+        interval_time = entry_time + (10 * 60 * 1000)
+        if time >= interval_time
+            future_price = close
+            if future_price > entry_price
+                total_wins_10 += 1
+            else
+                total_losses_10 += 1
+            array.remove(buy_entry_prices_10, i)
+            array.remove(buy_entry_times_10, i)
+
+if enable_10min and array.size(sell_entry_prices_10) > 0
+    for i = array.size(sell_entry_prices_10) - 1 to 0
+        entry_time = array.get(sell_entry_times_10, i)
+        entry_price = array.get(sell_entry_prices_10, i)
+        interval_time = entry_time + (10 * 60 * 1000)
+        if time >= interval_time
+            future_price = close
+            if future_price < entry_price
+                total_wins_10 += 1
+            else
+                total_losses_10 += 1
+            array.remove(sell_entry_prices_10, i)
+            array.remove(sell_entry_times_10, i)
+
+// 30min Winrate Calculation
+if enable_30min and array.size(buy_entry_prices_30) > 0
+    for i = array.size(buy_entry_prices_30) - 1 to 0
+        entry_time = array.get(buy_entry_times_30, i)
+        entry_price = array.get(buy_entry_prices_30, i)
+        interval_time = entry_time + (30 * 60 * 1000)
+        if time >= interval_time
+            future_price = close
+            if future_price > entry_price
+                total_wins_30 += 1
+            else
+                total_losses_30 += 1
+            array.remove(buy_entry_prices_30, i)
+            array.remove(buy_entry_times_30, i)
+
+if enable_30min and array.size(sell_entry_prices_30) > 0
+    for i = array.size(sell_entry_prices_30) - 1 to 0
+        entry_time = array.get(sell_entry_times_30, i)
+        entry_price = array.get(sell_entry_prices_30, i)
+        interval_time = entry_time + (30 * 60 * 1000)
+        if time >= interval_time
+            future_price = close
+            if future_price < entry_price
+                total_wins_30 += 1
+            else
+                total_losses_30 += 1
+            array.remove(sell_entry_prices_30, i)
+            array.remove(sell_entry_times_30, i)
+
+// 60min Winrate Calculation
+if enable_60min and array.size(buy_entry_prices_60) > 0
+    for i = array.size(buy_entry_prices_60) - 1 to 0
+        entry_time = array.get(buy_entry_times_60, i)
+        entry_price = array.get(buy_entry_prices_60, i)
+        interval_time = entry_time + (60 * 60 * 1000)
+        if time >= interval_time
+            future_price = close
+            if future_price > entry_price
+                total_wins_60 += 1
+            else
+                total_losses_60 += 1
+            array.remove(buy_entry_prices_60, i)
+            array.remove(buy_entry_times_60, i)
+
+if enable_60min and array.size(sell_entry_prices_60) > 0
+    for i = array.size(sell_entry_prices_60) - 1 to 0
+        entry_time = array.get(sell_entry_times_60, i)
+        entry_price = array.get(sell_entry_prices_60, i)
+        interval_time = entry_time + (60 * 60 * 1000)
+        if time >= interval_time
+            future_price = close
+            if future_price < entry_price
+                total_wins_60 += 1
+            else
+                total_losses_60 += 1
+            array.remove(sell_entry_prices_60, i)
+            array.remove(sell_entry_times_60, i)
+
+// Calculate Multiple Timeframe Winrates
+total_signals_10 = total_wins_10 + total_losses_10
+total_signals_30 = total_wins_30 + total_losses_30  
+total_signals_60 = total_wins_60 + total_losses_60
+win_rate_10 = total_signals_10 > 0 ? (total_wins_10 / total_signals_10) * 100 : 0
+win_rate_30 = total_signals_30 > 0 ? (total_wins_30 / total_signals_30) * 100 : 0
+win_rate_60 = total_signals_60 > 0 ? (total_wins_60 / total_signals_60) * 100 : 0
+
+// Multiple Timeframe Winrate Display (V1.1) - Enhanced
+var label winrate_label = na
+if show_winrate and barstate.islast
+    // Compact label text design
+    label_text = "📊 SUPERTREND V1.1\n" +
+                 "ATR: " + str.tostring(Periods) + " | Mult: " + str.tostring(Multiplier) + "\n" +
+                 "─────────────────────────────────\n"
+                 
+    if enable_10min
+        color_10 = win_rate_10 >= 60 ? "🟢" : win_rate_10 >= 50 ? "🟡" : "🔴"
+        label_text += color_10 + " 10m: " + str.tostring(math.round(win_rate_10, 1)) + "% (" + str.tostring(total_signals_10) + ")\n"
+                      
+    if enable_30min
+        color_30 = win_rate_30 >= 60 ? "🟢" : win_rate_30 >= 50 ? "🟡" : "🔴"
+        label_text += color_30 + " 30m: " + str.tostring(math.round(win_rate_30, 1)) + "% (" + str.tostring(total_signals_30) + ")\n"
+                      
+    if enable_60min
+        color_60 = win_rate_60 >= 60 ? "🟢" : win_rate_60 >= 50 ? "🟡" : "🔴"
+        label_text += color_60 + " 60m: " + str.tostring(math.round(win_rate_60, 1)) + "% (" + str.tostring(total_signals_60) + ")\n"
+    
+    label_text += "─────────────────────────────────\n" +
+                  str.format_time(start_date, "MMM dd") + " - " + str.format_time(end_date, "MMM dd")
+    
+    if not na(winrate_label)
+        label.delete(winrate_label)
+    winrate_label := label.new(bar_index + 5, high, label_text, 
+                              color=color.new(#2C3E50, 85), 
+                              textcolor=color.white, 
+                              style=label.style_label_left, 
+                              size=size.small)
+
+// ============================================================================
+// Supertrend Plot & Signals (Enhanced Visual Design)
+// ============================================================================
+// Professional color scheme
+bullish_color = color.new(#00C896, 0)  // Professional green
+bearish_color = color.new(#FF6B6B, 0)  // Professional red
+neutral_color = color.new(#74869A, 30) // Professional gray
+
+upPlot = plot(trend == 1 ? up : na, title="Up Trend", style=plot.style_linebr, linewidth=2, color=bullish_color)
+dnPlot = plot(trend == 1 ? na : dn, title="Down Trend", style=plot.style_linebr, linewidth=2, color=bearish_color)
+
+// Clean Signal Markers (Fixed Position)
+plotshape(buySignal and showsignals ? up : na, 
+          title="ST BUY", text="BUY", location=location.absolute, 
+          style=shape.labelup, size=size.small, 
+          color=color.new(bullish_color, 0), textcolor=color.white)
+
+plotshape(sellSignal and showsignals ? dn : na, 
+          title="ST SELL", text="SELL", location=location.absolute, 
+          style=shape.labeldown, size=size.small, 
+          color=color.new(bearish_color, 0), textcolor=color.white)
+
+// Optional Trend Change Dots (At Supertrend Lines)
+plotshape(buySignal and show_trend_dots ? up : na, 
+          title="Trend Change Up", location=location.absolute, 
+          style=shape.circle, size=size.tiny, 
+          color=color.new(bullish_color, 0))
+
+plotshape(sellSignal and show_trend_dots ? dn : na, 
+          title="Trend Change Down", location=location.absolute, 
+          style=shape.circle, size=size.tiny, 
+          color=color.new(bearish_color, 0))
+
+// Subtle Background Highlighting (Professional Style)
+mPlot = plot(ohlc4, title="", style=plot.style_circles, linewidth=1, display=display.none)
+longFillColor = highlighting ? (trend == 1 ? color.new(bullish_color, 97) : color.new(color.white, 100)) : color.new(color.white, 100)
+shortFillColor = highlighting ? (trend == -1 ? color.new(bearish_color, 97) : color.new(color.white, 100)) : color.new(color.white, 100)
+fill(mPlot, upPlot, title="Bullish Zone", color=longFillColor)
+fill(mPlot, dnPlot, title="Bearish Zone", color=shortFillColor)
+
+// Debug: แสดงค่าต่างๆ ใน Data Window (V1.1 - Multiple Timeframes)
+plot(trend, title="🔧 Supertrend Direction", display=display.data_window)
+plot(buySignal ? 1 : 0, title="📊 Supertrend Buy Signal", display=display.data_window)
+plot(sellSignal ? 1 : 0, title="📊 Supertrend Sell Signal", display=display.data_window)
+plot(in_date_range ? 1 : 0, title="📅 In Analysis Date Range", display=display.data_window)
+
+// Debug: 10min Winrate Data
+plot(enable_10min ? total_buy_signals_10 : na, title="📈 Buy Signals 10min", display=display.data_window)
+plot(enable_10min ? total_sell_signals_10 : na, title="📉 Sell Signals 10min", display=display.data_window)
+plot(enable_10min ? total_wins_10 : na, title="✅ Wins 10min", display=display.data_window)
+plot(enable_10min ? total_losses_10 : na, title="❌ Losses 10min", display=display.data_window)
+plot(enable_10min ? win_rate_10 : na, title="📊 Win Rate 10min %", display=display.data_window)
+
+// Debug: 30min Winrate Data  
+plot(enable_30min ? total_buy_signals_30 : na, title="📈 Buy Signals 30min", display=display.data_window)
+plot(enable_30min ? total_sell_signals_30 : na, title="📉 Sell Signals 30min", display=display.data_window)
+plot(enable_30min ? total_wins_30 : na, title="✅ Wins 30min", display=display.data_window)
+plot(enable_30min ? total_losses_30 : na, title="❌ Losses 30min", display=display.data_window)
+plot(enable_30min ? win_rate_30 : na, title="📊 Win Rate 30min %", display=display.data_window)
+
+// Debug: 60min Winrate Data
+plot(enable_60min ? total_buy_signals_60 : na, title="📈 Buy Signals 60min", display=display.data_window)
+plot(enable_60min ? total_sell_signals_60 : na, title="📉 Sell Signals 60min", display=display.data_window)
+plot(enable_60min ? total_wins_60 : na, title="✅ Wins 60min", display=display.data_window)
+plot(enable_60min ? total_losses_60 : na, title="❌ Losses 60min", display=display.data_window)
+plot(enable_60min ? win_rate_60 : na, title="📊 Win Rate 60min %", display=display.data_window)
+
+// Enhanced Alerts for V1.1 - Static JSON format for n8n integration
+alertcondition(buySignal,  
+              title="🚀 Supertrend V1.1 - BUY Signal", 
+              message='{"strategy": "Supertrend_V1.1", "action": "BUY", "price": {{close}}, "time": "{{time}}", "timeframe": "{{interval}}", "signal_type": "supertrend_buy"}')
+
+alertcondition(sellSignal, 
+              title="🚀 Supertrend V1.1 - SELL Signal", 
+              message='{"strategy": "Supertrend_V1.1", "action": "SELL", "price": {{close}}, "time": "{{time}}", "timeframe": "{{interval}}", "signal_type": "supertrend_sell"}')
+
+alertcondition(buySignal or sellSignal, 
+              title="🚀 Supertrend V1.1 - Any Signal", 
+              message='{"strategy": "Supertrend_V1.1", "action": "ANY", "price": {{close}}, "time": "{{time}}", "timeframe": "{{interval}}", "signal_type": "supertrend_any"}')
+
+// ============================================================================
+// V1.1 CHANGELOG & NOTES
+// ============================================================================
+// 📈 NEW FEATURES IN V1.1:
+// ✅ Upgraded from @version=4 to @version=5 (modern Pine Script)
+// ✅ Multiple Timeframe Winrate Analysis (10min, 30min, 60min)  
+// ✅ Enhanced Reset Logic with Force Reset option
+// ✅ Improved Visual Display with color-coded performance
+// ✅ JSON Alert format for n8n/AutoRemote integration
+// ✅ Enhanced Data Window debugging
+// ✅ Better memory management for long date ranges
+// ✅ Modern Pine Script v5 syntax and functions
+//
+// 🎯 OPTIMIZED FOR:
+// - Binary Options Trading (Binance Event Contract)
+// - 10/30/60 minute expiry times  
+// - Trend following strategy
+// - Real-time performance monitoring
+// - Cross-platform automation (n8n + Tasker)
+//
+// 🔧 SUPERTREND ALGORITHM:
+// - Uses ATR (Average True Range) for volatility measurement
+// - Dynamic support/resistance based on price movement
+// - Trend reversal signals when price crosses supertrend line
+// - Configurable ATR period and multiplier
+//
+// 📊 FOR BINARY OPTIONS SUCCESS:
+// - Green (60%+): High confidence trend signals
+// - Yellow (50-59%): Medium confidence signals
+// - Red (<50%): Avoid or consider opposite direction
+// - Best used in trending markets
+// - Combine with other indicators for confirmation

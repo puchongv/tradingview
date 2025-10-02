@@ -6,6 +6,23 @@
 
 ---
 
+
+## VPS Connection for n8n,metabase
+IP:45.77.44.36
+User:root
+pass:$C6wR.)1Tz,u5)R%eRV8
+
+
+## VPS Connection PostgreSQL Database
+IP:45.77.46.180
+User:root
+pass:3J_rFj4CKhpL2@FD
+**FYI with Root Access be careful and avoid production damage. take step by step action.**
+
+
+
+
+
 ## 🗄️ Database Connection
 
 ### PostgreSQL Database
@@ -15,6 +32,8 @@
 - **User**: postgres
 - **Password**: pwd@root99
 - **Type**: PostgreSQL
+
+**FYI with postgres superuser permission Access be careful and avoid production damage. take step by step action.**
 
 ### Connection String Format:
 ```

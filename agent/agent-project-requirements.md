@@ -250,6 +250,13 @@
 - **Dashboard Config** → [metabase_dashboard_config.json](./metabase_dashboard_config.json)
 - **SQL Queries** → [metabase_queries.sql](./metabase_queries.sql)
 
+### Calibration (added 2025-09-17)
+- DNA Calibration doc: `../DNA calibration.md`
+- Calibration report: `../calibration report.md`
+- Heatmap scanner: `agent-script/heatmap_bucket_scanner.py`
+- DNA scanner (V17.0.5): `agent-script/dna_scan_v1705.py`
+- Bucket rating calculator: `agent-script/bucket_rating_v1705.py`
+
 ---
 
 ## 📚 Metabase SQL Library (Added 2025-09-14)

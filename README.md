@@ -74,3 +74,19 @@ PNL = +650 USD
 
 จากข้อมูลใน ฐานข้อมูลทั้งหมดที่มี ซึ่งอาจจะเต็มไปด้วย noise ที่มองผ่านๆ อาจจะยังหาคำตอบไม่ได้ว่า winrate ที่เกิดขึ้นนั้น เชื่อถือได้หรือไม่ แถม ยังเป็นการคำนวน ในอดีด ซึ่งไม่ได้การันตีผลในอนาคต ผู้ใช้งานต้องการให้คิดหาทางพิสูตรย์ความจริง ในหลายๆ มิติ เพื่อป้องกันความเสี่ยง
 
+## n8n Workflow Setup (Logging + Trade Manager)
+
+โฟลเดอร์ `n8n/` ถูกเตรียมสำหรับระบบรับสัญญาณจาก TradingView, บันทึกผล 10/30/60 ลงฐานข้อมูล และระบบจัดการเทรดแบบทำงานอิสระและคู่ขนาน
+
+- `n8n/docker-compose.yml` รัน n8n ในโหมด Queue + Redis + Postgres (รองรับ parallel ด้วย worker หลายตัว)
+- `n8n/sql/schema.sql` สร้างตาราง `signals`, `signal_results`, `trade_configs`, `trade_decisions`
+- `n8n/WORKFLOWS.md` อธิบาย workflow 4 ตัว: tv-receiver, logger-worker, result-worker, trade-manager (node-by-node)
+- `n8n/.env.example` ตัวอย่างค่า ENV (ใส่ `ALERT_SHARED_SECRET` สำหรับตรวจลายเซ็น HMAC)
+- `n8n/examples/` ตัวอย่าง payload และ Pine snippet
+
+วิธีเริ่มต้นอย่างย่อ
+1) คัดลอก `n8n/.env.example` เป็น `n8n/.env` และแก้ไขค่าให้เหมาะสม
+2) `cd n8n && docker compose up -d` เพื่อเปิด Postgres/Redis/n8n/worker ในโหมด queue
+3) เปิด n8n (`http://localhost:5678`) แล้วสร้าง workflow ตาม `n8n/WORKFLOWS.md`
+4) ตั้งค่า TradingView Alert ให้ยิง JSON ตามตัวอย่าง และเซ็นด้วย HMAC (ส่งไปยัง Webhook ของ `tv-receiver`)
+5) ตรวจสอบผลลัพธ์ที่ตาราง `signals` และ `signal_results` และการตัดสินใจใน `trade_decisions`

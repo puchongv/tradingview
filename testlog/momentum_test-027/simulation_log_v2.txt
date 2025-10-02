@@ -1,0 +1,16 @@
+========================================================================================================================
+🚀 Test 027: Momentum (Linear) + 3-Hour Lookback
+📅 Simulation Period: 2025-09-01 00:00:00 to 2025-09-30 23:59:59 (30 วัน)
+📊 Data Lookback: 3 hours
+💰 Investment: $250/trade, Payout: 0.8
+📈 Strategies: MWP10-1m, MWP20-3m, MWP-27, MWP-31, SuperTrend10
+========================================================================================================================
+📊 Data fetched: 2025-08-31 21:00:00 to 2025-09-30 23:59:59
+   Total records: 1899
+📅 Simulation hours: 531 hours
+
+
+✅ Test 027 Complete!
+Final PNL: $36700
+Total Trades: 539
+Strategy Changes: 142

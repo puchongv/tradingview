@@ -1,0 +1,353 @@
+//@version=5
+indicator(title="Range Filter V1.0 - Win Rate with Exit Points Visualization", shorttitle="RF V1.0", overlay=true, max_labels_count=500)
+
+// Original Script > @DonovanWall
+// Adapted Version > @guikroth  
+// Updated to PineScript v5 > @tvenn
+// V1.0 Enhanced with Exit Points Visualization
+
+//////////////////////////////////////////////////////////////////////////
+// Settings for 5min chart, BTCUSDC. For Other coins, change the parameters
+//////////////////////////////////////////////////////////////////////////
+
+// ===========================
+// Range Filter Settings
+// ===========================
+grp_FILTER = "🎯 Range Filter Settings"
+src = input(defval=close, title="Source", group=grp_FILTER)
+per = input.int(defval=100, minval=1, title="Sampling Period", group=grp_FILTER)
+mult = input.float(defval=3.0, minval=0.1, title="Range Multiplier", group=grp_FILTER)
+
+// ===========================
+// Visual Settings
+// ===========================
+grp_VISUAL = "🎨 Visual Settings"
+show_signals = input.bool(defval=true, title="Show Buy/Sell Signals", group=grp_VISUAL)
+show_exit_points = input.bool(defval=true, title="Show Exit Points", group=grp_VISUAL, tooltip="Green = Win, Red = Loss")
+show_target_bands = input.bool(defval=true, title="Show Target Bands", group=grp_VISUAL)
+
+// ===========================
+// Win Rate Settings (Enhanced V1.0)
+// ===========================
+grp_WINRATE = "📊 Win Rate & Exit Analysis (V1.0)"
+interval_minutes = input.int(defval=10, minval=1, title="Exit Interval (minutes)", group=grp_WINRATE, tooltip="Time to check win/loss result")
+start_date = input.time(timestamp("2025-01-01"), title="📅 Start Date", group=grp_WINRATE)
+end_date = input.time(timestamp("2025-01-31"), title="📅 End Date", group=grp_WINRATE)
+show_winrate = input.bool(defval=true, title="📈 Show Win Rate Display", group=grp_WINRATE)
+force_reset = input.bool(defval=false, title="🔄 Force Reset Calculation", group=grp_WINRATE)
+
+// Professional color scheme
+upColor = color.new(#00C896, 0)      // Professional green
+midColor = color.new(#90bff9, 0)     // Professional blue  
+downColor = color.new(#FF6B6B, 0)    // Professional red
+win_color = color.new(#00E676, 0)    // Bright green for wins
+loss_color = color.new(#FF5252, 0)   // Bright red for losses
+
+// ===========================
+// Range Filter Calculation
+// ===========================
+// Smooth Average Range
+smoothrng(x, t, m) =>
+    wper = t * 2 - 1
+    avrng = ta.ema(math.abs(x - x[1]), t)
+    smoothrng = ta.ema(avrng, wper) * m
+    smoothrng
+smrng = smoothrng(src, per, mult)
+
+// Range Filter
+rngfilt(x, r) =>
+    rngfilt = x
+    rngfilt := x > nz(rngfilt[1]) ? x - r < nz(rngfilt[1]) ? nz(rngfilt[1]) : x - r : 
+       x + r > nz(rngfilt[1]) ? nz(rngfilt[1]) : x + r
+    rngfilt
+filt = rngfilt(src, smrng)
+
+// Filter Direction
+upward = 0.0
+upward := filt > filt[1] ? nz(upward[1]) + 1 : filt < filt[1] ? 0 : nz(upward[1])
+downward = 0.0
+downward := filt < filt[1] ? nz(downward[1]) + 1 : filt > filt[1] ? 0 : nz(downward[1])
+
+// Target Bands
+hband = filt + smrng
+lband = filt - smrng
+
+// Colors
+filtcolor = upward > 0 ? upColor : downward > 0 ? downColor : midColor
+barcolor = src > filt and src > src[1] and upward > 0 ? upColor :
+   src > filt and src < src[1] and upward > 0 ? upColor : 
+   src < filt and src < src[1] and downward > 0 ? downColor : 
+   src < filt and src > src[1] and downward > 0 ? downColor : midColor
+
+// Range Filter Signal Logic
+longCond = bool(na)
+shortCond = bool(na)
+longCond := src > filt and src > src[1] and upward > 0 or 
+   src > filt and src < src[1] and upward > 0
+shortCond := src < filt and src < src[1] and downward > 0 or 
+   src < filt and src > src[1] and downward > 0
+
+CondIni = 0
+CondIni := longCond ? 1 : shortCond ? -1 : CondIni[1]
+longCondition = longCond and CondIni[1] == -1 and barstate.isconfirmed
+shortCondition = shortCond and CondIni[1] == 1 and barstate.isconfirmed
+
+// ===========================
+// Enhanced Win Rate Calculation with Exit Points (V1.0)
+// ===========================
+// Entry tracking arrays
+var int total_buy_signals = 0, var int total_sell_signals = 0
+var int total_wins = 0, var int total_losses = 0
+var array<float> buy_entry_prices = array.new<float>()
+var array<int> buy_entry_times = array.new<int>()
+var array<float> sell_entry_prices = array.new<float>()
+var array<int> sell_entry_times = array.new<int>()
+
+// NEW V1.0: Exit points tracking arrays
+var array<int> exit_times = array.new<int>()
+var array<float> exit_prices = array.new<float>()
+var array<bool> exit_results = array.new<bool>()    // true = win, false = loss
+var array<bool> exit_signal_types = array.new<bool>() // true = buy signal, false = sell signal
+
+// Reset variables
+var int last_start_date = 0, var int last_end_date = 0
+var bool last_force_reset = false
+
+// Enhanced Reset logic
+reset_condition = start_date != last_start_date or end_date != last_end_date or force_reset != last_force_reset
+
+if reset_condition
+    // Reset counters
+    total_buy_signals := 0, total_sell_signals := 0
+    total_wins := 0, total_losses := 0
+    
+    // Reset entry arrays
+    array.clear(buy_entry_prices), array.clear(buy_entry_times)
+    array.clear(sell_entry_prices), array.clear(sell_entry_times)
+    
+    // Reset exit arrays (V1.0)
+    array.clear(exit_times), array.clear(exit_prices)
+    array.clear(exit_results), array.clear(exit_signal_types)
+    
+    // Update last values
+    last_start_date := start_date, last_end_date := end_date
+    last_force_reset := force_reset
+
+// Date range check
+in_date_range = time >= start_date and time <= end_date
+
+// Process buy signals
+if longCondition and in_date_range
+    total_buy_signals += 1
+    array.push(buy_entry_prices, close)
+    array.push(buy_entry_times, time)
+
+// Process sell signals  
+if shortCondition and in_date_range
+    total_sell_signals += 1
+    array.push(sell_entry_prices, close)
+    array.push(sell_entry_times, time)
+
+// Enhanced: Check completed intervals and calculate wins/losses for BUY signals
+if array.size(buy_entry_prices) > 0
+    for i = array.size(buy_entry_prices) - 1 to 0
+        entry_time = array.get(buy_entry_times, i)
+        entry_price = array.get(buy_entry_prices, i)
+        interval_time = entry_time + (interval_minutes * 60 * 1000)
+        
+        if time >= interval_time
+            future_price = close
+            is_win = future_price > entry_price
+            
+            // Count win/loss
+            if is_win
+                total_wins += 1
+            else
+                total_losses += 1
+            
+            // NEW V1.0: Store exit point for visualization
+            array.push(exit_times, interval_time)
+            array.push(exit_prices, future_price)
+            array.push(exit_results, is_win)
+            array.push(exit_signal_types, true)  // true = buy signal
+            
+            // Remove processed entry
+            array.remove(buy_entry_prices, i)
+            array.remove(buy_entry_times, i)
+
+// Enhanced: Check completed intervals and calculate wins/losses for SELL signals
+if array.size(sell_entry_prices) > 0
+    for i = array.size(sell_entry_prices) - 1 to 0
+        entry_time = array.get(sell_entry_times, i)
+        entry_price = array.get(sell_entry_prices, i)
+        interval_time = entry_time + (interval_minutes * 60 * 1000)
+        
+        if time >= interval_time
+            future_price = close
+            is_win = future_price < entry_price
+            
+            // Count win/loss
+            if is_win
+                total_wins += 1
+            else
+                total_losses += 1
+            
+            // NEW V1.0: Store exit point for visualization
+            array.push(exit_times, interval_time)
+            array.push(exit_prices, future_price)
+            array.push(exit_results, is_win)
+            array.push(exit_signal_types, false)  // false = sell signal
+            
+            // Remove processed entry
+            array.remove(sell_entry_prices, i)
+            array.remove(sell_entry_times, i)
+
+// Calculate win rate
+total_signals = total_wins + total_losses
+win_rate = total_signals > 0 ? (total_wins / total_signals) * 100 : 0
+
+// ===========================
+// NEW V1.0: Exit Points Visualization
+// ===========================
+// Show exit points as colored dots
+var bool show_win_dot = false
+var bool show_loss_dot = false
+var float win_dot_price = na
+var float loss_dot_price = na
+
+// Check for exit points to display on current bar
+if show_exit_points and array.size(exit_times) > 0
+    for i = 0 to array.size(exit_times) - 1
+        exit_time = array.get(exit_times, i)
+        if exit_time == time  // Current bar matches exit time
+            exit_result = array.get(exit_results, i)
+            exit_price = array.get(exit_prices, i)
+            
+            if exit_result  // Win
+                show_win_dot := true
+                win_dot_price := exit_price
+            else  // Loss
+                show_loss_dot := true
+                loss_dot_price := exit_price
+
+// Plot exit points
+plotshape(show_exit_points and show_win_dot, 
+          title="Exit Win", location=location.absolute, 
+          style=shape.circle, size=size.small, 
+          color=win_color, text="W")
+
+plotshape(show_exit_points and show_loss_dot, 
+          title="Exit Loss", location=location.absolute, 
+          style=shape.circle, size=size.small, 
+          color=loss_color, text="L")
+
+// Reset dot flags for next bar
+show_win_dot := false
+show_loss_dot := false
+
+// ===========================
+// Enhanced Win Rate Display (V1.0)
+// ===========================
+var label winrate_label = na
+if show_winrate and barstate.islast
+    // Compact and professional display
+    label_text = "📊 RANGE FILTER V1.0\n" +
+                 "Period: " + str.tostring(per) + " | Mult: " + str.tostring(mult) + " | Interval: " + str.tostring(interval_minutes) + "m\n" +
+                 "─────────────────────────────────\n" +
+                 "📈 Buy: " + str.tostring(total_buy_signals) + " | 📉 Sell: " + str.tostring(total_sell_signals) + " | Total: " + str.tostring(total_buy_signals + total_sell_signals) + "\n" +
+                 "✅ Wins: " + str.tostring(total_wins) + " | ❌ Losses: " + str.tostring(total_losses) + "\n" +
+                 "🎯 Win Rate: " + str.tostring(math.round(win_rate, 1)) + "%\n" +
+                 "─────────────────────────────────\n" +
+                 "📅 " + str.format_time(start_date, "MMM dd") + " - " + str.format_time(end_date, "MMM dd, yyyy") + "\n" +
+                 "🔍 Exit dots: 🟢 Win | 🔴 Loss"
+    
+    if not na(winrate_label)
+        label.delete(winrate_label)
+    
+    winrate_label := label.new(bar_index + 5, high, label_text, 
+                              color=color.new(#2C3E50, 90), 
+                              textcolor=color.white, 
+                              style=label.style_label_left, 
+                              size=size.small)
+
+// ===========================
+// Visual Elements
+// ===========================
+// Range Filter Line
+filtplot = plot(filt, color=filtcolor, linewidth=2, title="Range Filter")
+
+// Target Bands (Optional)
+hbandplot = plot(show_target_bands ? hband : na, color=color.new(upColor, 70), title="High Target")
+lbandplot = plot(show_target_bands ? lband : na, color=color.new(downColor, 70), title="Low Target")
+
+// Fills (Optional)
+fill(hbandplot, filtplot, color=show_target_bands ? color.new(upColor, 95) : na, title="High Target Range")
+fill(lbandplot, filtplot, color=show_target_bands ? color.new(downColor, 95) : na, title="Low Target Range")
+
+// Bar Color
+barcolor(barcolor)
+
+// Entry Signals (Clean Style)
+plotshape(longCondition and show_signals, 
+          title="Range Filter BUY", text="BUY", textcolor=color.white, 
+          style=shape.labelup, size=size.small, location=location.belowbar, 
+          color=color.new(upColor, 20))
+
+plotshape(shortCondition and show_signals, 
+          title="Range Filter SELL", text="SELL", textcolor=color.white, 
+          style=shape.labeldown, size=size.small, location=location.abovebar, 
+          color=color.new(downColor, 20))
+
+// Debug Data Window
+plot(longCondition ? 1 : 0, title="📊 Buy Signal", display=display.data_window)
+plot(shortCondition ? 1 : 0, title="📊 Sell Signal", display=display.data_window)
+plot(in_date_range ? 1 : 0, title="📅 In Date Range", display=display.data_window)
+plot(total_buy_signals, title="📈 Total Buy Signals", display=display.data_window)
+plot(total_sell_signals, title="📉 Total Sell Signals", display=display.data_window)
+plot(total_wins, title="✅ Total Wins", display=display.data_window)
+plot(total_losses, title="❌ Total Losses", display=display.data_window)
+plot(win_rate, title="🎯 Win Rate %", display=display.data_window)
+
+// Enhanced Alerts with JSON format
+alertcondition(longCondition,  
+              title="🚀 Range Filter V1.0 - BUY Signal", 
+              message='{"strategy": "Range_Filter_V1.0", "action": "BUY", "price": {{close}}, "time": "{{time}}", "timeframe": "{{interval}}", "signal_type": "range_filter_buy"}')
+
+alertcondition(shortCondition, 
+              title="🚀 Range Filter V1.0 - SELL Signal", 
+              message='{"strategy": "Range_Filter_V1.0", "action": "SELL", "price": {{close}}, "time": "{{time}}", "timeframe": "{{interval}}", "signal_type": "range_filter_sell"}')
+
+alertcondition(longCondition or shortCondition, 
+              title="🚀 Range Filter V1.0 - Any Signal", 
+              message='{"strategy": "Range_Filter_V1.0", "action": "ANY", "price": {{close}}, "time": "{{time}}", "timeframe": "{{interval}}", "signal_type": "range_filter_any"}')
+
+// ============================================================================
+// V1.0 CHANGELOG & NOTES
+// ============================================================================
+// 📈 NEW FEATURES IN V1.0:
+// ✅ Exit Points Visualization - Green dots for wins, Red dots for losses
+// ✅ Enhanced Win Rate Display with detailed statistics  
+// ✅ Professional Color Scheme and clean UI
+// ✅ Customizable Visual Settings (signals, exit points, target bands)
+// ✅ Enhanced Reset Logic with Force Reset option
+// ✅ JSON Alert format for n8n/AutoRemote integration
+// ✅ Improved Data Window debugging information
+// ✅ Better memory management and array handling
+//
+// 🎯 EXIT POINTS VISUALIZATION:
+// - 🟢 Green Circle with "W" = Win (profitable exit)
+// - 🔴 Red Circle with "L" = Loss (unprofitable exit)  
+// - Appears exactly at exit interval time on the chart
+// - Shows real-time performance of each signal
+//
+// 🔧 RANGE FILTER ALGORITHM:
+// - Dynamic support/resistance based on price movement
+// - Configurable sampling period and range multiplier
+// - Trend following with noise filtering
+// - Entry signals when price breaks through filter
+//
+// 📊 FOR BINARY OPTIONS SUCCESS:
+// - Monitor exit points for strategy validation
+// - Use win rate statistics for confidence assessment
+// - Adjust interval time to match option expiry
+// - Green exit dots indicate good signal quality

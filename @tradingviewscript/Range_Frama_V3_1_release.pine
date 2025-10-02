@@ -1,0 +1,451 @@
+//@version=5
+indicator(title="Range Frama V3.1 (FRAMA matched to BigBeluga)", shorttitle="Range Frama V3.1", overlay=true, max_labels_count=500)
+
+// ===========================
+// Base inputs (Range Filter)
+// ===========================
+upColor   = color.white
+midColor  = #90bff9
+downColor = color.blue
+
+src = input(defval=close, title="Source")
+per = input.int(defval=100, minval=1, title="Sampling Period")
+mult = input.float(defval=3.0, minval=0.1, title="Range Multiplier")
+
+// ===========================
+// FRAMA settings (BB matched)
+// ===========================
+grp_FRAMA = "FRAMA Integration Settings"
+use_frama_filter = input.bool(defval=true, title="Enable FRAMA Filter", group=grp_FRAMA)
+frama_divot = input.int(defval=0, minval=0, maxval=10, title="FRAMA Divot (bars)", group=grp_FRAMA)
+
+frama_length   = input.int(defval=26, minval=2, step=2, title="FRAMA Length (even only)", group=grp_FRAMA)
+frama_distance = input.float(defval=1.5, minval=0.3, step=0.01, title="FRAMA Bands Distance", group=grp_FRAMA)
+
+// ===========================
+// Winrate settings (unchanged)
+// ===========================
+grp_WINRATE = "Win Rate Settings"
+interval_minutes = input.int(defval=10, minval=1, title="Interval Time (minutes)", group=grp_WINRATE)
+start_date = input.time(timestamp("2025-01-01"), title="Start Date", group=grp_WINRATE)
+end_date = input.time(timestamp("2025-01-31"), title="End Date", group=grp_WINRATE)
+show_winrate = input.bool(defval=true, title="Show Win Rate", group=grp_WINRATE)
+
+
+// ============================================================================
+// Variable declarations
+// ============================================================================
+// Track RF entries to optionally mark losses in gray after interval
+var array<float> rf_buy_entry_prices  = array.new<float>()
+var array<int>   rf_buy_entry_times   = array.new<int>()
+var array<int>   rf_buy_entry_bars    = array.new<int>()
+var array<float> rf_sell_entry_prices = array.new<float>()
+var array<int>   rf_sell_entry_times  = array.new<int>()
+var array<int>   rf_sell_entry_bars   = array.new<int>()
+
+// Calculate interval bars for loss detection
+tf_sec = timeframe.in_seconds()
+interval_bars = math.max(1, math.round(interval_minutes * 60 / tf_sec))
+
+// ============================================================================
+// RANGE FILTER (original)
+// ============================================================================
+smoothrng(x, t, m) =>
+    wper = t * 2 - 1
+    avrng = ta.ema(math.abs(x - x[1]), t)
+    ta.ema(avrng, wper) * m
+smrng = smoothrng(src, per, mult)
+
+rngfilt(x, r) =>
+    _f = x
+    _f := x > nz(_f[1]) ? (x - r < nz(_f[1]) ? nz(_f[1]) : x - r)
+         : (x + r > nz(_f[1]) ? nz(_f[1]) : x + r)
+    _f
+filt = rngfilt(src, smrng)
+
+upward = 0.0
+upward := filt > filt[1] ? nz(upward[1]) + 1 : filt < filt[1] ? 0 : nz(upward[1])
+downward = 0.0
+downward := filt < filt[1] ? nz(downward[1]) + 1 : filt > filt[1] ? 0 : nz(downward[1])
+
+hband = filt + smrng
+lband = filt - smrng
+
+filtcolor = upward > 0 ? upColor : downward > 0 ? downColor : midColor
+_barcol = src > filt and upward > 0 ? upColor : src < filt and downward > 0 ? downColor : midColor
+plot(filt, color=filtcolor, linewidth=2, title="Range Filter")
+pH = plot(hband, color=color.new(upColor, 70), title="High Target")
+pL = plot(lband, color=color.new(downColor, 70), title="Low Target")
+fill(pH, pL, color=color.new(color.gray, 95))
+barcolor(_barcol)
+
+// RANGE FILTER signals
+longCond = (src > filt and upward > 0)
+shortCond = (src < filt and downward > 0)
+CondIni = 0
+CondIni := longCond ? 1 : shortCond ? -1 : CondIni[1]
+longCondition_original = longCond and CondIni[1] == -1
+shortCondition_original = shortCond and CondIni[1] == 1
+
+// ============================================================================
+// FRAMA (exactly matched to BigBeluga for bands + "first-of-run" labels)
+// ============================================================================
+
+type frama_vars 
+    float N1
+    float N2
+    float N3
+    float HH
+    float LL
+    float Dimen 
+    float alpha
+var frama_vars v = frama_vars.new(0.,0.,0.,0.,0.,0.,0.)
+
+var float Filt   = na
+var float Filt1  = na
+var float Filt2  = na
+
+// price like BB
+price = hl2
+
+// volatility like BB (NOT ATR)
+volatility = ta.sma(high - low, 200)
+
+// N3
+v.N3 := (ta.highest(high, frama_length) - ta.lowest(low, frama_length)) / frama_length
+
+// N1
+v.HH := high, v.LL := low
+for i = 0 to frama_length/2 - 1
+    if high[i] > v.HH
+        v.HH := high[i]
+    if low[i] < v.LL
+        v.LL := low[i]
+v.N1 := (v.HH - v.LL) / (frama_length/2)
+
+// N2
+v.HH := high[frama_length/2]
+v.LL := low[frama_length/2]
+for i = frama_length/2 to frama_length - 1
+    if high[i] > v.HH
+        v.HH := high[i]
+    if low[i] < v.LL
+        v.LL := low[i]
+v.N2 := (v.HH - v.LL) / (frama_length/2)
+
+// Dimen + alpha
+if (v.N1 > 0 and v.N2 > 0 and v.N3 > 0)
+    v.Dimen := (math.log(v.N1 + v.N2) - math.log(v.N3)) / math.log(2)
+v.alpha := math.exp(-4.6 * (v.Dimen - 1))
+v.alpha := math.max(math.min(v.alpha, 1), 0.01)
+
+// Filt (EMA fractal) + SMA(5) smoothing like BB
+Filt := na(Filt) ? price : v.alpha * price + (1 - v.alpha) * Filt[1]
+Filt := ta.sma((bar_index < frama_length + 1) ? price : Filt, 5)
+
+// Bands like BB
+Filt1 := Filt + volatility * frama_distance
+Filt2 := Filt - volatility * frama_distance
+
+// raw breakout events (same condition name as BB)
+_frama_break_up = ta.crossover(hlc3, Filt1) and barstate.isconfirmed
+_frama_break_dn = ta.crossunder(hlc3, Filt2) and barstate.isconfirmed
+
+var int _countUp = 0
+var int _countDn = 0
+if _frama_break_up
+    _countDn := 0
+    _countUp += 1
+if _frama_break_dn
+    _countUp := 0
+    _countDn += 1
+
+frama_label_up = _frama_break_up and _countUp == 1
+frama_label_dn = _frama_break_dn and _countDn == 1
+
+frama_break_up = _frama_break_up
+frama_break_dn = _frama_break_dn
+
+// ============================================================================
+// RANGE + FRAMA combined (unchanged)
+// ============================================================================
+var int last_rf_bar = na
+range_frama_buy = false
+range_frama_sell = false
+
+var int last_R_up_bar = na
+var int last_R_dn_bar = na
+var int last_F_up_bar = na
+var int last_F_dn_bar = na
+
+if longCondition_original
+    last_R_up_bar := bar_index
+if shortCondition_original
+    last_R_dn_bar := bar_index
+if frama_break_up
+    last_F_up_bar := bar_index
+if frama_break_dn
+    last_F_dn_bar := bar_index
+
+if use_frama_filter
+    block_period_active = not na(last_rf_bar) and (bar_index - last_rf_bar) <= frama_divot
+
+    if not block_period_active and not na(last_R_up_bar) and not na(last_F_up_bar)
+        distance_ok = math.abs(last_R_up_bar - last_F_up_bar) <= frama_divot
+        latest_bar = math.max(last_R_up_bar, last_F_up_bar)
+        if distance_ok and latest_bar == bar_index
+            range_frama_buy := true
+
+    if not block_period_active and not na(last_R_dn_bar) and not na(last_F_dn_bar)
+        distance_ok_dn = math.abs(last_R_dn_bar - last_F_dn_bar) <= frama_divot
+        latest_bar_dn = math.max(last_R_dn_bar, last_F_dn_bar)
+        if distance_ok_dn and latest_bar_dn == bar_index
+            range_frama_sell := true
+
+if range_frama_buy or range_frama_sell
+    last_rf_bar := bar_index
+
+rf_buy_active  = use_frama_filter and range_frama_buy
+rf_sell_active = use_frama_filter and range_frama_sell
+
+longCondition  = use_frama_filter ? rf_buy_active  : longCondition_original
+shortCondition = use_frama_filter ? rf_sell_active : shortCondition_original
+
+
+// ============================================================================
+// Win-rate block (multi-interval)
+// ============================================================================
+type winrate_state
+    int minutes
+    int total_buy
+    int total_sell
+    int total_wins
+    int total_losses
+    array<float> pending_buy_prices
+    array<int>   pending_buy_times
+    array<float> pending_sell_prices
+    array<int>   pending_sell_times
+
+winrate_state_new(_minutes) =>
+    winrate_state.new(_minutes, 0, 0, 0, 0, array.new_float(), array.new_int(), array.new_float(), array.new_int())
+
+contains_minutes(arr, needle) =>
+    found = false
+    for i = 0 to array.size(arr) - 1
+        if array.get(arr, i) == needle
+            found := true
+            break
+    found
+
+init_winrate_states(primary_minutes) =>
+    array.clear(winrate_states)
+    temp_intervals = array.new_int()
+    array.push(temp_intervals, primary_minutes)
+    array.push(temp_intervals, 30)
+    array.push(temp_intervals, 60)
+    unique_intervals = array.new_int()
+    for idx = 0 to array.size(temp_intervals) - 1
+        minutes = array.get(temp_intervals, idx)
+        if not contains_minutes(unique_intervals, minutes)
+            array.push(unique_intervals, minutes)
+            array.push(winrate_states, winrate_state_new(minutes))
+
+var array<winrate_state> winrate_states = array.new<winrate_state>()
+var int last_primary_interval = na
+
+if barstate.isfirst
+    init_winrate_states(interval_minutes)
+    last_primary_interval := interval_minutes
+else if interval_minutes != last_primary_interval
+    init_winrate_states(interval_minutes)
+    last_primary_interval := interval_minutes
+
+reset_winrate_states() =>
+    for idx = 0 to array.size(winrate_states) - 1
+        state = array.get(winrate_states, idx)
+        state.total_buy   := 0
+        state.total_sell  := 0
+        state.total_wins  := 0
+        state.total_losses := 0
+        array.clear(state.pending_buy_prices)
+        array.clear(state.pending_buy_times)
+        array.clear(state.pending_sell_prices)
+        array.clear(state.pending_sell_times)
+        array.set(winrate_states, idx, state)
+
+record_entry(is_buy) =>
+    for idx = 0 to array.size(winrate_states) - 1
+        state = array.get(winrate_states, idx)
+        if is_buy
+            state.total_buy += 1
+            array.push(state.pending_buy_prices, close)
+            array.push(state.pending_buy_times,  time)
+        else
+            state.total_sell += 1
+            array.push(state.pending_sell_prices, close)
+            array.push(state.pending_sell_times,  time)
+        array.set(winrate_states, idx, state)
+
+process_results() =>
+    for idx = 0 to array.size(winrate_states) - 1
+        state = array.get(winrate_states, idx)
+        if array.size(state.pending_buy_prices) > 0
+            for i = array.size(state.pending_buy_prices) - 1 to 0
+                entry_time  = array.get(state.pending_buy_times,  i)
+                entry_price = array.get(state.pending_buy_prices, i)
+                interval_time = entry_time + (state.minutes * 60 * 1000)
+                if time >= interval_time
+                    future_price = close
+                    if future_price > entry_price
+                        state.total_wins += 1
+                    else
+                        state.total_losses += 1
+                    array.remove(state.pending_buy_prices, i)
+                    array.remove(state.pending_buy_times,  i)
+        if array.size(state.pending_sell_prices) > 0
+            for i = array.size(state.pending_sell_prices) - 1 to 0
+                entry_time  = array.get(state.pending_sell_times,  i)
+                entry_price = array.get(state.pending_sell_prices, i)
+                interval_time = entry_time + (state.minutes * 60 * 1000)
+                if time >= interval_time
+                    future_price = close
+                    if future_price < entry_price
+                        state.total_wins += 1
+                    else
+                        state.total_losses += 1
+                    array.remove(state.pending_sell_prices, i)
+                    array.remove(state.pending_sell_times,  i)
+        array.set(winrate_states, idx, state)
+
+var int last_start_time = na
+var int last_end_time   = na
+var string last_symbol = na
+var string last_timeframe = na
+
+start_time = math.min(start_date, end_date)
+end_time_raw = math.max(start_date, end_date)
+end_time = end_time_raw + 24 * 60 * 60 * 1000 - 1
+
+if start_time != last_start_time or end_time != last_end_time or syminfo.ticker != last_symbol or timeframe.period != last_timeframe
+    reset_winrate_states()
+    last_start_time := start_time
+    last_end_time := end_time
+    last_symbol := syminfo.ticker
+    last_timeframe := timeframe.period
+
+in_date_range = time >= start_time and time <= end_time
+
+if range_frama_buy and in_date_range
+    record_entry(true)
+
+if range_frama_sell and in_date_range
+    record_entry(false)
+
+process_results()
+
+primary_idx = state_index(interval_minutes)
+idx_30 = state_index(30)
+idx_60 = state_index(60)
+
+calc_interval_summary(state) =>
+    total_signals = state.total_wins + state.total_losses
+    win_rate = total_signals > 0 ? (state.total_wins / total_signals) * 100 : 0.0
+    [total_signals, win_rate]
+
+state_total_buy(idx) =>
+    total = 0
+    if idx >= 0 and array.size(winrate_states) > idx
+        total := array.get(winrate_states, idx).total_buy
+    total
+
+state_total_sell(idx) =>
+    total = 0
+    if idx >= 0 and array.size(winrate_states) > idx
+        total := array.get(winrate_states, idx).total_sell
+    total
+
+state_total_wins(idx) =>
+    total = 0
+    if idx >= 0 and array.size(winrate_states) > idx
+        total := array.get(winrate_states, idx).total_wins
+    total
+
+state_total_losses(idx) =>
+    total = 0
+    if idx >= 0 and array.size(winrate_states) > idx
+        total := array.get(winrate_states, idx).total_losses
+    total
+
+state_win_rate(idx) =>
+    rate = na
+    if idx >= 0 and array.size(winrate_states) > idx
+        state = array.get(winrate_states, idx)
+        [total_signals, interval_win_rate] = calc_interval_summary(state)
+        rate := total_signals > 0 ? interval_win_rate : na
+    rate
+
+state_index(minutes) =>
+    found = -1
+    for i = 0 to array.size(winrate_states) - 1
+        if array.get(winrate_states, i).minutes == minutes
+            found := i
+            break
+    found
+
+var label winrate_label = na
+if show_winrate and barstate.islast
+    frama_status = use_frama_filter ? "ENABLED" : "DISABLED"
+    label_text = "WIN RATE STATS\n" +
+                 "FRAMA Filter: " + frama_status + "\n" +
+                 "FRAMA Divot: " + str.tostring(frama_divot)
+    for idx = 0 to array.size(winrate_states) - 1
+        state = array.get(winrate_states, idx)
+        [total_signals, interval_win_rate] = calc_interval_summary(state)
+        label_text += "\n[" + str.tostring(state.minutes) + "m] " +
+                      "Buy: " + str.tostring(state.total_buy) + ", " +
+                      "Sell: " + str.tostring(state.total_sell) + ", " +
+                      "Wins: " + str.tostring(state.total_wins) + ", " +
+                      "Losses: " + str.tostring(state.total_losses) + ", " +
+                      "Win%: " + str.tostring(math.round(interval_win_rate, 2))
+    if not na(winrate_label)
+        label.delete(winrate_label)
+    winrate_label := label.new(bar_index + 5, high, label_text, color=color.new(color.blue, 80), textcolor=color.white, style=label.style_label_left, size=size.small)
+else if not show_winrate and not na(winrate_label)
+    label.delete(winrate_label)
+    winrate_label := na
+
+// ============================================================================
+// Plot & Alerts
+// ============================================================================
+plot(Filt,  color=color.new(color.yellow, 70), linewidth=1, title="FRAMA Filter", display=display.none)
+plot(Filt1, color=color.new(color.green, 70),  linewidth=1, title="FRAMA Upper",  display=display.none)
+plot(Filt2, color=color.new(color.red, 70),    linewidth=1, title="FRAMA Lower",  display=display.none)
+
+plotshape(longCondition_original, title="Range Signal (Debug)", text="R", textcolor=color.white, style=shape.circle, size=size.tiny, location=location.belowbar, color=color.new(color.lime, 0))
+plotshape(shortCondition_original, title="Range Signal (Debug)", text="R", textcolor=color.white, style=shape.circle, size=size.tiny, location=location.abovebar, color=color.new(color.orange, 0))
+
+plotshape(frama_label_up, title="FRAMA Signal (Debug)", text="F", textcolor=color.white, style=shape.circle, size=size.tiny, location=location.belowbar, color=color.new(color.green, 0))
+plotshape(frama_label_dn, title="FRAMA Signal (Debug)", text="F", textcolor=color.white, style=shape.circle, size=size.tiny, location=location.abovebar, color=color.new(color.red, 0))
+
+plotshape(use_frama_filter and range_frama_buy,  title="RF Buy",  text="Buy",  textcolor=color.white, style=shape.labelup,   size=size.small, location=location.belowbar, color=color.new(color.green, 20))
+plotshape(use_frama_filter and range_frama_sell, title="RF Sell", text="Sell", textcolor=color.white, style=shape.labeldown, size=size.small, location=location.abovebar,  color=color.new(color.red,   20))
+
+plot(use_frama_filter ? 1 : 0, title="FRAMA Filter", display=display.data_window)
+plot(array.size(rf_buy_entry_bars), title="RF Buy Entries", display=display.data_window)
+plot(array.size(rf_sell_entry_bars), title="RF Sell Entries", display=display.data_window)
+plot(interval_bars, title="Interval Bars", display=display.data_window)
+plot(range_frama_buy ? 1 : 0, title="Range Frama Buy", display=display.data_window)
+plot(range_frama_sell ? 1 : 0, title="Range Frama Sell", display=display.data_window)
+plot(in_date_range ? 1 : 0, title="In Date Range", display=display.data_window)
+
+plot(state_total_buy(primary_idx),   title="Total Buy Signals (Primary)", display=display.data_window)
+plot(state_total_sell(primary_idx),  title="Total Sell Signals (Primary)", display=display.data_window)
+plot(state_total_wins(primary_idx),  title="Total Wins (Primary)", display=display.data_window)
+plot(state_total_losses(primary_idx),title="Total Losses (Primary)", display=display.data_window)
+plot(state_win_rate(primary_idx),    title="Win Rate % (Primary)", display=display.data_window)
+plot(state_win_rate(idx_30),         title="Win Rate % (30m)", display=display.data_window)
+plot(state_win_rate(idx_60),         title="Win Rate % (60m)", display=display.data_window)
+
+alertcondition(longCondition,  title="Buy alert on Range FRAMA",  message="Buy alert on Range FRAMA")
+alertcondition(shortCondition, title="Sell alert on Range FRAMA", message="Sell alert on Range FRAMA")
+alertcondition(longCondition or shortCondition, title="Buy and Sell alert on Range FRAMA", message="Buy and Sell alert on Range FRAMA")

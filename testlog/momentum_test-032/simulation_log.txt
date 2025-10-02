@@ -1,0 +1,56 @@
+========================================================================================================================
+🚀 Test 032: Acceleration + Separated Leaderboard + TOP 3 (Score >= 25)
+📅 Simulation Period: 01-30 Sep 2025 (30 วัน)
+📊 Data Lookback: 3 hours (ใช้ P1-P3 เท่านั้น)
+📊 Log Level: INFO
+🎯 Actions: Buy/Sell ONLY (no FlowTrend)
+🏆 Selection: TOP 3 strategies with Score >= 25
+
+✨ วิธีการใหม่: Separated Leaderboard Approach
+   Phase 1: Build Leaderboard (คำนวนคะแนน, เลือก TOP 3)
+   Phase 2: Match & Trade (เทียบ raw signals กับ TOP 3)
+========================================================================================================================
+📊 Found 34 combinations (Buy/Sell only)
+
+📊 Scoring data fetched: 2025-08-31 21:00:00 to 2025-09-30 23:59:59
+   Total records: 7912
+📅 Simulation hours: 696 hours
+
+⏰ 01/09 00:00 PNL=$0 SELECTED: 3 strategies
+⏰ 02/09 00:00 PNL=$11450 SELECTED: 3 strategies
+⏰ 03/09 01:00 PNL=$20600 SELECTED: 3 strategies
+⏰ 04/09 01:00 PNL=$31350 SELECTED: 3 strategies
+⏰ 05/09 01:00 PNL=$42700 SELECTED: 3 strategies
+⏰ 06/09 01:00 PNL=$50350 SELECTED: 3 strategies
+⏰ 07/09 01:00 PNL=$63250 SELECTED: 3 strategies
+⏰ 08/09 01:00 PNL=$77600 SELECTED: 3 strategies
+⏰ 09/09 01:00 PNL=$89600 SELECTED: 0 strategies
+⏰ 10/09 06:00 PNL=$98850 SELECTED: 1 strategies
+⏰ 11/09 06:00 PNL=$108300 SELECTED: 3 strategies
+⏰ 12/09 06:00 PNL=$118850 SELECTED: 3 strategies
+⏰ 13/09 06:00 PNL=$127850 SELECTED: 3 strategies
+⏰ 14/09 06:00 PNL=$141600 SELECTED: 3 strategies
+⏰ 15/09 06:00 PNL=$154600 SELECTED: 3 strategies
+⏰ 16/09 06:00 PNL=$165400 SELECTED: 3 strategies
+⏰ 17/09 06:00 PNL=$174600 SELECTED: 3 strategies
+⏰ 18/09 06:00 PNL=$183100 SELECTED: 2 strategies
+⏰ 19/09 06:00 PNL=$194100 SELECTED: 3 strategies
+⏰ 20/09 06:00 PNL=$204100 SELECTED: 3 strategies
+⏰ 21/09 06:00 PNL=$221350 SELECTED: 3 strategies
+⏰ 22/09 06:00 PNL=$238750 SELECTED: 3 strategies
+⏰ 23/09 06:00 PNL=$251550 SELECTED: 2 strategies
+⏰ 24/09 06:00 PNL=$265100 SELECTED: 3 strategies
+⏰ 25/09 06:00 PNL=$276100 SELECTED: 3 strategies
+⏰ 26/09 07:00 PNL=$289400 SELECTED: 3 strategies
+⏰ 27/09 07:00 PNL=$303100 SELECTED: 3 strategies
+⏰ 28/09 07:00 PNL=$316100 SELECTED: 3 strategies
+⏰ 29/09 07:00 PNL=$332000 SELECTED: 3 strategies
+
+========================================================================================================================
+💰 FINAL: $340600 | Trades: 1919 | Strategy Changes: 673
+========================================================================================================================
+
+✅ Test 032 Complete!
+Formula: Acceleration (5×M₁ + 3×Acceleration, P1-P3 only)
+Selection: Separated Leaderboard → TOP 3 with Score >= 25
+Final PNL: $340600
